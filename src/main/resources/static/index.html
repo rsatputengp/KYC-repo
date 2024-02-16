@@ -1,0 +1,361 @@
+<!--@Author - Ritik .k. Satpute-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Ritik .k. satpute" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="image/angular.min.js" type="text/javascript"></script>
+        <script src="image/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+        <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+        <title>Login Page</title>
+        <script src="js/index.js" type="text/javascript"></script>
+        <style>
+            
+            .card {
+                width: 400px;
+                margin: 80px;
+                padding: 20px;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 0, 0.5); 
+            }
+
+            .card input[type="text"],
+            .card input[type="password"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 0;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                border: 0px solid black;
+                background-color: rgba(0, 0, 0, 0.6);
+                color: rgba(1288, 1288, 1288, 0.9);
+
+            }
+            .card select{
+                width: 100%;
+                padding: 12px 20px;
+                margin: 0;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                border: 0px solid black;
+                background-color: rgba(0, 0, 0, 0.6);
+                color: rgba(1288, 1288, 1288, 0.9);
+
+            }
+            .center-align {
+                text-align: center;
+            }
+
+            .card button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: black;
+                color: white;
+                border: none;
+                background-color: rgba(0, 0, 0, 0.5);
+                width: 45%;
+                color: white;
+                padding: 12px 20px;
+                margin:  0px;
+                border: none;
+                border-radius: 10px; 
+                cursor: pointer;
+            }
+            .button:hover {
+                background-color: #91E246;
+            }
+            /*Container block*/
+
+            .input-container {
+                position: relative;
+                margin-bottom: 15px;
+
+            }
+            .input-container i {
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                color: #ccc;
+                transform: translateY(-35%);
+
+            }
+
+            body{
+                background-image: url('image/bgImg.jpg');
+
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+            .card {
+                width: calc(35% - 40px);
+                padding: 20px;
+                box-sizing: border-box;
+                margin: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+            .btn {
+                display: inline-block;
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #91E246;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn:hover {
+                background-color: #91E246
+            }
+            .linkpage{
+                color: #86C44C;
+            }
+            .note{
+                color: white;
+            }
+            .titlename{
+                font-size: 25px; 
+                color: white; 
+                margin-bottom: -15px;
+                font-family: 'Roboto Slab', serif;
+            }
+            /*// For Loading Image*/
+            #loadingIcon{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+
+</head>
+<html>
+    <body ng-app="loginApp" ng-controller="loginController"> 
+        <table width="100%" cellpadding="5" cellspacing="10" >
+            <tr>
+                <td class="signUparea" ng-show="signUpContainerVisible">
+            <center>
+                <!--<div ng-show="loadingImg" style="max-width: 100%; max-height: 100%; background-color: whitesmoke; opacity: 0.6;">-->
+                        <!--<img src="image/logo.png" alt="Company Logo" style="max-width: 100px; max-height: 100px;"ng-show="loadingImg" id="loadingIcon">-->
+                <!--</div>-->
+                <div class="card">
+                    <div class="logo">
+                        <img src="image/logo.png" alt="Company Logo" style="width: 100px; ">
+                    </div>
+                    <form ng-submit="onSignUpSubmit();" >
+                        <h3 class="titlename"> KYC Verification System </h3><br>
+                        <div class="input-container">
+                            <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                            <input type="text" ng-model="userName" pattern="^[0-9]{1,12}$" id="userName" name="username" placeholder="employee_Id (ex: 0123)" title="User Name should be your employee Id." required="" class="center-align">
+                        </div>
+                        <div  class="input-container">
+                            <i class="fas fa-university right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                            <select id="branchName" name="branchName"   ng-model="branchName" class="center-align" required>
+                                <option value="" disabled selected ><i class="center-align" style="color: #999;" >select the branch</i></option>
+                                <option value="AHERI">AHERI</option>
+                                <option value="AKOLA">AKOLA</option>
+                                <option value="AKOT">AKOT</option>
+                                <option value="AMGAON">AMGAON</option>
+                                <option value="AMRAWATI">AMRAWATI</option>
+                                <option value="ARMORI">ARMORI</option>
+                                <option value="ARNI">ARNI</option>
+                                <option value="ARVI">ARVI</option>
+                                <option value="ASHTI">ASHTI</option>
+                                <option value="BALARSHAH">BALARSHAH</option>
+                                <option value="BHADRAWATI">BHADRAWATI</option>
+                                <option value="BHANDARA">BHANDARA</option>
+                                <option value="BHIWAPUR">BHIWAPUR</option>
+                                <option value="BRHAMPURI">BRHAMPURI</option>
+                                <option value="BULDHANA">BULDHANA</option>
+                                <option value="CHAMORSHI">CHAMORSHI</option>
+                                <option value="CHANDRAPUR">CHANDRAPUR</option>
+                                <option value="CHANDUR BAJAR">CHANDUR BAJAR</option>
+                                <option value="CHANDURRAILWAY">CHANDURRAILWAY</option>
+                                <option value="CHIKHALI">CHIKHALI</option>
+                                <option value="DARWAHA">DARWAHA</option>
+                                <option value="DARYAPUR">DARYAPUR</option>
+                                <option value="DEOLI">DEOLI</option>
+                                <option value="DEORI">DEORI</option>
+                                <option value="DHANORA">DHANORA</option>
+                                <option value="DIGRAS">DIGRAS</option>
+                                <option value="GADCHIROLI">GADCHIROLI</option>
+                                <option value="GANDHIBAGH">GANDHIBAGH</option>
+                                <option value="GHATANJI">GHATANJI</option>
+                                <option value="GONDIA MAIN BRANCH">GONDIA MAIN BRANCH</option>
+                                <option value="GONDPIPARI">GONDPIPARI</option>
+                                <option value="GOREGAON">GOREGAON</option>
+                                <option value="HEAD OFFICE GONDIA">HEAD OFFICE GONDIA</option>
+                                <option value="HINGANGHAT">HINGANGHAT</option>
+                                <option value="HINGNA">HINGNA</option>
+                                <option value="JALGAON JMOD">JALGAON JMOD</option>
+                                <option value="KALAMB">KALAMB</option>
+                                <option value="KALMESHWAR">KALMESHWAR</option>
+                                <option value="KANHAN">KANHAN</option>
+                                <option value="KARANJA LAD">KARANJA LAD</option>
+                                <option value="KARANJAN GHADGE">KARANJAN GHADGE</option>
+                                <option value="KATOL">KATOL</option>
+                                <option value="KHAMGAON">KHAMGAON</option>
+                                <option value="KORCHI">KORCHI</option>
+                                <option value="KUHI">KUHI</option>
+                                <option value="KURKHEDA">KURKHEDA</option>
+                                <option value="LAKHANDUR">LAKHANDUR</option>
+                                <option value="LAKHANI">LAKHANI</option>
+                                <option value="LONAR">LONAR</option>
+                                <option value="MAHAGAON">MAHAGAON</option>
+                                <option value="MALEGAON">MALEGAON</option>
+                                <option value="MALKAPUR">MALKAPUR</option>
+                                <option value="MANGLURPIR">MANGLURPIR</option>
+                                <option value="MANORA">MANORA</option>
+                                <option value="MAUDA">MAUDA</option>
+                                <option value="MEHKAR">MEHKAR</option>
+                                <option value="MOHADI">MOHADI</option>
+                                <option value="MORGAON ARJUNI">MORGAON ARJUNI</option>
+                                <option value="MORSHI">MORSHI</option>
+                                <option value="MUL">MUL</option>
+                                <option value="MULCHERA">MULCHERA</option>
+                                <option value="MURTIJAPUR">MURTIJAPUR</option>
+                                <option value="NAGBHID">NAGBHID</option>
+                                <option value="NANDURA">NANDURA</option>
+                                <option value="NARKHED">NARKHED</option>
+                                <option value="NER PARSOPANT">NER PARSOPANT</option>
+                                <option value="PANDHARKAWDA">PANDHARKAWDA</option>
+                                <option value="PARATWADA">PARATWADA</option>
+                                <option value="PARSHIVNI">PARSHIVNI</option>
+                                <option value="PATUR">PATUR</option>
+                                <option value="PAUNI">PAUNI</option>
+                                <option value="PUSAD">PUSAD</option>
+                                <option value="RAJURA">RAJURA</option>
+                                <option value="RALEGAON">RALEGAON</option>
+                                <option value="RAMTEK">RAMTEK</option>
+                                <option value="RISOD">RISOD</option>
+                                <option value="SADAK ARJUNI">SADAK ARJUNI</option>
+                                <option value="SAHAYOGCHHATRAPATI">SAHAYOGCHHATRAPATI</option>
+                                <option value="SAKOLI">SAKOLI</option>
+                                <option value="SALEKASA">SALEKASA</option>
+                                <option value="SAMUDRAPUR">SAMUDRAPUR</option>
+                                <option value="SANGAMPUR">SANGAMPUR</option>
+                                <option value="SAONER">SAONER</option>
+                                <option value="SAWALI">SAWAL</option>
+                                <option value="SELOO">SELOO</option>
+                                <option value="SINDEWAHI">SINDEWAHI</option>
+                                <option value="TIRODA">TIRODA</option>
+                                <option value="TUMSAR">TUMSAR</option>
+                                <option value="UMARKHED">UMARKHED</option>
+                                <option value="UMRED">UMRED</option>
+                                <option value="WADSA">WADSA</option>
+                                <option value="WANI">WANI</option>
+                                <option value="WARDHA">WARDHA</option>
+                                <option value="WARUD">WARUD</option>
+                                <option value="WASHIM">WASHIM</option>
+                                <option value="YAWATMAL">YAWATMAL</option>
+                            </select>
+                        </div>
+                        <div  class="input-container">
+                            <i class="fas fa-address-card right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                            <select id="userType" name="userType"   ng-model="userType" class="center-align" required>
+                                <option value="" disabled selected ><i class="center-align" style="color: #999;" >Type of user</i></option>
+                                <option value="COPs">Central Operation Team (COPs) </option>
+                                <option value="BOM">Branch Operation Manager (BOM) </option>
+                                <!--<option value="Admin"> Admin </option>-->
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
+                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" title="Password must be between 6 to 12 length characters, including at least one number and one letter." ng-model="userPassword" id="userPassword" name="userPassword" placeholder="password" required class="center-align">
+                        </div>
+                        <div class="input-container">
+                            <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
+                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" ng-model="userPasswordC" id="cnfrmUserPassword" name="usrPass" placeholder="confirm password" required class="center-align">
+                        </div>
+                        <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">sign up</button>
+                        <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">
+                        <p class="note">
+                            If you have already an Account then <u class="linkpage" ng-click="onShowLoginPage();">click here.</u><br>
+                            By creating this account, you agree to our Privacy Policy.
+                        </p>
+                    </form>
+                </div>
+            </center>
+        </td>
+        <td class="loginarea" style="vertical-align: top;" ng-show="loginContainerVisible">
+        <center> 
+            <div class="card">
+                <div class="logo">
+                    <img src="image/logo.png" alt="Company Logo" style="width: 100px; ">
+                </div>
+                <form ng-submit="onLoginSubmit();">
+                    <h3 class="titlename"> KYC Verification System </h3><br>
+                    <div class="input-container">
+                        <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                        <input type="text" ng-model="userName" id="userNameLi" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fas fa-lock right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                        <input type="password" ng-model="userPassword" id="userPasswordLi" name="userPassword" placeholder="password" required class="center-align">
+                    </div>
+                    <button  class="btn btn-sm btn-primary btn-block btn-login" type="submit">Login</button>
+                    <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">
+                    <p class="note">
+                        New user ? <u class="linkpage" ng-click="onShowSignUpPage();">Register here. </u><br>
+                        Forget Password ?<u class="linkpage" ng-click="onShowResetPage();"> click here. </u><br>
+                        By creating this account, you agree to our Privacy Policy.
+                    </p>
+
+                </form>
+            </div>
+        </center>
+    </td>
+    <td class="loginarea" style="vertical-align: top;" ng-show="resetContainerVisible">
+        <center> 
+            <div class="card">
+                <div class="logo">
+                    <img src="image/logo.png" alt="Company Logo" style="width: 100px; ">
+                </div>
+                <form ng-submit="onResetSubmit();">
+                    <h3 class="titlename"> KYC Verification System </h3><br>
+                    <div class="input-container">
+                        <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                        <input type="text" ng-model="userName" id="userNameRe" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
+                    </div>
+                    <div class="input-container">
+                            <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
+                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPassword" id="userPasswordRe" name="userPassword" placeholder="password" 
+                                   required="" class="center-align" title="Password must contain at least 6 characters, including at least one number and one letter.">
+                    </div>
+                    <div class="input-container">
+                            <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
+                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPasswordC" id="cnfrmUserPasswordRe" name="usrPass" placeholder="confirm password" 
+                                   required="" class="center-align">
+                    </div>
+                    <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">Reset Password</button>
+                    <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">
+                    <p class="note">
+                        New user ? <u class="linkpage" ng-click="onShowSignUpPage();">Register here. </u><br>
+                        By creating this account, you agree to our Privacy Policy.
+                    </p>
+                </form>
+            </div>
+        </center>
+    </td>
+</tr>
+</table>
+</body>
+</html>

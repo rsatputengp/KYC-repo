@@ -1,0 +1,643 @@
+<!--@Author - Ritik .k. Satpute-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Ritik .k. satpute" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mandatory KYC Upload</title>
+        <script src="image/angular.min.js" type="text/javascript"></script>
+        <script src="image/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="https://cdn.rawgit.com/danialfarid/ng-file-upload/12.2.13/dist/ng-file-upload.min.js"></script>
+        <script src="js/user_form.js" type="text/javascript"></script>
+        
+        <style>
+            body{
+                zoom: 0.9;
+                -moz-transform: scale(0.9);
+                transform-origin: 0 0;
+            }            
+            h1.form-heading {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                background-color: #80C37D; 
+                color: black ; 
+                padding: 10px; 
+            }
+            .form-heading {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                margin-left: -9px;
+                margin-right: -9px;
+                margin-top: -9px;
+                border-radius: 4px; 
+            }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+            }
+            .form-input {
+                width: 80%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .container {
+                max-width: 60%;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .document {
+                margin-bottom: 20px;
+            }
+
+            .document-label {
+                font-weight: bold;
+            }    
+
+            .attractive-button {
+                background-color: #91E246; 
+                color: black; 
+                border: none; 
+                padding: 6px 20px; 
+                border-radius: 5px; 
+                cursor: pointer; 
+            }
+
+            /* Add hover effect */
+            .attractive-button:hover {
+                background-color: #007bff; 
+            }
+            table {
+                border-collapse: separate;
+                border-spacing: 0 20px;
+            }
+            td, th {
+                padding: 10px; 
+            }
+            h2 {
+                background-color: #80C37D; 
+                color:black;
+                padding: 25px;
+                border-radius: 5px; 
+                margin-left: -20px;
+                margin-right: -20px;
+                margin-top: -20px;
+            }
+            .rcorners {
+                border-radius: 25px;
+                border: 2px solid #73AD21;
+                padding: 10px;
+                height: 40px;
+            }
+            .rcornersimg {
+                border-radius: 20px;
+                border: 2px solid #80C37D;
+                padding: 0px;
+            }
+            /*            .alitd{
+                            text-align: center;
+                        }*/
+            body{
+                background-image: url('image/bgImg_half.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100%;
+                height: 100%;
+            }
+            img{
+                cursor: pointer; 
+            }
+            .idpoint{
+                cursor: pointer; 
+            }
+            .recordcontainer {
+                max-width: 70%;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            .form-label {
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .form-input {
+                width: 50%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .form-button {
+                background-color: #007BFF;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer;
+                align-self: flex-end; /* Align the button to the right */
+            }
+
+            .form-button:hover {
+                background-color: #0056b3;
+            }
+            h1.form-heading {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                background-color: #80C37D; 
+                color: black ; 
+                padding: 10px; 
+            }
+            .form-button{
+                display: inline-block;
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #C7E7C5;
+                color: black;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+            .button:hover {
+                background-color: #91E246;
+            }
+            .form-group1 {
+                display: inline-block;
+                width: 250px; /* Adjust the width as needed */
+                /* Other CSS styles for .form-group1 */
+            }
+            .cardviewtr{
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+                text-align: center;
+                background-color: #C6F19E;
+
+            }
+            .cardviewth{
+                overflow: hidden;
+                background-color: #91E246;
+                border: 2px solid #91E246;
+                border-radius: 20px;
+            }
+            .searchbar{
+                width: 80%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;    
+            }
+            .tablecontainer{
+                width: 100%;
+            }
+            .ownfield{
+                width: 26%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .vertical_line{
+                border-right-style: dashed;
+                border-right-width:2px; 
+                border-right-color: #80C37D;
+            }
+            .docdiv1{
+                display: inline-block;
+                padding-left: 10px;
+            }
+            .docdiv2{
+                display: inline-block;
+                padding-left: 10px;
+            }
+            .docdiv3{
+                display: inline-block;
+                padding-left: 10px;
+            }
+            /* Styles for the popup */
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px; 
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+            }
+
+            .popup-content {
+                /*text-align: center;*/
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+            }
+
+            /* Style for the info icon */
+            #info-icon {
+                font-size: 12px;
+                cursor: pointer;
+            }
+            dt{
+                font-family: sans-serif;
+            }
+            .list-container {
+                height: 500px; /* Adjust as needed */
+                overflow-y: auto;
+                scrollbar-width: thin; /* For Firefox */
+                scrollbar-color: #888 #f1f1f1; /* For Firefox */
+            }
+
+            .list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .list-item {
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            /* CSS for webkit-based browsers (Chrome, Safari) */
+            .list-container::-webkit-scrollbar {
+                width: 12px;
+            }
+
+            .list-container::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            .list-container::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 6px;
+            }
+
+            .list-container::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            .cardviewtr{
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+                text-align: center;
+                background-color:#C7E7C5;
+
+            }
+
+            .cardviewth{
+                text-align: center;
+                /*overflow: hidden;*/
+                background-color: #80C37D;
+                /*border: 2px solid #80C37D;*/
+                border-radius: 20px;
+            }
+            
+            .imgsync{
+                height:30px;
+                width:30px;
+                vertical-align: middle;
+            }
+                        table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0 10px;
+            }
+            td, th {
+                padding: 9px; 
+            }
+            thead th {
+                background-color: #80C37D;
+            }
+        </style>
+    </head>
+    <body ng-app="myApp" ng-controller="cont">
+        <div class="container">
+            <h1 class="form-heading">KYC FORM</h1>
+            <form ng-submit="formdata()">
+                <table class="tablecontainer">
+                    <tr>
+                        <td colspan="3">
+                            <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
+                            <label style="text-align: left; font-size: 18px;" for="applicantName" class="form-label"> APPLICANT </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="id" class="form-label">Name :</label>
+                            <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="firstName" name="firstName" class="ownfield" value="First Name" placeholder="First Name" ng-model="firstName" required="">
+                            <input type="text" pattern="[A-Za-z]{0,20}" id="midName" name="midName" class="ownfield" value="Middel Name" placeholder="Middel Name" ng-model="midName" required="">
+                            <input type="text" pattern="[A-Za-z]{0,20}" id="lastName" name="lastName" class="ownfield" value="Last Name" placeholder="Last Name" ng-model="lastName" required="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="branchName" class="form-label">Branch Name:</label>
+                            <select id="branchName" name="branchName" class="form-input" ng-model="branchName" required="">
+                                <option value="" disabled selected ><i class="center-align" style="color: #999;" >Select The Branch Name</i></option>
+                                <option ng-repeat="option in branchlist" value="{{option}}">{{option}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label for="adharNo" class="form-label">Aadhar Number :</label>
+                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo" name="adharNo" class="form-input" ng-model="adharNo" required="">
+                            <img id="info-icon_A" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
+                            <div ng-show="visibelForAadharDetails" id="popup_A" class="popup list-container">
+                                <div style=" color: black; text-align: left;">
+                                    <div style="position: sticky; top: 0;">
+                                        <span class="close" id="close-btn_A">❌</span>
+                                        <h2 class="form-heading" >KYC Verification Details</h2>
+                                    </div>
+
+                                    <table style="border: solid #80C37D thin; border-radius: 5px;" >
+                                        <tr class="cardviewth" >
+                                            <th>Ack_No.</th>
+                                            <th>Name</th>
+                                            <th>Aadhar No.</th>
+                                            <th>Acc Type</th>
+                                            <th>Branch</th>
+                                            <th>Status</th>
+                                            <th>Uploaded By</th>
+                                            <th>Approved By</th>
+                                        </tr>
+                                        <tr class="cardviewtr" ng-repeat="record in list">
+                                            <td>{{record.code.substring(5, 15)}}</td>
+                                            <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
+                                            <td>{{record.adharNo}}</td>
+                                            <td>{{record.accountType}}</td>
+                                            <td>{{record.branchName}}</td>
+                                            <td>{{record.status}}</td>
+                                            <td>{{record.uploadedBy}}</td>
+                                            <td>{{record.approvedBy}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                    // Get the elements
+//                                    var checkAdharValue = document.getElementById('adharNo').value;
+//                                    console.log(document.getElementById('adharNo').value.length);
+//                                    console.log(document.getElementById('adharNo').value.length === "12");
+//                                    if(document.getElementById('adharNo').value.length === 12){
+                                    const infoIcon = document.getElementById('info-icon_A');
+                                    const popup = document.getElementById('popup_A');
+                                    const closeBtn = document.getElementById('close-btn_A');
+                                    // Show the popup when info icon is clicked
+                                    infoIcon.addEventListener('click', function (event) {
+                                    // Prevent form submission when clicking the info icon
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    popup.style.display = 'block';
+                                    });
+                                    // Close the popup when the close button is clicked
+                                    closeBtn.addEventListener('click', function () {
+                                    popup.style.display = 'none';
+                                    });
+                                    // Close the popup if the user clicks outside the popup
+                                    window.addEventListener('click', function (event) {
+                                    if (event.target === popup) {
+                                    popup.style.display = 'none';
+                                    }
+                                    });
+//                                    }else{
+//                                        
+//                                    }
+                                    });                                
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%">
+                            <label for="accountType" class="form-label">Account Type:</label>
+                            <select id="accountType" name="accountType" class="form-input" ng-model="accountType" required="">
+                                <optgroup label="Saving Account">
+                                    <option value="Silver Saving">Silver Saving</option>
+                                    <option value="Normal Saving">Normal Saving</option>
+                                </optgroup>
+                                <optgroup label="Current Account">
+                                    <option value="Current Wealth">Current Wealth</option>
+                                    <option value="Current Gold">Current Gold</option>
+                                    <option value="Normal Current">Normal Current</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                        <td>
+                            <label for="mobileNo" class="form-label">Mobile Number :</label>
+                            <input type="tel"  title="Mobile Number must be 10 length."  pattern="[0-9]{10}" id="mobileNo" name="mobileNo" class="form-input" ng-model="mobileNo" required="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
+                            <label style="text-align: center; font-size: 18px;" for="applicantName" class="form-label"> DOCUMENTS </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="align-items: center; ">
+                            <div class="vertical_line docdiv1" style="width: 22%">
+                                <label class="form-label">PAN Card / Form-60/61</label><br><br>
+                                <input type="file" id="pan" name="panCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('pan')" required="">
+                            </div>
+                            <div class="vertical_line docdiv2" style="width: 22%">
+                                <label class="form-label">ADHAR Card </label><br><br>
+                                <input type="file" id="adhar" name="adharCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('adhar')" required="">
+                            </div>
+                            <div class="vertical_line docdiv2" style="width: 22%">
+                                <label class="form-label">Other Docs &nbsp;</label>
+                                <button id="info-icon">ℹ️</button>
+                                <div id="popup" class="popup list-container">
+                                    <div class="popup-content" >
+                                        <span class="close" id="close-btn">❌</span>
+                                        <h2>Other Documents List</h2>
+                                        <dl><b>Saving Account</b></dl>
+                                        <dt >Officially Valid
+                                            Documents
+                                            (OVDs) for
+                                            Accounts of
+                                            Individuals</dt>
+                                        <dd>- Passport </dd>
+                                        <dd>- Driving license with photo </dd>
+                                        <dd>- Proof of possession of Aadhaar Number </dd>
+                                        <dd>- Voter’s Identity Card issued by Election Commission of India </dd>
+                                        <dd>- Job card issued by NREGA duly signed by an officer of the State  Government. </dd>
+                                        <dd>- Letter issued by the National Population Register containing details of Name and Address. </dd><br>
+                                        <dt>Deemed Officially
+                                            Valid Documents,
+                                            In case OVD does not
+                                            contains current/
+                                            updated address. (At
+                                            least one document
+                                            from the list is
+                                            required.)</dt> 
+                                        <dd>- Utility bill of any service provider i.e. electricity, telephone, postpaid mobile phone, piped gas, water bill (not more than two months old)</dd>
+                                        <dd>- Property or Municipal Tax receipt</dd>
+                                        <dd>- Pension or family pension payment orders (PPOs) issued to retired
+                                            employees by Government Departments or Public Sector Undertakings, If
+                                            they contain the address.</dd>
+                                        <dd>- Letter of allotment of accommodation from employer issued by State or	Central Government departments, statutory or regulatory bodies, and public
+                                            sector undertakings, scheduled commercial banks, financial institutions and
+                                            listed companies. Similarly, leave and license agreements with such
+                                            employers allotting official accommodation.</dd>
+
+
+                                        <dl><b>Current Account</b></dl>
+                                        <dt>Accounts of Sole
+                                            Proprietary firms.</dt>
+                                        <dd> Registration Certificate</dd>
+                                        <dd>- Certificate/ license issued by the municipal authorities under Shop & Establishment
+                                            Act,</dd>
+                                        <dd>- Sales and income tax returns.</dd>
+                                        <dd>- CST/ VAT/GST Certificate (Provisional/Final).</dd>
+                                        <dd>- Certificate / registration document issued by Sales Tax / Service Tax / Professional
+                                            Tax authorities.</dd>
+                                        <dd>- IEC (Importer Exporter Code) issued to the proprietary concern by the office of
+                                            DGFT or License/ certificate of practice issued in the name of proprietary concern
+                                            by any professional body incorporated under statute.</dd>
+                                        <dd>- Complete Income Tax return (not just the acknowledgement) in the name of Sole
+                                            Proprietor where the Firm’s income is reflected, duly authenticated/ Acknowledged
+                                            by the Income Tax Authorities.</dd>
+                                        <dd>- Utility bills such as electricity, water, and landline telephone bills in the name of the
+                                            proprietary concern.
+                                            In case where the branches are satisfied that it is not possible to furnish two such
+                                            documents from the above list, they would have the discretion to accept only one of those
+                                            documents as activity proof. In such cases, the branches would have to undertake
+                                            contact point verification, collect information to establish the existence of such firm,
+                                            confirm, and satisfy itself that the business activity has been verified from the address of
+                                            the proprietary concern. <br> <b>AND</b><br>
+                                            -Any one of the OVDs along with PAN/ FORM60 of the proprietor.</dd>
+                                        <br>
+                                        <dt>Accounts of
+                                            Partnership firms.
+                                            (Registered)</dt>
+                                        <dd>- Registration certificate.</dd>
+                                        <dd>- Partnership deed.</dd>
+                                        <dd>- PAN No. of the Partnership Firm.</dd>
+                                        <dd>- Any one of the OVDs and PAN/ FORM60 of the person holding an Attorney to
+                                            transact on its behalf with his/ her photograph.</dd>
+
+                                        <br>
+                                        <dt>Accounts of Trusts</dt>
+                                        <dd>- Registration Certificate.</dd>
+                                        <dd>- Trust Deed.</dd>
+                                        <dd>- PAN/ FORM60 of Entity.</dd>
+                                        <dd>- Any one of the OVDs and PAN/FORM60 of the person holding an Attorney to
+                                            transact on its behalf with his/her photograph.</dd>
+
+                                        <br>
+                                        <dt>Accounts of
+                                            Unincorporated
+                                            Associations or body
+                                            of individuals
+                                            includes unregistered partnership firm/
+                                            trusts and societies.</dt>
+                                        <dd>- Resolution of the Managing body of such association or body of individuals.</dd>
+                                        <dd>- PAN/ FORM60 of Unincorporated Associations or body of individuals</dd>
+                                        <dd>- Power of Attorney granted to transact on its behalf.</dd>
+                                        <dd>- Any one of the OVDs and PAN/ FORM60 of the Office bearers / Signatories and
+                                            persons holding Power of Attorney, if any with his/her photograph in respect of the
+                                            person holding an Attorney to transact on its behalf.</dd>
+                                        <dd>
+                                            -  Any one of the below mentioned list of documents to collectively establish the legal
+                                            existence of such an associations or body of individuals.
+                                            <ul>
+                                                <li>Partnership Deed/ Trust Deed/ Bye Laws</li>
+                                                <li>Certificate/ license issued by the municipal authorities under Shop &
+                                                    Establishment Act.</li>
+                                                <li>Sales Tax Returns.</li> 
+                                                <li>CST/ VAT/ GST certificates (Provisional/ Final).</li> 
+                                                <li>Certificate/ registration document issued by Sales Tax/ Service Tax/
+                                                    Professional Tax authorities.</li>
+                                                <li>License/ certificate of practice issued in the name of proprietary concern by
+                                                    any professional body incorporated under statute.</li>
+                                                <li>Complete Income Tax return (not just the acknowledgement) in the name of
+                                                    Sole Proprietor where the Firm’s income is reflected, duly authenticated/
+                                                    Acknowledged by the Income Tax Authorities.</li>
+                                                <li> Utility bills such as electricity, water, and landline telephone bills in the name
+                                                    of the concerns.</li>	
+                                            </ul>
+                                        </dd>
+                                    </div>
+                                </div>
+                                <script>
+                                    // ... (existing code)
+
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                    // Get the elements
+                                    const infoIcon = document.getElementById('info-icon');
+                                    const popup = document.getElementById('popup');
+                                    const closeBtn = document.getElementById('close-btn');
+                                    // Show the popup when info icon is clicked
+                                    infoIcon.addEventListener('click', function (event) {
+                                    // Prevent form submission when clicking the info icon
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    popup.style.display = 'block';
+                                    });
+                                    // Close the popup when the close button is clicked
+                                    closeBtn.addEventListener('click', function () {
+                                    popup.style.display = 'none';
+                                    });
+                                    // Close the popup if the user clicks outside the popup
+                                    window.addEventListener('click', function (event) {
+                                    if (event.target === popup) {
+                                    popup.style.display = 'none';
+                                    }
+                                    });
+                                    });
+                                </script>
+
+                                <br><br>
+                                <input type="file" id="otherDoc" name="otherDoc" accept=".pdf" onchange="checkVal('otherDoc')" required="" multiple="true">
+                            </div>
+                            <div class="docdiv3" style="width: 22%">
+                                <label class="form-label">Client Form </label><br><br>
+                                <input type="file" id="applicationForm" name="applicationFormf" accept=".pdf" onchange="checkVal('applicationForm')" required="">
+                            </div>
+                        </td>
+                    </tr>
+<!--                    <tr ng-show="visible">
+                        <td colspan="3">
+                            <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
+                            <br>
+                            <label class="form-label">Remark : </label>
+                            <input type="text" ng-model="remark" id="remark"  class="form-input">
+                        </td>
+                    </tr>-->
+                </table>
+                <button type="submit" class="form-button" >Submit</button>
+                <a  href="{{uRl}}user_asBOM.html" >
+                    <button type="button" class="form-button" > Cancel </button>
+                </a>
+            </form><br>
+        </div>
+    </body>
+</html>
