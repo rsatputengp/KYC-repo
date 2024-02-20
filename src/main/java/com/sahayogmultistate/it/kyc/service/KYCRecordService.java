@@ -43,7 +43,8 @@ public class KYCRecordService {
         System.out.println("I am in KYCRecordService");
     }
 
-    private final String ROOT_F = "//home//ritik//Sahayog";
+//    private final String ROOT_F = "//home//ritik//Sahayog";
+    private final String ROOT_F = "//home//sysadmin//Sahayog";
 
     public KYCRecord add(MultipartFile pan, MultipartFile adhar,
             MultipartFile[] otherDoc, MultipartFile applicationForm,
