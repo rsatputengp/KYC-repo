@@ -165,7 +165,7 @@
             form.append("uploadedBy", $scope.userRecord.userName+"(BOM)");
             console.log(form);
             var settings = {
-            "url": $scope.uRl + "/kyc/save",
+            "url": $scope.uRl + "kyc/save",
                     "method": "POST",
                     "timeout": 0,
                     "processData": false,
