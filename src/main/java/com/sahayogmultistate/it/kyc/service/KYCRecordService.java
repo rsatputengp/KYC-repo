@@ -55,11 +55,11 @@ public class KYCRecordService {
             String approvedBy, String uploadedBy, String timeStam
     ) throws IOException {
         int codeNo;
-        Integer codeNoOld = getBranchList(branchName).size();
+        Integer codeNoOld = getBranchListSize(branchName);
         if (codeNoOld == null) {
             codeNo = 0;
         } else {
-            codeNo = getBranchList(branchName).size();
+            codeNo = getBranchListSize(branchName);
         }
         String code = "CODE_0" + (1 + codeNo) + "_" + branchName;
         KYCRecord record = new KYCRecord();
@@ -654,6 +654,47 @@ public class KYCRecordService {
             }
         }
         return recordList;
+    }
+
+    public int getBranchListSize(String branchname) {
+        ArrayList<KYCRecordNew> recordList = new ArrayList<>();
+        List<KYCRecord> findAll = getKYCRescordsall();
+        for (KYCRecord kYCRecord : findAll) {
+            if (branchname.equals(kYCRecord.getBranchName())) {
+                String branchName = kYCRecord.getBranchName();
+                String accountType = kYCRecord.getAccountType();
+                String code = kYCRecord.getCode();
+                File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+                File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
+                KYCRecordNew kycRecordNew = new KYCRecordNew();
+                kycRecordNew.setAccountType(accountType);
+                kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
+                kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
+                kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
+                kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
+                kycRecordNew.setBranchName(branchName);
+                kycRecordNew.setCode(code);
+                kycRecordNew.setDate(kYCRecord.getDate());
+                kycRecordNew.setFirstName(kYCRecord.getFirstName());
+                kycRecordNew.setId(kYCRecord.getId());
+                kycRecordNew.setLastName(kYCRecord.getLastName());
+                kycRecordNew.setMidName(kYCRecord.getMidName());
+                kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
+                kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
+                kycRecordNew.setPan(kYCRecord.getPan());
+                kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
+                kycRecordNew.setRemark(kYCRecord.getRemark());
+                kycRecordNew.setStatus(kYCRecord.getStatus());
+                kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
+                kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
+                kycRecordNew.setOtherDoc(null);
+                kycRecordNew.setAdhar(null);
+                kycRecordNew.setApplicationForm(null);
+                kycRecordNew.setPan(null);
+                recordList.add(kycRecordNew);
+            }
+        }
+        return recordList.size();
     }
 
     @Transactional
