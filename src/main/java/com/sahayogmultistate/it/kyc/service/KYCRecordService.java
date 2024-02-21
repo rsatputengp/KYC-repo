@@ -54,7 +54,7 @@ public class KYCRecordService {
             String otherDocStatus, String applicationFormStatus,
             String approvedBy, String uploadedBy, String timeStam
     ) throws IOException {
-        int codeNo;
+        Integer codeNo;
         Integer codeNoOld = getBranchListSize(branchName);
         if (codeNoOld == null) {
             codeNo = 0;
