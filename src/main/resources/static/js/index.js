@@ -109,15 +109,19 @@ var app = angular.module("loginApp", []);
                     
                     }else if (userRecord.userIdStatus === "Pending") {
                         alert("User is not Activated by Super user yet!");
+                        location.reload();
                         $scope.onShowLoginPage();
                     }else if (userRecord.userIdStatus === "Reject") {
                         alert("Please, check the username & password !");
+                        location.reload();
                         $scope.onShowLoginPage();
                     }else if (userRecord.userIdStatus === "Terminate") {
                         alert("Please, check the username & password !");
+                        location.reload();
                         $scope.onShowLoginPage();
                     }else if (userRecord.userIdStatus === "Reset_Password") {
                         alert("User is not Activated by Super user yet!");
+                        location.reload();
                         $scope.onShowLoginPage();
                     }
 
@@ -126,6 +130,7 @@ var app = angular.module("loginApp", []);
 //                    alert(response.data);    
 //                    alert(response);    
                     alert("Please, check the username & password !");
+                    location.reload();
                     $scope.onShowLoginPage();
                     }
 //                    $scope.loadingImg = false;
@@ -158,6 +163,7 @@ var app = angular.module("loginApp", []);
                     
                     } else {
                     alert("Password Updated");
+                    location.reload();
                     $scope.onShowLoginPage();
                     }
 //                   $scope.loadingImg = false;
