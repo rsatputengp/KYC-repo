@@ -837,8 +837,8 @@
                                 <div class="docdivIn_S">
                                     <img class="rcornersimgE" id="imgPan" alt="Image" ng-src="{{'data:image/png;base64,'+reco.pan}}" ng-click="openImageInPopup('imgPan')"/><br>
                                 </div>
-                                <div style="padding-top: 5px;">
-                                    <input type="file" id="inputPan" name="panCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('inputPan')">
+                                <div style="padding-top: 5px;">    
+                                    <input type="file" id="inputPan" name="panCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('inputPan')" ng-disabled="reco.panStatus === 'Accept'">
                                 </div>
                             </div>
                             <div class="vertical_line docdiv">
@@ -849,7 +849,7 @@
                                     <img class="rcornersimgE" id="imgAdhar" alt="Image" ng-src="{{'data:image/png;base64,'+reco.adhar}}" ng-click="openImageInPopup('imgAdhar')"/><br>
                                 </div>
                                 <div style="padding-top: 5px;">
-                                    <input type="file" id="inputAdhar" name="adharCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('inputAdhar')">
+                                    <input type="file" id="inputAdhar" name="adharCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('inputAdhar')" ng-disabled="reco.adharStatus === 'Accept'">
                                 </div>
                             </div>
                             <div class="vertical_line docdiv">
@@ -1027,8 +1027,8 @@
                                 <div class="docdivIn_S">
                                     <img class="rcornersimgE" id="imgotherDoc"  ng-click="viewPdfOther()" src="image/pdfimg.png" alt=""/><br>
                                 </div>
-                                <div style="padding-top: 5px;">
-                                    <input type="file" id="inputotherDoc" name="otherDocCard" accept=".pdf" onchange="checkVal('inputotherDoc')" multiple="true">
+                                <div style="padding-top: 5px;">   
+                                    <input type="file" id="inputotherDoc" name="otherDocCard" accept=".pdf" onchange="checkVal('inputotherDoc')" multiple="true" ng-disabled="reco.otherDocStatus === 'Accept'">
                                 </div>
                             </div>
                             <div class="docdiv">
@@ -1039,7 +1039,7 @@
                                     <img class="rcornersimgE" id="imgapplicationForm"  ng-click="viewPdfApp()" src="image/pdfimg.png" alt=""/><br>
                                 </div>
                                 <div style="padding-top: 5px;">
-                                    <input type="file" id="inputapplicationForm" name="applicationFormCard" accept=".pdf" onchange="checkVal('inputapplicationForm')">
+                                    <input type="file" id="inputapplicationForm" name="applicationFormCard" accept=".pdf" onchange="checkVal('inputapplicationForm')" ng-disabled="reco.applicationFormStatus === 'Accept'">
                                 </div>
                             </div>
                         </td>
