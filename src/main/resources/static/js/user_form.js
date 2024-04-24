@@ -270,7 +270,7 @@
             }
             
             }else {
-	///---------------------------------------> for 500kb
+	///---------------------------------------> Client Form for 1024kb
             // Check if the file format is supported (in this example, .jpg, .jpeg, .png, .webp)
             var allowedFormats = ['.pdf'];
             var fileFormat = fileName.slice((fileName.lastIndexOf(".") - 1 >>> 0) + 2);
@@ -281,12 +281,12 @@
             fileInput.value = '';
             } else {
             // File format is supported, check file size
-            var maxSizeKB = 500; // Maximum file size in kilobytes
+            var maxSizeKB = 1025; // Maximum file size in kilobytes
             var fileSize = fileInput.files[0].size / 1024; // Convert to kilobytes
 
             if (fileSize > maxSizeKB) {
             // File size exceeds the limit
-            alert("File size exceeds the maximum allowed limit of 500KB.");
+            alert("File size exceeds the maximum allowed limit of 1024KB.");
             // Clear the file input
             fileInput.value = '';
             } else {
