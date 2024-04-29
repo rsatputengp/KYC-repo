@@ -331,7 +331,7 @@
             $scope.remark = '';
 
             $scope.checkLength = function() {
-            var maxLength = 255;
+            var maxLength = 900;
             
             if ($scope.remark !== undefined) {
     

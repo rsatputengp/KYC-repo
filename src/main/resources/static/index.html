@@ -17,7 +17,7 @@
         <title>Login Page</title>
         <script src="js/index.js" type="text/javascript"></script>
         <style>
-            
+
             .card {
                 width: 400px;
                 margin: 80px;
@@ -145,185 +145,191 @@
             }
         </style>
 
-</head>
-<html>
-    <body ng-app="loginApp" ng-controller="loginController"> 
-        <table width="100%" cellpadding="5" cellspacing="10" >
-            <tr>
-                <td class="signUparea" ng-show="signUpContainerVisible">
-            <center>
-                <!--<div ng-show="loadingImg" style="max-width: 100%; max-height: 100%; background-color: whitesmoke; opacity: 0.6;">-->
-                        <!--<img src="image/logo.png" alt="Company Logo" style="max-width: 100px; max-height: 100px;"ng-show="loadingImg" id="loadingIcon">-->
-                <!--</div>-->
+    </head>
+    <html>
+        <body ng-app="loginApp" ng-controller="loginController"> 
+            <table width="100%" cellpadding="5" cellspacing="10" >
+                <tr>
+                    <td class="signUparea" ng-show="signUpContainerVisible">
+                <center>
+                    <!--<div ng-show="loadingImg" style="max-width: 100%; max-height: 100%; background-color: whitesmoke; opacity: 0.6;">-->
+                    <!--<img src="image/logo.png" alt="Company Logo" style="max-width: 100px; max-height: 100px;"ng-show="loadingImg" id="loadingIcon">-->
+                    <!--</div>-->
+                    <div class="card">
+                        <div class="logo">
+                            <img src="image/logo.png" alt="Company Logo" style="width: 100px; ">
+                        </div>
+                        <form ng-submit="onSignUpSubmit();" >
+                            <h3 class="titlename"> KYC Verification System </h3><br>
+                            <div class="input-container">
+                                <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                                <input type="text" ng-model="userName" pattern="^[0-9]{1,12}$" id="userName" name="username" placeholder="employee_Id (ex: 0123)" title="User Name should be your employee Id." required="" class="center-align">
+                            </div>
+                            <div  class="input-container">
+                                <i class="fas fa-university right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                                <select id="branchName" name="branchName"   ng-model="branchName" class="center-align" required>
+                                    <option value="" disabled selected ><i class="center-align" style="color: #999;" >select the branch</i></option>
+                                    <option value="AHERI">AHERI</option>
+                                    <option value="AKOLA">AKOLA</option>
+                                    <option value="AKOT">AKOT</option>
+                                    <option value="AMGAON">AMGAON</option>
+                                    <option value="AMRAVATI">AMRAVATI</option>
+                                    <option value="ANJANGAON">ANJANGAON</option>
+                                    <option value="ARMORI">ARMORI</option>
+                                    <option value="ARNI">ARNI</option>
+                                    <option value="ARVI">ARVI</option>
+                                    <option value="ASHTI">ASHTI</option>
+                                    <option value="BALLARPUR">BALLARPUR</option>
+                                    <option value="BHADRAWATI">BHADRAWATI</option>
+                                    <option value="BHANDARA">BHANDARA</option>
+                                    <option value="BHIWAPUR">BHIWAPUR</option>
+                                    <option value="BRAMHAPURI">BRAMHAPURI</option>
+                                    <option value="BULDHANA">BULDHANA</option>
+                                    <option value="CHAMORSHI">CHAMORSHI</option>
+                                    <option value="CHANDRAPUR">CHANDRAPUR</option>
+                                    <option value="CHANDUR BAZAR">CHANDUR BAZAR</option>
+                                    <option value="CHANDUR RAILWAY">CHANDUR RAILWAY</option>
+                                    <option value="CHIKHALI">CHIKHALI</option>
+                                    <option value="DARWAH">DARWAH</option>
+                                    <option value="DARYAPUR">DARYAPUR</option>
+                                    <option value="DEOLI">DEOLI</option>
+                                    <option value="DEORI">DEORI</option>
+                                    <option value="DEULGAON">DEULGAON</option>
+                                    <option value="DHANORA">DHANORA</option>
+                                    <option value="DIGRAS">DIGRAS</option>
+                                    <option value="GADCHIROLI">GADCHIROLI</option>
+                                    <option value="GANDHIBAGH">GANDHIBAGH</option>
+                                    <option value="GHATANJI">GHATANJI</option>
+                                    <option value="GONDIA">GONDIA</option>
+                                    <option value="GONDPIPRI">GONDPIPRI</option>
+                                    <option value="GOREGAON">GOREGAON</option>
+                                    <option value="HINGANGHAT">HINGANGHAT</option>
+                                    <option value="HINGNA">HINGNA</option>
+                                    <option value="JALGAON JAMOD">JALGAON JAMOD</option>
+                                    <option value="KALAMB">KALAMB</option>
+                                    <option value="KALMESHWAR">KALMESHWAR</option>
+                                    <option value="KANHAN">KANHAN</option>
+                                    <option value="KARANJA GHADGE">KARANJA GHADGE</option>
+                                    <option value="KARANJA LAD">KARANJA LAD</option>
+                                    <option value="KATOL">KATOL</option>
+                                    <option value="KHAMGAON">KHAMGAON</option>
+                                    <option value="KORCHI">KORCHI</option>
+                                    <option value="KUHI">KUHI</option>
+                                    <option value="KURKHEDA">KURKHEDA</option>
+                                    <option value="LAKHANDUR">LAKHANDUR</option>
+                                    <option value="LAKHNI">LAKHNI</option>
+                                    <option value="LONAR">LONAR</option>
+                                    <option value="MAHAGAON">MAHAGAON</option>
+                                    <option value="MALEGAON">MALEGAON</option>
+                                    <option value="MALKAPUR">MALKAPUR</option>
+                                    <option value="MANGLURPIR">MANGLURPIR</option>
+                                    <option value="MANISH NAGAR">MANISH NAGAR</option>
+                                    <option value="MANORA">MANORA</option>
+                                    <option value="MAREGAON">MAREGAON</option>
+                                    <option value="MAUDA">MAUDA</option>
+                                    <option value="MEHKAR">MEHKAR</option>
+                                    <option value="MOHADI">MOHADI</option>
+                                    <option value="MORARJUNI">MORARJUNI</option>
+                                    <option value="MORSHI">MORSHI</option>
+                                    <option value="MUL">MUL</option>
+                                    <option value="MULCHERA">MULCHERA</option>
+                                    <option value="MURTIZAPUR">MURTIZAPUR</option>
+                                    <option value="NAGBHID">NAGBHID</option>
+                                    <option value="NAGPUR">NAGPUR</option>
+                                    <option value="NAGPUR WEALTH">NAGPUR WEALTH</option>
+                                    <option value="NANDURA">NANDURA</option>
+                                    <option value="NARKHED">NARKHED</option>
+                                    <option value="NER PARSOPANT">NER PARSOPANT</option>
+                                    <option value="PANDHARKAWADA">PANDHARKAWADA</option>
+                                    <option value="PARATWADA">PARATWADA</option>
+                                    <option value="PARSHIVANI">PARSHIVANI</option>
+                                    <option value="PATUR">PATUR</option>
+                                    <option value="PAUNI">PAUNI</option>
+                                    <option value="PUSAD">PUSAD</option>
+                                    <option value="RAJURA">RAJURA</option>
+                                    <option value="RALEGAON">RALEGAON</option>
+                                    <option value="RAMTEK">RAMTEK</option>
+                                    <option value="RISOD">RISOD</option>
+                                    <option value="SADARJUNI">SADARJUNI</option>
+                                    <option value="SAKOLI">SAKOLI</option>
+                                    <option value="SALEKASA">SALEKASA</option>
+                                    <option value="SAMUDRAPUR">SAMUDRAPUR</option>
+                                    <option value="SANGRAMPUR">SANGRAMPUR</option>
+                                    <option value="SAOLI">SAOLI</option>
+                                    <option value="SAONER">SAONER</option>
+                                    <option value="SELOO">SELOO</option>
+                                    <option value="SHEGAON">SHEGAON</option>
+                                    <option value="SINDEWAHI">SINDEWAHI</option>
+                                    <option value="TIRORA">TIRORA</option>
+                                    <option value="TUMSAR">TUMSAR</option>
+                                    <option value="UMARKHED">UMARKHED</option>
+                                    <option value="UMRED">UMRED</option>
+                                    <option value="WADSA">WADSA</option>
+                                    <option value="WANI">WANI</option>
+                                    <option value="WARDHA">WARDHA</option>
+                                    <option value="WARUD">WARUD</option>
+                                    <option value="WASHIM">WASHIM</option>
+                                    <option value="YAVATMAL">YAVATMAL</option>
+                                    <option value="ZARI JAMNI">ZARI JAMNI</option>
+                                </select>
+                            </div>
+                            <div  class="input-container">
+                                <i class="fas fa-address-card right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                                <select id="userType" name="userType"   ng-model="userType" class="center-align" required>
+                                    <option value="" disabled selected ><i class="center-align" style="color: #999;" >Type of user</i></option>
+                                    <option value="COPs">Central Operation Team (COPs) </option>
+                                    <option value="BOM">Branch Operation Manager (BOM) </option>
+                                    <!--<option value="Admin"> Admin </option>-->
+                                </select>
+                            </div>
+                            <div class="input-container">
+                                <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
+                                <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" title="Password must be between 6 to 12 length characters, including at least one number and one letter." ng-model="userPassword" id="userPassword" name="userPassword" placeholder="password" required class="center-align">
+                            </div>
+                            <div class="input-container">
+                                <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
+                                <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" ng-model="userPasswordC" id="cnfrmUserPassword" name="usrPass" placeholder="confirm password" required class="center-align">
+                            </div>
+                            <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">sign up</button>
+                            <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">
+                            <p class="note">
+                                If you have already an Account then <u class="linkpage" ng-click="onShowLoginPage();">click here.</u><br>
+                                By creating this account, you agree to our Privacy Policy.
+                            </p>
+                        </form>
+                    </div>
+                </center>
+            </td>
+            <td class="loginarea" style="vertical-align: top;" ng-show="loginContainerVisible">
+            <center> 
                 <div class="card">
                     <div class="logo">
                         <img src="image/logo.png" alt="Company Logo" style="width: 100px; ">
                     </div>
-                    <form ng-submit="onSignUpSubmit();" >
+                    <form ng-submit="onLoginSubmit();">
                         <h3 class="titlename"> KYC Verification System </h3><br>
                         <div class="input-container">
                             <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
-                            <input type="text" ng-model="userName" pattern="^[0-9]{1,12}$" id="userName" name="username" placeholder="employee_Id (ex: 0123)" title="User Name should be your employee Id." required="" class="center-align">
+                            <input type="text" ng-model="userName" id="userNameLi" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
                         </div>
-                        <div  class="input-container">
-                            <i class="fas fa-university right-align-icon" style=" left: 50px; top: 60%; "></i><br>
-                            <select id="branchName" name="branchName"   ng-model="branchName" class="center-align" required>
-                                <option value="" disabled selected ><i class="center-align" style="color: #999;" >select the branch</i></option>
-                                <option value="AHERI">AHERI</option>
-                                <option value="AKOLA">AKOLA</option>
-                                <option value="AKOT">AKOT</option>
-                                <option value="AMGAON">AMGAON</option>
-                                <option value="AMRAWATI">AMRAWATI</option>
-                                <option value="ARMORI">ARMORI</option>
-                                <option value="ARNI">ARNI</option>
-                                <option value="ARVI">ARVI</option>
-                                <option value="ASHTI">ASHTI</option>
-                                <option value="BALARSHAH">BALARSHAH</option>
-                                <option value="BHADRAWATI">BHADRAWATI</option>
-                                <option value="BHANDARA">BHANDARA</option>
-                                <option value="BHIWAPUR">BHIWAPUR</option>
-                                <option value="BRHAMPURI">BRHAMPURI</option>
-                                <option value="BULDHANA">BULDHANA</option>
-                                <option value="CHAMORSHI">CHAMORSHI</option>
-                                <option value="CHANDRAPUR">CHANDRAPUR</option>
-                                <option value="CHANDUR BAJAR">CHANDUR BAJAR</option>
-                                <option value="CHANDURRAILWAY">CHANDURRAILWAY</option>
-                                <option value="CHIKHALI">CHIKHALI</option>
-                                <option value="DARWAHA">DARWAHA</option>
-                                <option value="DARYAPUR">DARYAPUR</option>
-                                <option value="DEOLI">DEOLI</option>
-                                <option value="DEORI">DEORI</option>
-                                <option value="DHANORA">DHANORA</option>
-                                <option value="DIGRAS">DIGRAS</option>
-                                <option value="GADCHIROLI">GADCHIROLI</option>
-                                <option value="GANDHIBAGH">GANDHIBAGH</option>
-                                <option value="GHATANJI">GHATANJI</option>
-                                <option value="GONDIA MAIN BRANCH">GONDIA MAIN BRANCH</option>
-                                <option value="GONDPIPARI">GONDPIPARI</option>
-                                <option value="GOREGAON">GOREGAON</option>
-                                <option value="HEAD OFFICE GONDIA">HEAD OFFICE GONDIA</option>
-                                <option value="HINGANGHAT">HINGANGHAT</option>
-                                <option value="HINGNA">HINGNA</option>
-                                <option value="JALGAON JMOD">JALGAON JMOD</option>
-                                <option value="KALAMB">KALAMB</option>
-                                <option value="KALMESHWAR">KALMESHWAR</option>
-                                <option value="KANHAN">KANHAN</option>
-                                <option value="KARANJA LAD">KARANJA LAD</option>
-                                <option value="KARANJAN GHADGE">KARANJAN GHADGE</option>
-                                <option value="KATOL">KATOL</option>
-                                <option value="KHAMGAON">KHAMGAON</option>
-                                <option value="KORCHI">KORCHI</option>
-                                <option value="KUHI">KUHI</option>
-                                <option value="KURKHEDA">KURKHEDA</option>
-                                <option value="LAKHANDUR">LAKHANDUR</option>
-                                <option value="LAKHANI">LAKHANI</option>
-                                <option value="LONAR">LONAR</option>
-                                <option value="MAHAGAON">MAHAGAON</option>
-                                <option value="MALEGAON">MALEGAON</option>
-                                <option value="MALKAPUR">MALKAPUR</option>
-                                <option value="MANGLURPIR">MANGLURPIR</option>
-                                <option value="MANORA">MANORA</option>
-                                <option value="MAUDA">MAUDA</option>
-                                <option value="MEHKAR">MEHKAR</option>
-                                <option value="MOHADI">MOHADI</option>
-                                <option value="MORGAON ARJUNI">MORGAON ARJUNI</option>
-                                <option value="MORSHI">MORSHI</option>
-                                <option value="MUL">MUL</option>
-                                <option value="MULCHERA">MULCHERA</option>
-                                <option value="MURTIJAPUR">MURTIJAPUR</option>
-                                <option value="NAGBHID">NAGBHID</option>
-                                <option value="NANDURA">NANDURA</option>
-                                <option value="NARKHED">NARKHED</option>
-                                <option value="NER PARSOPANT">NER PARSOPANT</option>
-                                <option value="PANDHARKAWDA">PANDHARKAWDA</option>
-                                <option value="PARATWADA">PARATWADA</option>
-                                <option value="PARSHIVNI">PARSHIVNI</option>
-                                <option value="PATUR">PATUR</option>
-                                <option value="PAUNI">PAUNI</option>
-                                <option value="PUSAD">PUSAD</option>
-                                <option value="RAJURA">RAJURA</option>
-                                <option value="RALEGAON">RALEGAON</option>
-                                <option value="RAMTEK">RAMTEK</option>
-                                <option value="RISOD">RISOD</option>
-                                <option value="SADAK ARJUNI">SADAK ARJUNI</option>
-                                <option value="SAHAYOGCHHATRAPATI">SAHAYOGCHHATRAPATI</option>
-                                <option value="SAKOLI">SAKOLI</option>
-                                <option value="SALEKASA">SALEKASA</option>
-                                <option value="SAMUDRAPUR">SAMUDRAPUR</option>
-                                <option value="SANGAMPUR">SANGAMPUR</option>
-                                <option value="SAONER">SAONER</option>
-                                <option value="SAWALI">SAWAL</option>
-                                <option value="SELOO">SELOO</option>
-                                <option value="SINDEWAHI">SINDEWAHI</option>
-                                <option value="TIRODA">TIRODA</option>
-                                <option value="TUMSAR">TUMSAR</option>
-                                <option value="UMARKHED">UMARKHED</option>
-                                <option value="UMRED">UMRED</option>
-                                <option value="WADSA">WADSA</option>
-                                <option value="WANI">WANI</option>
-                                <option value="WARDHA">WARDHA</option>
-                                <option value="WARUD">WARUD</option>
-                                <option value="WASHIM">WASHIM</option>
-                                <option value="YAWATMAL">YAWATMAL</option>
-                            </select>
-                        </div>
-                        <div  class="input-container">
-                            <i class="fas fa-address-card right-align-icon" style=" left: 50px; top: 60%; "></i><br>
-                            <select id="userType" name="userType"   ng-model="userType" class="center-align" required>
-                                <option value="" disabled selected ><i class="center-align" style="color: #999;" >Type of user</i></option>
-                                <option value="COPs">Central Operation Team (COPs) </option>
-                                <option value="BOM">Branch Operation Manager (BOM) </option>
-                                <!--<option value="Admin"> Admin </option>-->
-                            </select>
-                        </div>
+
                         <div class="input-container">
-                            <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
-                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" title="Password must be between 6 to 12 length characters, including at least one number and one letter." ng-model="userPassword" id="userPassword" name="userPassword" placeholder="password" required class="center-align">
+                            <i class="fas fa-lock right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                            <input type="password" ng-model="userPassword" id="userPasswordLi" name="userPassword" placeholder="password" required class="center-align">
                         </div>
-                        <div class="input-container">
-                            <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
-                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" ng-model="userPasswordC" id="cnfrmUserPassword" name="usrPass" placeholder="confirm password" required class="center-align">
-                        </div>
-                        <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">sign up</button>
+                        <button  class="btn btn-sm btn-primary btn-block btn-login" type="submit">Login</button>
                         <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">
                         <p class="note">
-                            If you have already an Account then <u class="linkpage" ng-click="onShowLoginPage();">click here.</u><br>
+                            New user ? <u class="linkpage" ng-click="onShowSignUpPage();">Register here. </u><br>
+                            Forget Password ?<u class="linkpage" ng-click="onShowResetPage();"> click here. </u><br>
                             By creating this account, you agree to our Privacy Policy.
                         </p>
+
                     </form>
                 </div>
             </center>
         </td>
-        <td class="loginarea" style="vertical-align: top;" ng-show="loginContainerVisible">
-        <center> 
-            <div class="card">
-                <div class="logo">
-                    <img src="image/logo.png" alt="Company Logo" style="width: 100px; ">
-                </div>
-                <form ng-submit="onLoginSubmit();">
-                    <h3 class="titlename"> KYC Verification System </h3><br>
-                    <div class="input-container">
-                        <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
-                        <input type="text" ng-model="userName" id="userNameLi" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
-                    </div>
-
-                    <div class="input-container">
-                        <i class="fas fa-lock right-align-icon" style=" left: 50px; top: 60%; "></i><br>
-                        <input type="password" ng-model="userPassword" id="userPasswordLi" name="userPassword" placeholder="password" required class="center-align">
-                    </div>
-                    <button  class="btn btn-sm btn-primary btn-block btn-login" type="submit">Login</button>
-                    <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">
-                    <p class="note">
-                        New user ? <u class="linkpage" ng-click="onShowSignUpPage();">Register here. </u><br>
-                        Forget Password ?<u class="linkpage" ng-click="onShowResetPage();"> click here. </u><br>
-                        By creating this account, you agree to our Privacy Policy.
-                    </p>
-
-                </form>
-            </div>
-        </center>
-    </td>
-    <td class="loginarea" style="vertical-align: top;" ng-show="resetContainerVisible">
+        <td class="loginarea" style="vertical-align: top;" ng-show="resetContainerVisible">
         <center> 
             <div class="card">
                 <div class="logo">
@@ -336,14 +342,14 @@
                         <input type="text" ng-model="userName" id="userNameRe" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
                     </div>
                     <div class="input-container">
-                            <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
-                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPassword" id="userPasswordRe" name="userPassword" placeholder="password" 
-                                   required="" class="center-align" title="Password must contain at least 6 characters, including at least one number and one letter.">
+                        <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
+                        <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPassword" id="userPasswordRe" name="userPassword" placeholder="password" 
+                               required="" class="center-align" title="Password must contain at least 6 characters, including at least one number and one letter.">
                     </div>
                     <div class="input-container">
-                            <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
-                            <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPasswordC" id="cnfrmUserPasswordRe" name="usrPass" placeholder="confirm password" 
-                                   required="" class="center-align">
+                        <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
+                        <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPasswordC" id="cnfrmUserPasswordRe" name="usrPass" placeholder="confirm password" 
+                               required="" class="center-align">
                     </div>
                     <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">Reset Password</button>
                     <hr style=" height: 2px; border: 0; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 100, 0) , rgba(0, 0, 0, 0));  margin-bottom: 10px; width: 70%;">

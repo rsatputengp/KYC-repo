@@ -324,20 +324,18 @@
 //            Branch Access permission *_*
             $scope.optionsArray = {};
             $scope.selectedOptions = [];
-            $scope.options = ["AHERI", "AKOLA", "AKOT", "AMGAON", "AMRAWATI", "ARMORI", "ARNI", "ARVI",
-                "ASHTI", "BALARSHAH", "BHADRAWATI", "BHANDARA", "BHIWAPUR", "BRHAMPURI", "BULDHANA",
-                "CHAMORSHI", "CHANDRAPUR", "CHANDUR BAJAR", "CHANDURRAILWAY", "CHIKHALI", "DARWAHA",
-                "DARYAPUR", "DEOLI", "DEORI", "DHANORA", "DIGRAS", "GADCHIROLI", "GANDHIBAGH",
-                "GHATANJI", "GONDIA MAIN BRANCH", "GONDPIPARI", "GOREGAON", "HEAD OFFICE GONDIA",
-                "HINGANGHAT", "HINGNA", "JALGAON JMOD", "KALAMB", "KALMESHWAR", "KANHAN", "KARANJA LAD",
-                "KARANJAN GHADGE", "KATOL", "KHAMGAON", "KORCHI", "KUHI", "KURKHEDA", "LAKHANDUR", "LAKHANI",
-                "LONAR", "MAHAGAON", "MALEGAON", "MALKAPUR", "MANGLURPIR", "MANORA", "MAUDA", "MEHKAR",
-                "MOHADI", "MORGAON ARJUNI", "MORSHI", "MUL", "MULCHERA", "MURTIJAPUR", "NAGBHID", "NANDURA",
-                "NARKHED", "NER PARSOPANT", "PANDHARKAWDA", "PARATWADA", "PARSHIVNI", "PATUR", "PAUNI",
-                "PUSAD", "RAJURA", "RALEGAON", "RAMTEK", "RISOD", "SADAK ARJUNI", "SAHAYOGCHHATRAPATI",
-                "SAKOLI", "SALEKASA", "SAMUDRAPUR", "SANGAMPUR", "SAONER", "SAWALI", "SELOO", "SINDEWAHI",
-                "TIRODA", "TUMSAR", "UMARKHED", "UMRED", "WADSA", "WANI", "WARDHA", "WARUD", "WASHIM",
-                "YAWATMAL"];
+            $scope.options = ["AHERI", "AKOLA", "AKOT", "AMGAON", "AMRAVATI", "ANJANGAON", "ARMORI", "ARNI", "ARVI",
+                "ASHTI", "BALLARPUR", "BHADRAWATI", "BHANDARA", "BHIWAPUR", "BRAMHAPURI", "BULDHANA", "CHAMORSHI",
+                "CHANDRAPUR", "CHANDUR BAZAR", "CHANDUR RAILWAY", "CHIKHALI", "DARWAH", "DARYAPUR", "DEOLI", "DEORI",
+                "DEULGAON", "DHANORA", "DIGRAS", "GADCHIROLI", "GANDHIBAGH", "GHATANJI", "GONDIA", "GONDPIPRI", "GOREGAON",
+                "HINGANGHAT", "HINGNA", "JALGAON JAMOD", "KALAMB", "KALMESHWAR", "KANHAN", "KARANJA GHADGE", "KARANJA LAD",
+                "KATOL", "KHAMGAON", "KORCHI", "KUHI", "KURKHEDA", "LAKHANDUR", "LAKHNI", "LONAR", "MAHAGAON", "MALEGAON",
+                "MALKAPUR", "MANGLURPIR", "MANISH NAGAR", "MANORA", "MAREGAON", "MAUDA", "MEHKAR", "MOHADI", "MORARJUNI",
+                "MORSHI", "MUL", "MULCHERA", "MURTIZAPUR", "NAGBHID", "NAGPUR", "NAGPUR WEALTH", "NANDURA", "NARKHED",
+                "NER PARSOPANT", "PANDHARKAWADA", "PARATWADA", "PARSHIVANI", "PATUR", "PAUNI", "PUSAD", "RAJURA", "RALEGAON",
+                "RAMTEK", "RISOD", "SADARJUNI", "SAKOLI", "SALEKASA", "SAMUDRAPUR", "SANGRAMPUR", "SAOLI", "SAONER", "SELOO",
+                "SHEGAON", "SINDEWAHI", "TIRORA", "TUMSAR", "UMARKHED", "UMRED", "WADSA", "WANI", "WARDHA", "WARUD", "WASHIM",
+                "YAVATMAL", "ZARI JAMNI"];
             $scope.acceptedlist = [];
             $scope.list2 = [];
             $scope.selectedUserType = function () {
