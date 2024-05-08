@@ -7,13 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="image/angular.min.js" type="text/javascript"></script>
         <script src="image/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-        <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+        <script src="image/angular.min.js" type="text/javascript"></script>
+        <script src="image/crypto-js.js" type="text/javascript"></script>
+        <link href="image/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="image/css2.css" rel="stylesheet" type="text/css"/>
         <title>Login Page</title>
         <script src="js/index.js" type="text/javascript"></script>
         <style>
@@ -143,6 +140,10 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
+            .forimg{
+                height: 16px;
+                width: 16px;
+            }
         </style>
 
     </head>
@@ -162,17 +163,17 @@
                         <form ng-submit="onSignUpSubmit();" >
                             <h3 class="titlename"> KYC Verification System </h3><br>
                             <div class="input-container">
-                                <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                                <i class="right-align-icon" style=" left: 50px; top: 60%; "><img class="forimg" src="image/user.png" alt=""/></i><br>
                                 <input type="text" ng-model="userName" pattern="^[0-9]{1,12}$" id="userName" name="username" placeholder="employee_Id (ex: 0123)" title="User Name should be your employee Id." required="" class="center-align">
                             </div>
                             <div  class="input-container">
-                                <i class="fas fa-university right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                                <i class="right-align-icon" style=" left: 50px; top: 60%; "><img class="forimg" src="image/branch.png" alt=""/></i><br>
                                 <select id="branchName" name="branchName"   ng-model="branchName" ng-options="option for option in options" class="center-align" required>
                                     <option value="" disabled selected ><i class="center-align" style="color: #999;" >select the branch</i></option>
                                 </select>
                             </div>
                             <div  class="input-container">
-                                <i class="fas fa-address-card right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                                <i class="right-align-icon" style=" left: 50px; top: 60%; "><img style="height: 20px; width: 20px;" src="image/user_type.png" alt=""/></i><br>
                                 <select id="userType" name="userType"   ng-model="userType" class="center-align" required>
                                     <option value="" disabled selected ><i class="center-align" style="color: #999;" >Type of user</i></option>
                                     <option value="COPs">Central Operation Team (COPs) </option>
@@ -181,11 +182,11 @@
                                 </select>
                             </div>
                             <div class="input-container">
-                                <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
+                                <i style=" left: 50px; top: 60%; "><img class="forimg" src="image/lock.png" alt=""/></i><br>
                                 <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" title="Password must be between 6 to 12 length characters, including at least one number and one letter." ng-model="userPassword" id="userPassword" name="userPassword" placeholder="password" required class="center-align">
                             </div>
                             <div class="input-container">
-                                <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
+                                <i style=" left: 50px; top: 60%; "><img class="forimg" src="image/user _lock.png" alt=""/></i><br>
                                 <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" ng-model="userPasswordC" id="cnfrmUserPassword" name="usrPass" placeholder="confirm password" required class="center-align">
                             </div>
                             <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">sign up</button>
@@ -207,12 +208,12 @@
                     <form ng-submit="onLoginSubmit();">
                         <h3 class="titlename"> KYC Verification System </h3><br>
                         <div class="input-container">
-                            <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                            <i class="right-align-icon" style=" left: 50px; top: 60%; "><img class="forimg" src="image/user.png" alt=""/></i><br>
                             <input type="text" ng-model="userName" id="userNameLi" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
                         </div>
 
                         <div class="input-container">
-                            <i class="fas fa-lock right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                            <i class="right-align-icon" style=" left: 50px; top: 60%; "><img class="forimg" src="image/lock.png" alt=""/></i><br>
                             <input type="password" ng-model="userPassword" id="userPasswordLi" name="userPassword" placeholder="password" required class="center-align">
                         </div>
                         <button  class="btn btn-sm btn-primary btn-block btn-login" type="submit">Login</button>
@@ -236,16 +237,16 @@
                 <form ng-submit="onResetSubmit();">
                     <h3 class="titlename"> KYC Verification System </h3><br>
                     <div class="input-container">
-                        <i class="fas fa-user right-align-icon" style=" left: 50px; top: 60%; "></i><br>
+                        <i class="right-align-icon" style=" left: 50px; top: 60%; "><img class="forimg" src="image/user.png" alt=""/></i><br>
                         <input type="text" ng-model="userName" id="userNameRe" name="username" placeholder="employee_Id (ex: 0123)" required class="center-align">
                     </div>
                     <div class="input-container">
-                        <i class="fas fa-lock" style=" left: 50px; top: 60%; "></i><br>
+                        <i style=" left: 50px; top: 60%; "><img class="forimg" src="image/lock.png" alt=""/></i><br>
                         <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPassword" id="userPasswordRe" name="userPassword" placeholder="password" 
                                required="" class="center-align" title="Password must contain at least 6 characters, including at least one number and one letter.">
                     </div>
                     <div class="input-container">
-                        <i class="fas fa-user-lock" style=" left: 50px; top: 60%; "></i><br>
+                        <i style=" left: 50px; top: 60%; "><img class="forimg" src="image/user _lock.png" alt=""/></i><br>
                         <input type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" ng-model="userPasswordC" id="cnfrmUserPasswordRe" name="usrPass" placeholder="confirm password" 
                                required="" class="center-align">
                     </div>
