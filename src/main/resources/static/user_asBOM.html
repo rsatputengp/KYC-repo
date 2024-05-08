@@ -15,97 +15,97 @@
         <script src="js/user_asBOM.js" type="text/javascript"></script>
         <title>BOM Dashboard</title>
         <style>
-                    /*Editable form ! button*/
-        .popupE {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-        }
+            /*Editable form ! button*/
+            .popupE {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+            }
 
-        .popup-contentE {
-            text-align: left;
-        }
+            .popup-contentE {
+                text-align: left;
+            }
 
-        .close-btnE {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
+            .close-btnE {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+            }
 
-        /* Style for the info icon */
-        .info-iconE {
-            font-weight: 800;
-            font-size: 12px;
-            cursor: pointer;
-            padding: 1px 6px ;
-            font-family: arial;
-        }
+            /* Style for the info icon */
+            .info-iconE {
+                font-weight: 800;
+                font-size: 12px;
+                cursor: pointer;
+                padding: 1px 6px ;
+                font-family: arial;
+            }
 
-        .dt {
-            font-family: sans-serif;
-        }
+            .dt {
+                font-family: sans-serif;
+            }
 
-        .list-containerE {
-            height: 500px;
-            /* Adjust as needed */
-            overflow-y: auto;
-            scrollbar-width: thin;
-            /* For Firefox */
-            scrollbar-color: #888 #f1f1f1;
-            /* For Firefox */
-        }
+            .list-containerE {
+                height: 500px;
+                /* Adjust as needed */
+                overflow-y: auto;
+                scrollbar-width: thin;
+                /* For Firefox */
+                scrollbar-color: #888 #f1f1f1;
+                /* For Firefox */
+            }
 
-        .listE {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+            .listE {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
 
-        .list-itemE {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+            .list-itemE {
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
 
-        /* CSS for webkit-based browsers (Chrome, Safari) */
-        .list-containerE::-webkit-scrollbar {
-            width: 12px;
-        }
+            /* CSS for webkit-based browsers (Chrome, Safari) */
+            .list-containerE::-webkit-scrollbar {
+                width: 12px;
+            }
 
-        .list-containerE::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+            .list-containerE::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
 
-        .list-containerE::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 6px;
-        }
+            .list-containerE::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 6px;
+            }
 
-        .list-containerE::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        /*-----*/
+            .list-containerE::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            /*-----*/
             body{
                 zoom: 0.9;
                 -moz-transform: scale(0.9);
                 transform-origin: 0 0;
             }
-            
+
             .form-input {
                 width: 80%;
                 padding: 10px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
             }
-            
+
             .form-inputNew {
                 width: 93%;
                 padding: 10px;
@@ -496,8 +496,8 @@
                         <div id="popup" class="popup list-container">
                             <div style=" color: black; text-align: left;">
                                 <div style="position: sticky; top: 0;">
-                                <span class="close" id="close-btn">❌</span>
-                                <h2 class="form-heading" >Help</h2>
+                                    <span class="close" id="close-btn">❌</span>
+                                    <h2 class="form-heading" >Help</h2>
                                 </div>
 
                                 <table style="border: solid #80C37D thin;" >
@@ -528,23 +528,23 @@
                                         <td>Standardizing File Names</td>
                                         <td>Branch Operations Manager (BOM) should rename documents to match the document number</td>
                                     </tr>
-<!--                                    <tr>
-                                        <td>How to compress pdf ?</td>
-                                        <td>Follow below steps :
-                                            <ol>
-                                                <li> Go to google.</li>
-                                                <li> Search any pdf compressor for ex: I love PDF.</li>
-                                                <li> In I Love PDF, click on Compress PDF from the Dashboard.</li>
-                                                <li> Click on "Select PDF files". </li>
-                                                <li> Choose the "PDF files" .</li>
-                                                <li> Click on "Compress PDF". </li>
-                                                <li> The PDF will download automatically. If not then click on "Download Compressed PDF". </li>
-                                                <li> STOP. </li>
-                                                <a href="https://www.ilovepdf.com/desktop" target="_blank"> https://www.ilovepdf.com/desktop </a>
-                                            </ol>
-                                            Otherwise, you can use "Cam Scanner" for scanning documnents.
-                                        </td>
-                                    </tr>-->
+                                    <!--                                    <tr>
+                                                                            <td>How to compress pdf ?</td>
+                                                                            <td>Follow below steps :
+                                                                                <ol>
+                                                                                    <li> Go to google.</li>
+                                                                                    <li> Search any pdf compressor for ex: I love PDF.</li>
+                                                                                    <li> In I Love PDF, click on Compress PDF from the Dashboard.</li>
+                                                                                    <li> Click on "Select PDF files". </li>
+                                                                                    <li> Choose the "PDF files" .</li>
+                                                                                    <li> Click on "Compress PDF". </li>
+                                                                                    <li> The PDF will download automatically. If not then click on "Download Compressed PDF". </li>
+                                                                                    <li> STOP. </li>
+                                                                                    <a href="https://www.ilovepdf.com/desktop" target="_blank"> https://www.ilovepdf.com/desktop </a>
+                                                                                </ol>
+                                                                                Otherwise, you can use "Cam Scanner" for scanning documnents.
+                                                                            </td>
+                                                                        </tr>-->
                                     <tr>
                                         <td>How to format Excel Sheet adharNo Cell ?</td>
                                         <td>Follow below steps :
@@ -598,28 +598,26 @@
                     </div>
                 </header>
                 <script>
-                        // Function to display and continuously update the timestamp
-                        function updateTimestamp() {
-                            var now = new Date();
-                            var date = now.toLocaleDateString();
-                            var time = now.toLocaleTimeString();
+                    // Function to display and continuously update the timestamp
+                    function updateTimestamp() {
+                    var now = new Date();
+                    var date = now.toLocaleDateString();
+                    var time = now.toLocaleTimeString();
+                    // Display date and time on separate lines
+                    var timestamp = date + " , " + time;
+                    document.getElementById('timestamp').innerHTML = timestamp;
+                    }
 
-                            // Display date and time on separate lines
-                            var timestamp = date + " , " + time;
-
-                            document.getElementById('timestamp').innerHTML = timestamp;
-                        }
-
-                        // Call the function initially and set up an interval to update the timestamp every second
-                        updateTimestamp();
-                        setInterval(updateTimestamp, 1000); // Update every second
+                    // Call the function initially and set up an interval to update the timestamp every second
+                    updateTimestamp();
+                    setInterval(updateTimestamp, 1000); // Update every second
                 </script>
             </div>
             <br>
             <!-- Applicant Name -->
-<!--            <div ng-show="loadingImg" style="max-width: 100%; max-height: 100%; background-color: white;">
-            <img src="image/logo.png" alt="Company Logo" style="max-width: 100px; max-height: 100px;" ng-show="loadingImg" id="loadingIcon">
-            </div>-->
+            <!--            <div ng-show="loadingImg" style="max-width: 100%; max-height: 100%; background-color: white;">
+                        <img src="image/logo.png" alt="Company Logo" style="max-width: 100px; max-height: 100px;" ng-show="loadingImg" id="loadingIcon">
+                        </div>-->
             <div>
                 <h3 style="width: 85%;display: inline-block;">Branch Operation Manager (BOM)</h3> 
                 <div class="user_name" >User : {{userRecord.userName}}</div> 
@@ -638,8 +636,8 @@
                                 </a>
                                 <button type="button" class="form-button attractive-button" ng-click="exportToExcel()">Export To Excel</button>
                             </td>
-<!--                            <td colspan="2">
-                            </td>-->
+                            <!--                            <td colspan="2">
+                                                        </td>-->
                             <td colspan="7" style="text-align: right;">
                                 <button type="button" class="form-button attractive-button" ng-click="searchByFiled('Approved')" >Approved</button>
                                 <button type="button" class="form-button attractive-button" ng-click="searchByFiled('Pending at COPs')" >Pending at COPs</button>
@@ -667,8 +665,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="cardviewtr" ng-repeat="record in list | continuousSubstringFilter:search:['code','firstName','midName', 'lastName','adharNo','accountType','branchName','date','status','remark','uploadedBy','approvedBy']">
-                            <td class="idpoint" ng-click="editRecord(record)">{{record.code.substring(5,15)}}</td>
+                        <tr class="cardviewtr" ng-repeat="record in list| continuousSubstringFilter:search:['code','firstName','midName', 'lastName','adharNo','accountType','branchName','date','status','remark','uploadedBy','approvedBy']">
+                            <td class="idpoint" ng-click="editRecord(record)">{{record.code.substring(5, 15)}}</td>
                             <td >{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
                             <td >{{record.adharNo}}</td>
                             <td >{{record.accountType}}</td>
@@ -695,9 +693,9 @@
                                 <img class="iconlook" src="image/check.png" ng-style="{'display':(record.applicationFormStatus === 'Accept')?'block':'none'}"/>
                                 <img class="iconlook" src="image/cross.png" ng-style="{'display':(record.applicationFormStatus === 'Reject')?'block':'none'}"/>
                             </td>
-                            <td>{{record.date | date:'dd/MM/yyyy HH:mm:ss a' }}</td>
+                            <td>{{record.date| date:'dd/MM/yyyy HH:mm:ss a' }}</td>
                             <td>{{record.status}}</td>
-                            <td style="color: #007BFF; cursor: pointer;"  ng-click="viewRemark(record.remark)" >{{record.remark.substring(0,30)}} Read more ...</td>
+                            <td style="color: #007BFF; cursor: pointer;"  ng-click="viewRemark(record.remark)" >{{record.remark.substring(0, 30)}} Read more ...</td>
                             <td>{{record.uploadedBy}}</td>
                             <td>{{record.approvedBy}}</td>
                         </tr>
@@ -707,7 +705,7 @@
         </div>
         <div ng-show="formContainerVisible" class="containernew">
             <h1 class="form-heading">KYC Verification</h1>
-            <form ng-submit="userEdit('Pending at COPs')">
+            <form id="myForm" ng-submit="userEdit('Pending at COPs')">
                 <table class="tablecontainer">
                     <tr>
                         <td>
@@ -749,10 +747,10 @@
                             <select id="branchName" name="branchName" class="form-input" ng-model="branchName" required>
                                 <option value="{{reco.branchName}}">{{reco.branchName}}</option>
                             </select>
-<!--                            <select id="branchName" name="branchName" class="form-input" ng-model="branchName" required="">
-                                <option value="" disabled selected ><i class="center-align" style="color: #999;" >Select The Branch Name</i></option>
-                                <option ng-repeat="option in branchlist" value="{{option}}">{{option}}</option>
-                            </select>                            -->
+                            <!--                            <select id="branchName" name="branchName" class="form-input" ng-model="branchName" required="">
+                                                            <option value="" disabled selected ><i class="center-align" style="color: #999;" >Select The Branch Name</i></option>
+                                                            <option ng-repeat="option in branchlist" value="{{option}}">{{option}}</option>
+                                                        </select>                            -->
                         </td>
                         <td>
                             <label for="adharNo" class="form-label">Aadhar Number :</label>
@@ -788,26 +786,26 @@
                                     </table>
                                 </div>
                             </div>
-                        <script>
-                            // Get the elements
-                            const infoAdhar = document.getElementById('info-adhar');
-                            const popupAdhar = document.getElementById('popup-adhar');
-                            const closeAdhar = document.getElementById('close-btn-adhar');
-                            // Show the popup when info icon is clicked
-                            infoAdhar.addEventListener('click', () => {
-                            popupAdhar.style.display = 'block';
-                            });
-                            // Close the popup when the close button is clicked
-                            closeAdhar.addEventListener('click', () => {
-                            popupAdhar.style.display = 'none';
-                            });
-                            // Close the popup if user clicks outside the popup
-                            window.addEventListener('click', (e) => {
-                            if (e.target === popupAdhar) {
-                            popupAdhar.style.display = 'none';
-                            }
-                            });
-                        </script>                            
+                            <script>
+                                // Get the elements
+                                const infoAdhar = document.getElementById('info-adhar');
+                                const popupAdhar = document.getElementById('popup-adhar');
+                                const closeAdhar = document.getElementById('close-btn-adhar');
+                                // Show the popup when info icon is clicked
+                                infoAdhar.addEventListener('click', () => {
+                                popupAdhar.style.display = 'block';
+                                });
+                                // Close the popup when the close button is clicked
+                                closeAdhar.addEventListener('click', () => {
+                                popupAdhar.style.display = 'none';
+                                });
+                                // Close the popup if user clicks outside the popup
+                                window.addEventListener('click', (e) => {
+                                if (e.target === popupAdhar) {
+                                popupAdhar.style.display = 'none';
+                                }
+                                });
+                            </script>                            
                         </td>                        
                     </tr>
                     <tr>
@@ -852,171 +850,118 @@
                                     <label class="form-label">Other Docs &nbsp;</label>
                                     <button id="info-iconEd" class="info-iconE">i️</button>
                                     <div id="popupEd" class="popupE list-containerE">
-                                    <div class="popup-contentE">
-                                    <span class="close-btnE" id="close-btnEd">❌</span>
-                                    <h2>Other Documents List</h2>
-                                    <dl><b>Saving Account</b></dl>
-                                        <dt >Officially Valid
-                                            Documents
-                                            (OVDs) for
-                                            Accounts of
-                                            Individuals</dt>
-                                        <dd>- Passport </dd>
-                                        <dd>- Driving license with photo </dd>
-                                        <dd>- Proof of possession of Aadhaar Number </dd>
-                                        <dd>- Voter’s Identity Card issued by Election Commission of India </dd>
-                                        <dd>- Job card issued by NREGA duly signed by an officer of the State  Government. </dd>
-                                        <dd>- Letter issued by the National Population Register containing details of Name and Address. </dd><br>
-                                        <dt>Deemed Officially
-                                            Valid Documents,
-                                            In case OVD does not
-                                            contains current/
-                                            updated address. (At
-                                            least one document
-                                            from the list is
-                                            required.)</dt> 
-                                        <dd>- Utility bill of any service provider i.e. electricity, telephone, postpaid mobile phone, piped gas, water bill (not more than two months old)</dd>
-                                        <dd>- Property or Municipal Tax receipt</dd>
-                                        <dd>- Pension or family pension payment orders (PPOs) issued to retired
-                                            employees by Government Departments or Public Sector Undertakings, If
-                                            they contain the address.</dd>
-                                        <dd>- Letter of allotment of accommodation from employer issued by State or	Central Government departments, statutory or regulatory bodies, and public
-                                            sector undertakings, scheduled commercial banks, financial institutions and
-                                            listed companies. Similarly, leave and license agreements with such
-                                            employers allotting official accommodation.</dd>
+                                        <div class="popup-contentE">
+                                            <span class="close-btnE" id="close-btnEd">❌</span>
+                                            <h2>Other Documents List</h2>
+                                            <dl><b>Saving Account</b></dl>
+                                            <dt >Officially Valid
+                                                Documents
+                                                (OVDs) for
+                                                Accounts of
+                                                Individuals</dt>
+                                            <dd>- Passport </dd>
+                                            <dd>- Driving license with photo </dd>
+                                            <dd>- Proof of possession of Aadhaar Number </dd>
+                                            <dd>- Voter’s Identity Card issued by Election Commission of India </dd>
+                                            <dd>- Job card issued by NREGA duly signed by an officer of the State  Government. </dd>
+                                            <dd>- Letter issued by the National Population Register containing details of Name and Address. </dd><br>
+                                            <dt>Deemed Officially
+                                                Valid Documents,
+                                                In case OVD does not
+                                                contains current/
+                                                updated address. (At
+                                                least one document
+                                                from the list is
+                                                required.)</dt> 
+                                            <dd>- Utility bill of any service provider i.e. electricity, telephone, postpaid mobile phone, piped gas, water bill (not more than two months old)</dd>
+                                            <dd>- Property or Municipal Tax receipt</dd>
+                                            <dd>- Pension or family pension payment orders (PPOs) issued to retired
+                                                employees by Government Departments or Public Sector Undertakings, If
+                                                they contain the address.</dd>
+                                            <dd>- Letter of allotment of accommodation from employer issued by State or	Central Government departments, statutory or regulatory bodies, and public
+                                                sector undertakings, scheduled commercial banks, financial institutions and
+                                                listed companies. Similarly, leave and license agreements with such
+                                                employers allotting official accommodation.</dd>
 
 
-                                        <dl><b>Current Account</b></dl>
-                                        <dt>Accounts of Sole
-                                            Proprietary firms.</dt>
-                                        <dd> Registration Certificate</dd>
-                                        <dd>- Certificate/ license issued by the municipal authorities under Shop & Establishment
-                                            Act,</dd>
-                                        <dd>- Sales and income tax returns.</dd>
-                                        <dd>- CST/ VAT/GST Certificate (Provisional/Final).</dd>
-                                        <dd>- Certificate / registration document issued by Sales Tax / Service Tax / Professional
-                                            Tax authorities.</dd>
-                                        <dd>- IEC (Importer Exporter Code) issued to the proprietary concern by the office of
-                                            DGFT or License/ certificate of practice issued in the name of proprietary concern
-                                            by any professional body incorporated under statute.</dd>
-                                        <dd>- Complete Income Tax return (not just the acknowledgement) in the name of Sole
-                                            Proprietor where the Firm’s income is reflected, duly authenticated/ Acknowledged
-                                            by the Income Tax Authorities.</dd>
-                                        <dd>- Utility bills such as electricity, water, and landline telephone bills in the name of the
-                                            proprietary concern.
-                                            In case where the branches are satisfied that it is not possible to furnish two such
-                                            documents from the above list, they would have the discretion to accept only one of those
-                                            documents as activity proof. In such cases, the branches would have to undertake
-                                            contact point verification, collect information to establish the existence of such firm,
-                                            confirm, and satisfy itself that the business activity has been verified from the address of
-                                            the proprietary concern. <br> <b>AND</b><br>
-                                            -Any one of the OVDs along with PAN/ FORM60 of the proprietor.</dd>
-                                        <br>
-                                        <dt>Accounts of
-                                            Partnership firms.
-                                            (Registered)</dt>
-                                        <dd>- Registration certificate.</dd>
-                                        <dd>- Partnership deed.</dd>
-                                        <dd>- PAN No. of the Partnership Firm.</dd>
-                                        <dd>- Any one of the OVDs and PAN/ FORM60 of the person holding an Attorney to
-                                            transact on its behalf with his/ her photograph.</dd>
+                                            <dl><b>Current Account</b></dl>
+                                            <dt>Accounts of Sole
+                                                Proprietary firms.</dt>
+                                            <dd> Registration Certificate</dd>
+                                            <dd>- Certificate/ license issued by the municipal authorities under Shop & Establishment
+                                                Act,</dd>
+                                            <dd>- Sales and income tax returns.</dd>
+                                            <dd>- CST/ VAT/GST Certificate (Provisional/Final).</dd>
+                                            <dd>- Certificate / registration document issued by Sales Tax / Service Tax / Professional
+                                                Tax authorities.</dd>
+                                            <dd>- IEC (Importer Exporter Code) issued to the proprietary concern by the office of
+                                                DGFT or License/ certificate of practice issued in the name of proprietary concern
+                                                by any professional body incorporated under statute.</dd>
+                                            <dd>- Complete Income Tax return (not just the acknowledgement) in the name of Sole
+                                                Proprietor where the Firm’s income is reflected, duly authenticated/ Acknowledged
+                                                by the Income Tax Authorities.</dd>
+                                            <dd>- Utility bills such as electricity, water, and landline telephone bills in the name of the
+                                                proprietary concern.
+                                                In case where the branches are satisfied that it is not possible to furnish two such
+                                                documents from the above list, they would have the discretion to accept only one of those
+                                                documents as activity proof. In such cases, the branches would have to undertake
+                                                contact point verification, collect information to establish the existence of such firm,
+                                                confirm, and satisfy itself that the business activity has been verified from the address of
+                                                the proprietary concern. <br> <b>AND</b><br>
+                                                -Any one of the OVDs along with PAN/ FORM60 of the proprietor.</dd>
+                                            <br>
+                                            <dt>Accounts of
+                                                Partnership firms.
+                                                (Registered)</dt>
+                                            <dd>- Registration certificate.</dd>
+                                            <dd>- Partnership deed.</dd>
+                                            <dd>- PAN No. of the Partnership Firm.</dd>
+                                            <dd>- Any one of the OVDs and PAN/ FORM60 of the person holding an Attorney to
+                                                transact on its behalf with his/ her photograph.</dd>
 
-                                        <br>
-                                        <dt>Accounts of Trusts</dt>
-                                        <dd>- Registration Certificate.</dd>
-                                        <dd>- Trust Deed.</dd>
-                                        <dd>- PAN/ FORM60 of Entity.</dd>
-                                        <dd>- Any one of the OVDs and PAN/FORM60 of the person holding an Attorney to
-                                            transact on its behalf with his/her photograph.</dd>
+                                            <br>
+                                            <dt>Accounts of Trusts</dt>
+                                            <dd>- Registration Certificate.</dd>
+                                            <dd>- Trust Deed.</dd>
+                                            <dd>- PAN/ FORM60 of Entity.</dd>
+                                            <dd>- Any one of the OVDs and PAN/FORM60 of the person holding an Attorney to
+                                                transact on its behalf with his/her photograph.</dd>
 
-                                        <br>
-                                        <dt>Accounts of
-                                            Unincorporated
-                                            Associations or body
-                                            of individuals
-                                            includes unregistered partnership firm/
-                                            trusts and societies.</dt>
-                                        <dd>- Resolution of the Managing body of such association or body of individuals.</dd>
-                                        <dd>- PAN/ FORM60 of Unincorporated Associations or body of individuals</dd>
-                                        <dd>- Power of Attorney granted to transact on its behalf.</dd>
-                                        <dd>- Any one of the OVDs and PAN/ FORM60 of the Office bearers / Signatories and
-                                            persons holding Power of Attorney, if any with his/her photograph in respect of the
-                                            person holding an Attorney to transact on its behalf.</dd>
-                                        <dd>
-                                            -  Any one of the below mentioned list of documents to collectively establish the legal
-                                            existence of such an associations or body of individuals.
-                                            <ul>
-                                                <li>Partnership Deed/ Trust Deed/ Bye Laws</li>
-                                                <li>Certificate/ license issued by the municipal authorities under Shop &
-                                                    Establishment Act.</li>
-                                                <li>Sales Tax Returns.</li> 
-                                                <li>CST/ VAT/ GST certificates (Provisional/ Final).</li> 
-                                                <li>Certificate/ registration document issued by Sales Tax/ Service Tax/
-                                                    Professional Tax authorities.</li>
-                                                <li>License/ certificate of practice issued in the name of proprietary concern by
-                                                    any professional body incorporated under statute.</li>
-                                                <li>Complete Income Tax return (not just the acknowledgement) in the name of
-                                                    Sole Proprietor where the Firm’s income is reflected, duly authenticated/
-                                                    Acknowledged by the Income Tax Authorities.</li>
-                                                <li> Utility bills such as electricity, water, and landline telephone bills in the name
-                                                    of the concerns.</li>	
-                                            </ul>
-                                        </dd>
+                                            <br>
+                                            <dt>Accounts of
+                                                Unincorporated
+                                                Associations or body
+                                                of individuals
+                                                includes unregistered partnership firm/
+                                                trusts and societies.</dt>
+                                            <dd>- Resolution of the Managing body of such association or body of individuals.</dd>
+                                            <dd>- PAN/ FORM60 of Unincorporated Associations or body of individuals</dd>
+                                            <dd>- Power of Attorney granted to transact on its behalf.</dd>
+                                            <dd>- Any one of the OVDs and PAN/ FORM60 of the Office bearers / Signatories and
+                                                persons holding Power of Attorney, if any with his/her photograph in respect of the
+                                                person holding an Attorney to transact on its behalf.</dd>
+                                            <dd>
+                                                -  Any one of the below mentioned list of documents to collectively establish the legal
+                                                existence of such an associations or body of individuals.
+                                                <ul>
+                                                    <li>Partnership Deed/ Trust Deed/ Bye Laws</li>
+                                                    <li>Certificate/ license issued by the municipal authorities under Shop &
+                                                        Establishment Act.</li>
+                                                    <li>Sales Tax Returns.</li> 
+                                                    <li>CST/ VAT/ GST certificates (Provisional/ Final).</li> 
+                                                    <li>Certificate/ registration document issued by Sales Tax/ Service Tax/
+                                                        Professional Tax authorities.</li>
+                                                    <li>License/ certificate of practice issued in the name of proprietary concern by
+                                                        any professional body incorporated under statute.</li>
+                                                    <li>Complete Income Tax return (not just the acknowledgement) in the name of
+                                                        Sole Proprietor where the Firm’s income is reflected, duly authenticated/
+                                                        Acknowledged by the Income Tax Authorities.</li>
+                                                    <li> Utility bills such as electricity, water, and landline telephone bills in the name
+                                                        of the concerns.</li>	
+                                                </ul>
+                                            </dd>
+                                        </div>
                                     </div>
-                                </div>
-                                <script>
-                                        // ... (existing code)
-                                        
-                                        document.addEventListener('DOMContentLoaded', function () {
-                                            // Get the elements
-                                            const infoIcon_Ed = document.getElementById('info-iconEd');
-                                            const popup_Ed = document.getElementById('popupEd');
-                                            const closeBtn_Ed = document.getElementById('close-btnEd');
-                                            
-                                            // Show the popup when info icon is clicked
-                                            infoIcon_Ed.addEventListener('click', function (event) {
-                                                // Prevent form submission when clicking the info icon
-                                                event.preventDefault();
-                                                event.stopPropagation();
-                                                popup_Ed.style.display = 'block';
-                                            });
-                                            
-                                            // Close the popup when the close button is clicked
-                                            closeBtn_Ed.addEventListener('click', function () {
-                                                popup_Ed.style.display = 'none';
-                                            });
-                                            
-                                            // Close the popup if the user clicks outside the popup
-                                            window.addEventListener('click', function (event) {
-                                                if (event.target === popup_Ed) {
-                                                    popup_Ed.style.display = 'none';
-                                                }
-                                            });
-                                        });
-                                                
-        ///session tinme out code here
-        var idleTimeout = 900000; // 5 minutes in milliseconds
-        var idleTimer;
-
-        function resetTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(logout, idleTimeout);
-        }
-
-        function logout() {
-            window.localStorage.removeItem("user_asBOM");
-            location.reload();
-            console.log("User automatically logged out due to inactivity.");
-        }
-
-        // Initial setup
-        resetTimer();
-
-        // Listen for user activity
-        window.addEventListener('mousemove', resetTimer);
-        window.addEventListener('keydown', resetTimer);
-        window.addEventListener('scroll', resetTimer);
-                                </script>
 
                                 </div>
                                 <div class="docdivIn_S">
@@ -1043,7 +988,7 @@
                 <div class="form-group">
                     <label for="formProgress" class="form-label">Remark</label>
                     <!--<textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" pattern=".{1,240}" ng-model="remark" ng-change="checkLength()" required=""></textarea>-->
-                    <textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" pattern=".{1,900}" ng-model="remark" required=""></textarea>
+                    <textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" ng-model="remark" required=""></textarea>
                     <input type="text" id="approvedBy" name="approvedBy" class="form-input" value="approvedBy" ng-model="approvedBy" hidden="">
                     <input type="text" id="uploadedBy" name="uploadedBy" class="form-input" value="uploadedBy" ng-model="uploadedBy" hidden="">
                 </div>
@@ -1056,7 +1001,63 @@
         </div>
         <br>
         <div style="border-radius: 4px; margin-left: 16px; margin-right: 16px; background-color: #004516; color: white; font-size: 16px; text-align: center; opacity: 0.5; ">
-        ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
+            ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
         </div>
+        <script>
+            document.getElementById('myForm').addEventListener('keydown', function (event) {
+//            var key = event.which || event.keyCode;
+//            if (key === 13) {
+//                event.preventDefault();
+//            }
+            if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+            event.preventDefault();
+            }
+            });
+            // ... (existing code)
+
+            document.addEventListener('DOMContentLoaded', function () {
+            // Get the elements
+            const infoIcon_Ed = document.getElementById('info-iconEd');
+            const popup_Ed = document.getElementById('popupEd');
+            const closeBtn_Ed = document.getElementById('close-btnEd');
+            // Show the popup when info icon is clicked
+            infoIcon_Ed.addEventListener('click', function (event) {
+            // Prevent form submission when clicking the info icon
+            event.preventDefault();
+            event.stopPropagation();
+            popup_Ed.style.display = 'block';
+            });
+            // Close the popup when the close button is clicked
+            closeBtn_Ed.addEventListener('click', function () {
+            popup_Ed.style.display = 'none';
+            });
+            // Close the popup if the user clicks outside the popup
+            window.addEventListener('click', function (event) {
+            if (event.target === popup_Ed) {
+            popup_Ed.style.display = 'none';
+            }
+            });
+            });
+            ///session tinme out code here
+            var idleTimeout = 900000; // 5 minutes in milliseconds
+            var idleTimer;
+            function resetTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(logout, idleTimeout);
+            }
+
+            function logout() {
+            window.localStorage.removeItem("user_asBOM");
+            location.reload();
+            console.log("User automatically logged out due to inactivity.");
+            }
+
+            // Initial setup
+            resetTimer();
+            // Listen for user activity
+            window.addEventListener('mousemove', resetTimer);
+            window.addEventListener('keydown', resetTimer);
+            window.addEventListener('scroll', resetTimer);
+        </script>
     </body>
 </html>

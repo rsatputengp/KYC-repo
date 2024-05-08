@@ -8,7 +8,6 @@
         <script src="image/jquery-3.6.0.min.js" type="text/javascript"></script>
         <script src="image/angular.min.js" type="text/javascript"></script>
         <script src="image/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="image/angular.min.js" type="text/javascript"></script>
         <script src="image/xlsx.full.min.js" type="text/javascript"></script>
         <link href="image/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="image/css2.css" rel="stylesheet" type="text/css"/>
@@ -832,7 +831,7 @@
                 <div class="form-group">
                     <label for="formProgress" class="form-label">Remark</label>
                     <!--<textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" pattern=".{1,240}" ng-model="remark" ng-change="checkLength()" required=""></textarea>-->
-                    <textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" pattern=".{1,900}" ng-model="remark" required=""></textarea>
+                    <textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" ng-model="remark" required=""></textarea>
                     <input type="text" id="approvedBy" name="approvedBy" class="form-input" value="approvedBy" ng-model="approvedBy" hidden="">
                     <input type="text" id="uploadedBy" name="uploadedBy" class="form-input" value="uploadedBy" ng-model="uploadedBy" hidden="">
                 </div>
@@ -849,10 +848,13 @@
         ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
         </div>
         <script>
-            document.getElementById('myForm').addEventListener('keypress', function (e) {
-            var key = e.which || e.keyCode;
-            if (key === 13) {
-                e.preventDefault();
+            document.getElementById('myForm').addEventListener('keydown', function (event) {
+//            var key = event.which || event.keyCode;
+//            if (key === 13) {
+//                event.preventDefault();
+//            }
+            if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+                event.preventDefault();
             }
         });
         
