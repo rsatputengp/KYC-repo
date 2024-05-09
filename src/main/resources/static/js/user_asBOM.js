@@ -482,7 +482,11 @@ app.controller("cont", function ($scope, $http) {
                 form.append("applicationForm", $scope.applicationFormfile);
                 form.append("id", $scope.id);
                 form.append("firstName", $scope.firstName);
-                form.append("midName", $scope.midName);
+                if ($scope.midName !== undefined) {
+                    form.append("midName", $scope.midName);
+                } else {
+                    form.append("midName", " ");
+                }
                 form.append("lastName", $scope.lastName);
                 form.append("adharNo", $scope.adharNo);
                 form.append("mobileNo", $scope.mobileNo);
