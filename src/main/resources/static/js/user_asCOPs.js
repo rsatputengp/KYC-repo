@@ -42,13 +42,13 @@ app.controller("cont", function ($scope, $http) {
                             function (error) {
                                 console.log(error);
                             });
-        }
+        };
         $scope.logout = function () {
             alert("Logout Successfully.");
             window.location.href = $scope.uRl + "index.html";
             $scope.list = null;
             window.localStorage.removeItem("user_asCOPs");
-        }
+        };
         $scope.messApprove = function (messageApprove) {
             if (messageApprove.endsWith("Approved")) {
                 $scope.notVisible_OnApprovalBOM = false;
@@ -71,7 +71,7 @@ app.controller("cont", function ($scope, $http) {
             var largeImage = document.getElementById(imageUrl);
             var newWindow = window.open();
             newWindow.document.write('<html><body style="margin:0;"><img src="' + largeImage.src + '"></img></body></html>');
-        }
+        };
         $scope.refresh();
         $scope.list1 = [];
         $scope.reco = null;
@@ -141,7 +141,7 @@ app.controller("cont", function ($scope, $http) {
             } else {
                 alert("Data already verified !");
             }
-        }
+        };
         $scope.viewPdfApp = function () {
             window.open($scope.recoApplicationForm, '_blank');
         };
@@ -161,7 +161,7 @@ app.controller("cont", function ($scope, $http) {
                             function (error) {
                                 console.log(error);
                             });
-        }
+        };
         //
         $scope.checkFiled = function () {
             if ($scope.panstatus === "Accept" && $scope.adharstatus === "Accept"
@@ -173,7 +173,7 @@ app.controller("cont", function ($scope, $http) {
                 $scope.notVisible_OnAccept = false;
                 $scope.isButtonDisabled = true;
             }
-        }
+        };
 
         //
 //            $scope.onPanStatus = function (event) {
@@ -219,7 +219,7 @@ app.controller("cont", function ($scope, $http) {
             buttonR.style.color = "white";
             $scope.panstatus = buttonA.textContent;
             $scope.checkFiled();
-        }
+        };
 
 //            ac = #85B87E; re = #BE4347;
         //onPanStatus Reject
@@ -232,7 +232,7 @@ app.controller("cont", function ($scope, $http) {
             buttonA.style.color = "white";
             $scope.panstatus = buttonR.textContent;
             $scope.checkFiled();
-        }
+        };
         ///
         //onAdharStatusA Accept
         $scope.onAdharStatusA = function (message) {
@@ -244,7 +244,7 @@ app.controller("cont", function ($scope, $http) {
             buttonR.style.color = "white";
             $scope.adharstatus = buttonA.textContent;
             $scope.checkFiled();
-        }
+        };
 
 //            ac = #85B87E; re = #BE4347;
         //onAdharStatusR Reject
@@ -257,7 +257,7 @@ app.controller("cont", function ($scope, $http) {
             buttonA.style.color = "white";
             $scope.adharstatus = buttonR.textContent;
             $scope.checkFiled();
-        }
+        };
         ///
         //onOtherDocsStatusA Accept
         $scope.onOtherDocsStatusA = function (message) {
@@ -269,7 +269,7 @@ app.controller("cont", function ($scope, $http) {
             buttonR.style.color = "white";
             $scope.otherDocstatus = buttonA.textContent;
             $scope.checkFiled();
-        }
+        };
 
 //            ac = #85B87E; re = #BE4347;
         //onOtherDocsStatusR Reject 
@@ -282,7 +282,7 @@ app.controller("cont", function ($scope, $http) {
             buttonA.style.color = "white";
             $scope.otherDocstatus = buttonR.textContent;
             $scope.checkFiled();
-        }
+        };
         //
         ///
         //onapplicationFormStatusA Accept
@@ -295,7 +295,7 @@ app.controller("cont", function ($scope, $http) {
             buttonR.style.color = "white";
             $scope.applicationFormstatus = buttonA.textContent;
             $scope.checkFiled();
-        }
+        };
 
 //            ac = #85B87E; re = #BE4347;
         //onapplicationFormStatusR Reject 
@@ -308,13 +308,13 @@ app.controller("cont", function ($scope, $http) {
             buttonA.style.color = "white";
             $scope.applicationFormstatus = buttonR.textContent;
             $scope.checkFiled();
-        }
+        };
         //
 
         ///
         $scope.searchByFiled = function (message) {
             $scope.search = message;
-        }
+        };
         $scope.aadharcheck = function () {
             if (!($scope.adharNo) && !($scope.remark)) {
                 alert("Please enter the Aadhar Number!");
@@ -356,7 +356,7 @@ app.controller("cont", function ($scope, $http) {
                     hour: '2-digit',
                     minute: '2-digit',
                     second: '2-digit',
-                    hour12: true,
+                    hour12: true
                 };
                 var timePart = date.toLocaleTimeString('en-IN', options);
 
@@ -365,24 +365,24 @@ app.controller("cont", function ($scope, $http) {
 
             var filteredData = jsonData.map(function (item) {
                 return {
-                    'code': item.code,
-                    'firstName': item.firstName,
-                    'midName': item.midName,
-                    'lastName': item.lastName,
-                    'adharNo': item.adharNo,
-                    'mobileNo': item.mobileNo,
-                    'accountType': item.accountType,
-                    'branchName': item.branchName,
-                    'status': item.status,
-                    'remark': item.remark,
-                    'date': item.date,
-                    'panStatus': item.panStatus,
-                    'adharStatus': item.adharStatus,
-                    'otherDocStatus': item.otherDocStatus,
-                    'applicationFormStatus': item.applicationFormStatus,
-                    'timeStam': item.timeStam,
-                    'approvedBy': item.approvedBy,
-                    'uploadedBy': item.uploadedBy
+
+                    'Code': item.code,
+                    'Name': item.firstName + " " + item.midName + " " + item.lastName,
+                    'Aadhar No': item.adharNo,
+                    'Mobile No': item.mobileNo,
+                    'Account Type': item.accountType,
+                    'Branch Name': item.branchName,
+                    'Status': item.status,
+                    'Remark': item.remark,
+                    'Date': item.date,
+                    'Pan Status': item.panStatus,
+                    'Aadhar_Status': item.adharStatus,
+                    'Other_Doc_Status': item.otherDocStatus,
+                    'Application_Form_Status': item.applicationFormStatus,
+                    'TimeStam': item.timeStam,
+                    'Approved By': item.approvedBy,
+                    'Uploaded By': item.uploadedBy
+
                 };
             });
 
@@ -402,7 +402,7 @@ app.controller("cont", function ($scope, $http) {
             ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
             ws['!cols'] = [
                 {width: 30}, // Adjust column widths as needed
-                {width: 15},
+                {width: 30},
                 {width: 15},
                 {width: 15},
                 {width: 15},
@@ -418,7 +418,7 @@ app.controller("cont", function ($scope, $http) {
                 {width: 15},
                 {width: 30},
                 {width: 15},
-                {width: 15},
+                {width: 15}
             ];
 
             // Apply table style
@@ -439,7 +439,7 @@ app.controller("cont", function ($scope, $http) {
 
             // Save the Excel file
             XLSX.writeFile(wb, $scope.userRecord.userName + '_report.xlsx');
-        }
+        };
 
         $scope.dataURLtoFilefunction = function (dataurl, filename) {
             var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],

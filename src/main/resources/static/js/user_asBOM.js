@@ -227,24 +227,22 @@ app.controller("cont", function ($scope, $http) {
 
             var filteredData = jsonData.map(function (item) {
                 return {
-                    'code': item.code,
-                    'firstName': item.firstName,
-                    'midName': item.midName,
-                    'lastName': item.lastName,
-                    'adharNo': item.adharNo,
-                    'mobileNo': item.mobileNo,
-                    'accountType': item.accountType,
-                    'branchName': item.branchName,
-                    'status': item.status,
-                    'remark': item.remark,
-                    'date': item.date,
-                    'panStatus': item.panStatus,
-                    'adharStatus': item.adharStatus,
-                    'otherDocStatus': item.otherDocStatus,
-                    'applicationFormStatus': item.applicationFormStatus,
-                    'timeStam': item.timeStam,
-                    'approvedBy': item.approvedBy,
-                    'uploadedBy': item.uploadedBy
+                    'Code': item.code,
+                    'Name': item.firstName + " " + item.midName + " " + item.lastName,
+                    'Aadhar No': item.adharNo,
+                    'Mobile No': item.mobileNo,
+                    'Account Type': item.accountType,
+                    'Branch Name': item.branchName,
+                    'Status': item.status,
+                    'Remark': item.remark,
+                    'Date': item.date,
+                    'Pan Status': item.panStatus,
+                    'Aadhar_Status': item.adharStatus,
+                    'Other_Doc_Status': item.otherDocStatus,
+                    'Application_Form_Status': item.applicationFormStatus,
+                    'TimeStam': item.timeStam,
+                    'Approved By': item.approvedBy,
+                    'Uploaded By': item.uploadedBy
                 };
             });
 
@@ -264,7 +262,7 @@ app.controller("cont", function ($scope, $http) {
             ws['!autofilter'] = {ref: XLSX.utils.encode_range(range)};
             ws['!cols'] = [
                 {width: 30}, // Adjust column widths as needed
-                {width: 15},
+                {width: 30},
                 {width: 15},
                 {width: 15},
                 {width: 15},

@@ -216,12 +216,12 @@
                     
             var filteredData = jsonData.map(function (item) {
                 return {
-                    'id': item.id,
-                    'userName': item.userName,
-                    'branchName': item.branchName,
-                    'userType': item.userType,
-                    'userIdStatus': item.userIdStatus,
-                    'remark': item.remark
+                    'Id': item.id,
+                    'User Name': item.userName,
+                    'Branch Name': item.branchName,
+                    'User Type': item.userType,
+                    'User_Id_Status': item.userIdStatus,
+                    'Remark': item.remark
                 };
             });
             
@@ -273,12 +273,12 @@
                     
             var filteredData = jsonData.map(function (item) {
                 return {
-                    'id': item.id,
-                    'userName': item.userName,
-                    'branchName': item.branchName,
-                    'userType': item.userType,
-                    'userIdStatus': item.userIdStatus,
-                    'branchNameList': item.branchNameList
+                    'Id': item.id,
+                    'User Name': item.userName,
+                    'Branch Name': item.branchName,
+                    'User Type': item.userType,
+                    'User_Id_Status': item.userIdStatus,
+                    'Branch_Name_List': item.branchNameList
                 };
             });
             
@@ -324,18 +324,18 @@
 //            Branch Access permission *_*
             $scope.optionsArray = {};
             $scope.selectedOptions = [];
-            $scope.options = ["AHERI", "AKOLA", "AKOT", "AMGAON", "AMRAVATI", "ANJANGAON", "ARMORI", "ARNI", "ARVI",
-                "ASHTI", "BALLARPUR", "BHADRAWATI", "BHANDARA", "BHIWAPUR", "BRAMHAPURI", "BULDHANA", "CHAMORSHI",
-                "CHANDRAPUR", "CHANDUR BAZAR", "CHANDUR RAILWAY", "CHIKHALI", "DARWAH", "DARYAPUR", "DEOLI", "DEORI",
-                "DEULGAON", "DHANORA", "DIGRAS", "GADCHIROLI", "GANDHIBAGH", "GHATANJI", "GONDIA", "GONDPIPRI", "GOREGAON",
-                "HEAD OFFICE GONDIA", "HINGANGHAT", "HINGNA", "JALGAON JAMOD", "KALAMB", "KALMESHWAR", "KANHAN", "KARANJA GHADGE",
-                "KARANJA LAD", "KATOL", "KHAMGAON", "KORCHI", "KUHI", "KURKHEDA", "LAKHANDUR", "LAKHNI", "LONAR", "MAHAGAON", "MALEGAON",
-                "MALKAPUR", "MANGLURPIR", "MANISH NAGAR", "MANORA", "MAREGAON", "MAUDA", "MEHKAR", "MOHADI", "MORARJUNI",
-                "MORSHI", "MUL", "MULCHERA", "MURTIZAPUR", "NAGBHID", "NAGPUR", "NAGPUR WEALTH", "NANDURA", "NARKHED",
-                "NER PARSOPANT", "PANDHARKAWADA", "PARATWADA", "PARSHIVANI", "PATUR", "PAUNI", "PUSAD", "RAJURA", "RALEGAON",
-                "RAMTEK", "RISOD", "SADARJUNI", "SAKOLI", "SALEKASA", "SAMUDRAPUR", "SANGRAMPUR", "SAOLI", "SAONER", "SELOO",
-                "SHEGAON", "SINDEWAHI", "TIRORA", "TUMSAR", "UMARKHED", "UMRED", "WADSA", "WANI", "WARDHA", "WARUD", "WASHIM",
-                "YAVATMAL", "ZARI JAMNI"];
+            $scope.options = ["AHERI", "AKOLA", "AKOT", "AMGAON", "AMRAVATI","AMRAWATI", "ANJANGAON", "ARMORI", "ARNI", "ARVI",
+                "ASHTI", "BALLARPUR","BALARSHAH", "BHADRAWATI", "BHANDARA", "BHIWAPUR", "BRAMHAPURI","BRHAMPURI", "BULDHANA", "CHAMORSHI",
+                "CHANDRAPUR", "CHANDUR BAZAR","CHANDUR BAJAR", "CHANDUR RAILWAY","CHANDURRAILWAY", "CHIKHALI", "DARWAH","DARWAHA", "DARYAPUR", "DEOLI", "DEORI",
+                "DEULGAON", "DHANORA", "DIGRAS", "GADCHIROLI", "GANDHIBAGH", "GHATANJI", "GONDIA","GONDIA MAIN BRANCH", "GONDPIPRI","GONDPIPARI", "GOREGAON",
+                "HEAD OFFICE GONDIA", "HINGANGHAT", "HINGNA", "JALGAON JAMOD","JALGAON JMOD", "KALAMB", "KALMESHWAR", "KANHAN", "KARANJA GHADGE","KARANJAN GHADGE",
+                "KARANJA LAD", "KATOL", "KHAMGAON", "KORCHI", "KUHI", "KURKHEDA", "LAKHANDUR", "LAKHNI","LAKHANI", "LONAR", "MAHAGAON", "MALEGAON",
+                "MALKAPUR", "MANGLURPIR", "MANISH NAGAR", "MANORA", "MAREGAON", "MAUDA", "MEHKAR", "MOHADI", "MORARJUNI","MORGAON ARJUNI",
+                "MORSHI", "MUL", "MULCHERA", "MURTIZAPUR","MURTIJAPUR", "NAGBHID", "NAGPUR", "NAGPUR WEALTH", "NANDURA", "NARKHED",
+                "NER PARSOPANT", "PANDHARKAWADA","PANDHARKAWDA", "PARATWADA", "PARSHIVANI","PARSHIVNI", "PATUR", "PAUNI", "PUSAD", "RAJURA", "RALEGAON",
+                "RAMTEK", "RISOD", "SADARJUNI","SADAK ARJUNI","SAHAYOGCHHATRAPATI", "SAKOLI", "SALEKASA", "SAMUDRAPUR", "SANGRAMPUR","SANGAMPUR", "SAOLI","SAWALI", "SAONER", "SELOO",
+                "SHEGAON", "SINDEWAHI", "TIRORA","TIRODA", "TUMSAR", "UMARKHED", "UMRED", "WADSA", "WANI", "WARDHA", "WARUD", "WASHIM",
+                "YAVATMAL","YAWATMAL", "ZARI JAMNI"];
             $scope.acceptedlist = [];
             $scope.list2 = [];
             $scope.selectedUserType = function () {
