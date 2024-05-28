@@ -12,9 +12,11 @@
         <link href="image/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="image/css2.css" rel="stylesheet" type="text/css"/>
         <script src="js/user_asCOPs.js" type="text/javascript"></script>
+        <script src="image/moment.min.js" type="text/javascript"></script>
+        <script src="image/xlsx.full.min.js" type="text/javascript"></script>
         <title>COPs Dashboard</title>        
         <style>
-                    /* Styles for the popup */
+            /* Styles for the popup */
             body{
                 zoom: 0.9;
                 -moz-transform: scale(0.9);
@@ -26,7 +28,7 @@
                 border: 1px solid #ccc;
                 border-radius: 5px;
             }
-            
+
             .form-inputNew {
                 width: 93%;
                 padding: 10px;
@@ -408,8 +410,8 @@
                 overflow-y: auto;
             }
             thead th {
-/*                position: sticky;
-                top: 0;*/
+                /*                position: sticky;
+                                top: 0;*/
                 background-color: #80C37D;
             }
             /*userName */
@@ -451,8 +453,8 @@
                         <div id="popup" class="popup list-container">
                             <div style=" color: black; text-align: left;">
                                 <div style="position: sticky; top: 0;">
-                                <span class="close" id="close-btn">❌</span>
-                                <h2 class="form-heading" >Help</h2>
+                                    <span class="close" id="close-btn">❌</span>
+                                    <h2 class="form-heading" >Help</h2>
                                 </div>
 
                                 <table style="border: solid #80C37D thin;" >
@@ -483,23 +485,23 @@
                                         <td>Standardizing File Names</td>
                                         <td>Branch Operations Manager (BOM) should rename documents to match the document number</td>
                                     </tr>
-<!--                                    <tr>
-                                        <td>How to compress pdf ?</td>
-                                        <td>Follow below steps :
-                                            <ol>
-                                                <li> Go to google.</li>
-                                                <li> Search any pdf compressor for ex: I love PDF.</li>
-                                                <li> In I Love PDF, click on Compress PDF from the Dashboard.</li>
-                                                <li> Click on "Select PDF files". </li>
-                                                <li> Choose the "PDF files" .</li>
-                                                <li> Click on "Compress PDF". </li>
-                                                <li> The PDF will download automatically. If not then click on "Download Compressed PDF". </li>
-                                                <li> STOP. </li>
-                                                <a href="https://www.ilovepdf.com/desktop" target="_blank"> https://www.ilovepdf.com/desktop </a> 
-                                            </ol>
-                                            Otherwise, you can use "Cam Scanner" for scanning documnents.
-                                        </td>
-                                    </tr>-->
+                                    <!--                                    <tr>
+                                                                            <td>How to compress pdf ?</td>
+                                                                            <td>Follow below steps :
+                                                                                <ol>
+                                                                                    <li> Go to google.</li>
+                                                                                    <li> Search any pdf compressor for ex: I love PDF.</li>
+                                                                                    <li> In I Love PDF, click on Compress PDF from the Dashboard.</li>
+                                                                                    <li> Click on "Select PDF files". </li>
+                                                                                    <li> Choose the "PDF files" .</li>
+                                                                                    <li> Click on "Compress PDF". </li>
+                                                                                    <li> The PDF will download automatically. If not then click on "Download Compressed PDF". </li>
+                                                                                    <li> STOP. </li>
+                                                                                    <a href="https://www.ilovepdf.com/desktop" target="_blank"> https://www.ilovepdf.com/desktop </a> 
+                                                                                </ol>
+                                                                                Otherwise, you can use "Cam Scanner" for scanning documnents.
+                                                                            </td>
+                                                                        </tr>-->
                                     <tr>
                                         <td>How to format Excel Sheet adharNo Cell ?</td>
                                         <td>Follow below steps :
@@ -531,43 +533,41 @@
                             </div>
                         </div>
                         <script>
-                                            // Get the elements
-                                            const infoIcon = document.getElementById('info-icon');
-                                            const popup = document.getElementById('popup');
-                                            const closeBtn = document.getElementById('close-btn');
-                                            // Show the popup when info icon is clicked
-                                            infoIcon.addEventListener('click', () => {
-                                            popup.style.display = 'block';
-                                            });
-                                            // Close the popup when the close button is clicked
-                                            closeBtn.addEventListener('click', () => {
-                                            popup.style.display = 'none';
-                                            });
-                                            // Close the popup if user clicks outside the popup
-                                            window.addEventListener('click', (e) => {
-                                            if (e.target === popup) {
-                                            popup.style.display = 'none';
-                                            }
-                                            });
+                             // Get the elements
+                             const infoIcon = document.getElementById('info-icon');
+                             const popup = document.getElementById('popup');
+                             const closeBtn = document.getElementById('close-btn');
+                             // Show the popup when info icon is clicked
+                             infoIcon.addEventListener('click', () => {
+                             popup.style.display = 'block';
+                             });
+                             // Close the popup when the close button is clicked
+                             closeBtn.addEventListener('click', () => {
+                             popup.style.display = 'none';
+                             });
+                             // Close the popup if user clicks outside the popup
+                             window.addEventListener('click', (e) => {
+                             if (e.target === popup) {
+                             popup.style.display = 'none';
+                             }
+                             });
                         </script>
                     </div>
                 </header>
                 <script>
-                        // Function to display and continuously update the timestamp
-                        function updateTimestamp() {
-                            var now = new Date();
-                            var date = now.toLocaleDateString();
-                            var time = now.toLocaleTimeString();
+                     // Function to display and continuously update the timestamp
+                     function updateTimestamp() {
+                     var now = new Date();
+                     var date = now.toLocaleDateString();
+                     var time = now.toLocaleTimeString();
+                     // Display date and time on separate lines
+                     var timestamp = date + " , " + time;
+                     document.getElementById('timestamp').innerHTML = timestamp;
+                     }
 
-                            // Display date and time on separate lines
-                            var timestamp = date + " , " + time;
-
-                            document.getElementById('timestamp').innerHTML = timestamp;
-                        }
-
-                        // Call the function initially and set up an interval to update the timestamp every second
-                        updateTimestamp();
-                        setInterval(updateTimestamp, 1000); // Update every second
+                     // Call the function initially and set up an interval to update the timestamp every second
+                     updateTimestamp();
+                     setInterval(updateTimestamp, 1000); // Update every second
                 </script>
             </div>
             <br>
@@ -612,8 +612,8 @@
                             <th style="width: 6%">Approved By</th>
                         </tr>
                     </thead>
-                    <tr class="cardviewtr" ng-repeat="record in list | continuousSubstringFilter:search:['code','firstName','midName', 'lastName','adharNo','accountType','branchName','date','status','remark','uploadedBy','approvedBy']">
-                        <td class="idpoint" ng-click="editRecord(record)">{{record.code.substring(5,15)}}</td>
+                    <tr class="cardviewtr" ng-repeat="record in list| continuousSubstringFilter:search:['code','firstName','midName', 'lastName','adharNo','accountType','branchName','date','status','remark','uploadedBy','approvedBy']">
+                        <td class="idpoint" ng-click="editRecord(record)">{{record.code.substring(5, 15)}}</td>
                         <td >{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
                         <td >{{record.adharNo}}</td>
                         <td >{{record.accountType}}</td>
@@ -640,9 +640,9 @@
                             <img class="iconlook" src="image/check.png" ng-style="{'display':(record.applicationFormStatus === 'Accept')?'block':'none'}"/>
                             <img class="iconlook" src="image/cross.png" ng-style="{'display':(record.applicationFormStatus === 'Reject')?'block':'none'}"/>
                         </td>
-                        <td>{{record.date | date:'dd/MM/yyyy HH:mm:ss a' }}</td>
+                        <td>{{record.date[0]| date:'dd/MM/yyyy HH:mm:ss a' }}</td>
                         <td>{{record.status}}</td>
-                        <td style="color: #007BFF; cursor: pointer;"  ng-click="viewRemark(record.remark)" >{{record.remark.substring(0,30)}} Read more ...</td>
+                        <td style="color: #007BFF; cursor: pointer;"  ng-click="viewRemark(record.remark)" >{{record.remark.substring(0, 30)}} Read more ...</td>
                         <td>{{record.uploadedBy}}</td>
                         <td>{{record.approvedBy}}</td>
                     </tr>
@@ -729,26 +729,26 @@
                                     </table>
                                 </div>
                             </div>
-                        <script>
-                            // Get the elements
-                            const infoAdhar = document.getElementById('info-adhar');
-                            const popupAdhar = document.getElementById('popup-adhar');
-                            const closeAdhar = document.getElementById('close-btn-adhar');
-                            // Show the popup when info icon is clicked
-                            infoAdhar.addEventListener('click', () => {
-                            popupAdhar.style.display = 'block';
-                            });
-                            // Close the popup when the close button is clicked
-                            closeAdhar.addEventListener('click', () => {
-                            popupAdhar.style.display = 'none';
-                            });
-                            // Close the popup if user clicks outside the popup
-                            window.addEventListener('click', (e) => {
-                            if (e.target === popupAdhar) {
-                            popupAdhar.style.display = 'none';
-                            }
-                            });
-                        </script>
+                            <script>
+                                 // Get the elements
+                                 const infoAdhar = document.getElementById('info-adhar');
+                                 const popupAdhar = document.getElementById('popup-adhar');
+                                 const closeAdhar = document.getElementById('close-btn-adhar');
+                                 // Show the popup when info icon is clicked
+                                 infoAdhar.addEventListener('click', () => {
+                                 popupAdhar.style.display = 'block';
+                                 });
+                                 // Close the popup when the close button is clicked
+                                 closeAdhar.addEventListener('click', () => {
+                                 popupAdhar.style.display = 'none';
+                                 });
+                                 // Close the popup if user clicks outside the popup
+                                 window.addEventListener('click', (e) => {
+                                 if (e.target === popupAdhar) {
+                                 popupAdhar.style.display = 'none';
+                                 }
+                                 });
+                            </script>
                         </td>
                     </tr>
                     <tr>
@@ -782,7 +782,7 @@
                                     <label class="form-label">PAN Card / Form-16</label><br>
                                 </div>
                                 <div class="docdivIn_S">
-                                    <img class="rcornersimgE" id="imgPan" alt="Image" ng-src="{{'data:image/png;base64,'+reco.pan}}" ng-click="openImageInPopup('imgPan')"/><br>
+                                    <img class="rcornersimgE" id="imgPan" src="image/Pan_img.webp" alt="Image" ng-click="viewPan()"/><br>
                                     <div style="padding-top: 5px;"></div>
                                     <button type="button" class="form-buttonGr" ng-click="onPanStatusA('onPanStatusAC')" id="onPanStatusAC">Accept</button>
                                     <button type="button" class="form-buttonRe" ng-click="onPanStatusR('onPanStatusRE')" id="onPanStatusRE">Reject</button>
@@ -794,7 +794,7 @@
                                     <label class="form-label">Aadhar Card </label><br>
                                 </div>
                                 <div class="docdivIn_S">
-                                    <img class="rcornersimgE" id="imgAdhar" alt="Image" ng-src="{{'data:image/png;base64,'+reco.adhar}}" ng-click="openImageInPopup('imgAdhar')"/><br>
+                                    <img class="rcornersimgE" id="imgAdhar" src="image/Aadhar_img.png" alt="Image" ng-click="viewAadhar()"/><br>
                                     <div style="padding-top: 5px;"></div>
                                     <button type="button" class="form-buttonGr" ng-click="onAdharStatusA('onAdharStatusAC')" id="onAdharStatusAC">Accept</button>
                                     <button type="button" class="form-buttonRe" ng-click="onAdharStatusR('onAdharStatusRE')" id="onAdharStatusRE">Reject</button>
@@ -837,7 +837,7 @@
                 </div>
                 <input type="submit" class="form-button padbutton" ng-click="userEdit('Approved')" value="Approve" name="Approve" ng-show="notVisible_OnAccept">
                 <input type="submit" class="form-button padbutton" ng-click="userEdit('Pending at BOM')" value="Pending at BOM" ng-show="notVisible_OnAcceptP" name="Pending at BOM">
-                
+
                 <a  href="{{uRl}}user_asCOPs.html" >
                     <button type="button" class="form-button padbutton" > Cancel </button>
                 </a>
@@ -845,41 +845,38 @@
         </div>
         <br>
         <div style="border-radius: 4px; margin-left: 16px; margin-right: 16px; background-color: #004516; color: white; font-size: 16px; text-align: center; opacity: 0.5; ">
-        ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
+            ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
         </div>
         <script>
-            document.getElementById('myForm').addEventListener('keydown', function (event) {
+             document.getElementById('myForm').addEventListener('keydown', function (event) {
 //            var key = event.which || event.keyCode;
 //            if (key === 13) {
 //                event.preventDefault();
 //            }
-            if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
-                event.preventDefault();
-            }
-        });
-        
-        ///session tinme out code here
-        var idleTimeout = 900000; // 5 minutes in milliseconds
-        var idleTimer;
+             if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+             event.preventDefault();
+             }
+             });
+             ///session tinme out code here
+             var idleTimeout = 900000; // 5 minutes in milliseconds
+             var idleTimer;
+             function resetTimer() {
+             clearTimeout(idleTimer);
+             idleTimer = setTimeout(logout, idleTimeout);
+             }
 
-        function resetTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(logout, idleTimeout);
-        }
+             function logout() {
+             window.localStorage.removeItem("user_asCOPs");
+             location.reload();
+             console.log("User automatically logged out due to inactivity.");
+             }
 
-        function logout() {
-            window.localStorage.removeItem("user_asCOPs");
-            location.reload();
-            console.log("User automatically logged out due to inactivity.");
-        }
-
-        // Initial setup
-        resetTimer();
-
-        // Listen for user activity
-        window.addEventListener('mousemove', resetTimer);
-        window.addEventListener('keydown', resetTimer);
-        window.addEventListener('scroll', resetTimer);
+             // Initial setup
+             resetTimer();
+             // Listen for user activity
+             window.addEventListener('mousemove', resetTimer);
+             window.addEventListener('keydown', resetTimer);
+             window.addEventListener('scroll', resetTimer);
         </script>
     </body>
 </html>

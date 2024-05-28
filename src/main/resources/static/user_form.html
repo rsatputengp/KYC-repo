@@ -319,13 +319,13 @@
                 /*border: 2px solid #80C37D;*/
                 border-radius: 20px;
             }
-            
+
             .imgsync{
                 height:30px;
                 width:30px;
                 vertical-align: middle;
             }
-                        table {
+            table {
                 width: 100%;
                 border-collapse: separate;
                 border-spacing: 0 10px;
@@ -350,12 +350,50 @@
                         </td>
                     </tr>
                     <tr>
+                        <td style="width: 50%">
+                            <label for="accountType" class="form-label">Account Type:</label>
+                            <select id="accountType" name="accountType" class="form-input" ng-model="accountType" required="">
+                                <optgroup label="Saving Account">
+                                    <option value="Silver Saving">Silver Saving</option>
+                                    <option value="Normal Saving">Normal Saving</option>
+                                </optgroup>
+                                <optgroup label="Joint Saving Account">
+                                    <option value="Joint Silver Saving">Joint Silver Saving</option>
+                                    <option value="Joint Normal Saving">Joint Normal Saving</option>
+                                </optgroup>
+                                <optgroup label="Individual Current Account">
+                                    <option value="Current Wealth">Current Wealth</option>
+                                    <option value="Current Gold">Current Gold</option>
+                                    <option value="Normal Current">Normal Current</option>
+                                </optgroup>
+                                <optgroup label="Joint Current Account">
+                                    <option value="Joint Current Wealth">Joint Current Wealth</option>
+                                    <option value="Joint Current Gold">Joint Current Gold</option>
+                                    <option value="Joint Normal Current">Joint Normal Current</option>
+                                </optgroup>
+                                <optgroup label="Non-Individual Current Account">
+                                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                    <option value="Partnership Module">Partnership Module</option>
+                                    <option value="Public/Private LTD Company">Normal Current</option>
+                                    <option value="TASC">TASC</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%">
+                            <label for="id" class="form-label">Name :</label>
+                            <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="firstName" name="firstName" class="ownfield" value="First Name" placeholder="First Name" ng-model="firstName" required="">
+                        </td>
                         <td colspan="2">
                             <label for="id" class="form-label">Name :</label>
                             <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="firstName" name="firstName" class="ownfield" value="First Name" placeholder="First Name" ng-model="firstName" required="">
-                            <input type="text" pattern="[A-Za-z]{0,20}( [A-Za-z]{0,20})?" id="midName" name="midName" class="ownfield" value="Middel Name" placeholder="Middel Name" ng-model="midName" required="">
-                            <input type="text" pattern="[A-Za-z]{0,20}" id="lastName" name="lastName" class="ownfield" value="Last Name" placeholder="Last Name" ng-model="lastName" required="">
                         </td>
+                        <td colspan="2">
+                            <label for="id" class="form-label">Name :</label>
+                            <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="firstName" name="firstName" class="ownfield" value="First Name" placeholder="First Name" ng-model="firstName" required="">
+                        </td>
+                        
                     </tr>
                     <tr>
                         <td>
@@ -401,54 +439,40 @@
                                 </div>
                             </div>
                             <script>
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                    // Get the elements
+                                         document.addEventListener('DOMContentLoaded', function () {
+                                             // Get the elements
 //                                    var checkAdharValue = document.getElementById('adharNo').value;
 //                                    console.log(document.getElementById('adharNo').value.length);
 //                                    console.log(document.getElementById('adharNo').value.length === "12");
 //                                    if(document.getElementById('adharNo').value.length === 12){
-                                    const infoIcon = document.getElementById('info-icon_A');
-                                    const popup = document.getElementById('popup_A');
-                                    const closeBtn = document.getElementById('close-btn_A');
-                                    // Show the popup when info icon is clicked
-                                    infoIcon.addEventListener('click', function (event) {
-                                    // Prevent form submission when clicking the info icon
-                                    event.preventDefault();
-                                    event.stopPropagation();
-                                    popup.style.display = 'block';
-                                    });
-                                    // Close the popup when the close button is clicked
-                                    closeBtn.addEventListener('click', function () {
-                                    popup.style.display = 'none';
-                                    });
-                                    // Close the popup if the user clicks outside the popup
-                                    window.addEventListener('click', function (event) {
-                                    if (event.target === popup) {
-                                    popup.style.display = 'none';
-                                    }
-                                    });
+                                             const infoIcon = document.getElementById('info-icon_A');
+                                             const popup = document.getElementById('popup_A');
+                                             const closeBtn = document.getElementById('close-btn_A');
+                                             // Show the popup when info icon is clicked
+                                             infoIcon.addEventListener('click', function (event) {
+                                                 // Prevent form submission when clicking the info icon
+                                                 event.preventDefault();
+                                                 event.stopPropagation();
+                                                 popup.style.display = 'block';
+                                             });
+                                             // Close the popup when the close button is clicked
+                                             closeBtn.addEventListener('click', function () {
+                                                 popup.style.display = 'none';
+                                             });
+                                             // Close the popup if the user clicks outside the popup
+                                             window.addEventListener('click', function (event) {
+                                                 if (event.target === popup) {
+                                                     popup.style.display = 'none';
+                                                 }
+                                             });
 //                                    }else{
 //                                        
 //                                    }
-                                    });                                
+                                         });
                             </script>
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 50%">
-                            <label for="accountType" class="form-label">Account Type:</label>
-                            <select id="accountType" name="accountType" class="form-input" ng-model="accountType" required="">
-                                <optgroup label="Saving Account">
-                                    <option value="Silver Saving">Silver Saving</option>
-                                    <option value="Normal Saving">Normal Saving</option>
-                                </optgroup>
-                                <optgroup label="Current Account">
-                                    <option value="Current Wealth">Current Wealth</option>
-                                    <option value="Current Gold">Current Gold</option>
-                                    <option value="Normal Current">Normal Current</option>
-                                </optgroup>
-                            </select>
-                        </td>
                         <td>
                             <label for="mobileNo" class="form-label">Mobile Number :</label>
                             <input type="tel"  title="Mobile Number must be 10 length."  pattern="[0-9]{10}" id="mobileNo" name="mobileNo" class="form-input" ng-model="mobileNo" required="">
@@ -464,11 +488,11 @@
                         <td colspan="2" style="align-items: center; ">
                             <div class="vertical_line docdiv1" style="width: 22%">
                                 <label class="form-label">PAN Card / Form-60/61</label><br><br>
-                                <input type="file" id="pan" name="panCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('pan')" required="">
+                                <input type="file" id="pan" name="panCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('pan')" required="" multiple="true">
                             </div>
                             <div class="vertical_line docdiv2" style="width: 22%">
                                 <label class="form-label">ADHAR Card </label><br><br>
-                                <input type="file" id="adhar" name="adharCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('adhar')" required="">
+                                <input type="file" id="adhar" name="adharCard" accept=".jpg, .jpeg, .png, .webp" onchange="checkVal('adhar')" required="" multiple="true">
                             </div>
                             <div class="vertical_line docdiv2" style="width: 22%">
                                 <label class="form-label">Other Docs &nbsp;</label>
@@ -587,31 +611,31 @@
                                     </div>
                                 </div>
                                 <script>
-                                    // ... (existing code)
+                                             // ... (existing code)
 
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                    // Get the elements
-                                    const infoIcon = document.getElementById('info-icon');
-                                    const popup = document.getElementById('popup');
-                                    const closeBtn = document.getElementById('close-btn');
-                                    // Show the popup when info icon is clicked
-                                    infoIcon.addEventListener('click', function (event) {
-                                    // Prevent form submission when clicking the info icon
-                                    event.preventDefault();
-                                    event.stopPropagation();
-                                    popup.style.display = 'block';
-                                    });
-                                    // Close the popup when the close button is clicked
-                                    closeBtn.addEventListener('click', function () {
-                                    popup.style.display = 'none';
-                                    });
-                                    // Close the popup if the user clicks outside the popup
-                                    window.addEventListener('click', function (event) {
-                                    if (event.target === popup) {
-                                    popup.style.display = 'none';
-                                    }
-                                    });
-                                    });
+                                             document.addEventListener('DOMContentLoaded', function () {
+                                                 // Get the elements
+                                                 const infoIcon = document.getElementById('info-icon');
+                                                 const popup = document.getElementById('popup');
+                                                 const closeBtn = document.getElementById('close-btn');
+                                                 // Show the popup when info icon is clicked
+                                                 infoIcon.addEventListener('click', function (event) {
+                                                     // Prevent form submission when clicking the info icon
+                                                     event.preventDefault();
+                                                     event.stopPropagation();
+                                                     popup.style.display = 'block';
+                                                 });
+                                                 // Close the popup when the close button is clicked
+                                                 closeBtn.addEventListener('click', function () {
+                                                     popup.style.display = 'none';
+                                                 });
+                                                 // Close the popup if the user clicks outside the popup
+                                                 window.addEventListener('click', function (event) {
+                                                     if (event.target === popup) {
+                                                         popup.style.display = 'none';
+                                                     }
+                                                 });
+                                             });
                                 </script>
 
                                 <br><br>
@@ -619,18 +643,18 @@
                             </div>
                             <div class="docdiv3" style="width: 22%">
                                 <label class="form-label">Client Form </label><br><br>
-                                <input type="file" id="applicationForm" name="applicationFormf" accept=".pdf" onchange="checkVal('applicationForm')" required="">
+                                <input type="file" id="applicationForm" name="applicationFormf" accept=".pdf" onchange="checkVal('applicationForm')" required="" multiple="true">
                             </div>
                         </td>
                     </tr>
-<!--                    <tr ng-show="visible">
-                        <td colspan="3">
-                            <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
-                            <br>
-                            <label class="form-label">Remark : </label>
-                            <input type="text" ng-model="remark" id="remark"  class="form-input">
-                        </td>
-                    </tr>-->
+                    <!--                    <tr ng-show="visible">
+                                            <td colspan="3">
+                                                <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
+                                                <br>
+                                                <label class="form-label">Remark : </label>
+                                                <input type="text" ng-model="remark" id="remark"  class="form-input">
+                                            </td>
+                                        </tr>-->
                 </table>
                 <button type="submit" class="form-button" >Submit</button>
                 <a  href="{{uRl}}user_asBOM.html" >

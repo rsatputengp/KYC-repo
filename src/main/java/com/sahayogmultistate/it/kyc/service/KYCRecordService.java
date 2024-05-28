@@ -43,11 +43,11 @@ public class KYCRecordService {
         System.out.println("I am in KYCRecordService");
     }
 
-//    private final String ROOT_F = "//home//ritik//Sahayog";
-    private final String ROOT_F = "//home//sysadmin//Sahayog";
+    private final String ROOT_F = "//home//ritik//Sahayog";
+//    private final String ROOT_F = "//home//sysadmin//Sahayog";
 
-    public KYCRecord add(MultipartFile pan, MultipartFile adhar,
-            MultipartFile[] otherDoc, MultipartFile applicationForm,
+    public KYCRecord add(MultipartFile[] pan, MultipartFile[] adhar,
+            MultipartFile[] otherDoc, MultipartFile[] applicationForm,
             String firstName, String midName, String lastName, long adharNo,
             long mobileNo, String accountType, String branchName, String status,
             String remark, Date date, String panStatus, String adharStatus,
@@ -75,7 +75,9 @@ public class KYCRecordService {
             record.setBranchName(branchName);
             record.setStatus(status);
             record.setRemark(remark);
-            record.setDate(date);
+            ArrayList<Date> dates = new ArrayList<>();
+            dates.add(date);
+            record.setDate(dates);
             record.setPanStatus(panStatus);
             record.setAdharStatus(adharStatus);
             record.setOtherDocStatus(otherDocStatus);
@@ -103,50 +105,91 @@ public class KYCRecordService {
                     String directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Saving" + "//" + accountType + "//" + code;
                     File directory = new File(directoryPath);
                     File directoryForOtherDocs = new File(directoryPath + "//" + "otherDoc");
+                    File directoryForPan = new File(directoryPath + "//" + "pan");
+                    File directoryForAadhar = new File(directoryPath + "//" + "adhar");
+                    File directoryForApplicationForm = new File(directoryPath + "//" + "applicationForm");
                     // Ensure parent directories exist
                     directory.mkdirs();
                     deleteDirectory(directoryForOtherDocs);
-//                    directoryForOtherDocs.delete();
+                    deleteDirectory(directoryForPan);
+                    deleteDirectory(directoryForAadhar);
+                    deleteDirectory(directoryForApplicationForm);
+
+                    directoryForPan.mkdirs();
+                    int loopPan = pan.length;
+                    for (int i = 0; i < loopPan; i++) {
+                        try (FileOutputStream fosPan = new FileOutputStream(new File(directoryForPan, "pan_" + i))) {
+                            fosPan.write(pan[i].getBytes());
+                        }
+                    }
+
+                    directoryForAadhar.mkdirs();
+                    int loopAadhar = adhar.length;
+                    for (int i = 0; i < loopAadhar; i++) {
+                        try (FileOutputStream fosAdhar = new FileOutputStream(new File(directoryForAadhar, "adhar_" + i))) {
+                            fosAdhar.write(adhar[i].getBytes());
+                        }
+                    }
+
                     directoryForOtherDocs.mkdirs();
-                    try (FileOutputStream fosPan = new FileOutputStream(new File(directory, "pan"))) {
-                        fosPan.write(pan.getBytes());
-                    }
-                    try (FileOutputStream fosAdhar = new FileOutputStream(new File(directory, "adhar"))) {
-                        fosAdhar.write(adhar.getBytes());
-                    }
-                    int loop = otherDoc.length;
-                    for (int i = 0; i < loop; i++) {
+                    int loopOtherDoc = otherDoc.length;
+                    for (int i = 0; i < loopOtherDoc; i++) {
                         try (FileOutputStream fosOtherDoc = new FileOutputStream(new File(directoryForOtherDocs, "otherDoc_" + i))) {
                             fosOtherDoc.write(otherDoc[i].getBytes());
                         }
                     }
 
-                    try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directory, "applicationForm"))) {
-                        fosApplicationForm.write(applicationForm.getBytes());
+                    directoryForApplicationForm.mkdirs();
+                    int loopApplicationForm = applicationForm.length;
+                    for (int i = 0; i < loopApplicationForm; i++) {
+                        try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directoryForApplicationForm, "applicationForm_" + i))) {
+                            fosApplicationForm.write(applicationForm[i].getBytes());
+                        }
                     }
                 } else {
                     String directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Current" + "//" + accountType + "//" + code;
                     File directory = new File(directoryPath);
                     File directoryForOtherDocs = new File(directoryPath + "//" + "otherDoc");
+                    File directoryForPan = new File(directoryPath + "//" + "pan");
+                    File directoryForAadhar = new File(directoryPath + "//" + "adhar");
+                    File directoryForApplicationForm = new File(directoryPath + "//" + "applicationForm");
                     // Ensure parent directories exist
                     directory.mkdirs();
                     deleteDirectory(directoryForOtherDocs);
-//                    directoryForOtherDocs.delete();
+                    deleteDirectory(directoryForPan);
+                    deleteDirectory(directoryForAadhar);
+                    deleteDirectory(directoryForApplicationForm);
+
+                    directoryForPan.mkdirs();
+                    int loopPan = pan.length;
+                    for (int i = 0; i < loopPan; i++) {
+                        try (FileOutputStream fosPan = new FileOutputStream(new File(directoryForPan, "pan_" + i))) {
+                            fosPan.write(pan[i].getBytes());
+                        }
+                    }
+
+                    directoryForAadhar.mkdirs();
+                    int loopAadhar = adhar.length;
+                    for (int i = 0; i < loopAadhar; i++) {
+                        try (FileOutputStream fosAdhar = new FileOutputStream(new File(directoryForAadhar, "adhar_" + i))) {
+                            fosAdhar.write(adhar[i].getBytes());
+                        }
+                    }
+
                     directoryForOtherDocs.mkdirs();
-                    try (FileOutputStream fosPan = new FileOutputStream(new File(directory, "pan"))) {
-                        fosPan.write(pan.getBytes());
-                    }
-                    try (FileOutputStream fosAdhar = new FileOutputStream(new File(directory, "adhar"))) {
-                        fosAdhar.write(adhar.getBytes());
-                    }
-                    int loop = otherDoc.length;
-                    for (int i = 0; i < loop; i++) {
+                    int loopOtherDoc = otherDoc.length;
+                    for (int i = 0; i < loopOtherDoc; i++) {
                         try (FileOutputStream fosOtherDoc = new FileOutputStream(new File(directoryForOtherDocs, "otherDoc_" + i))) {
                             fosOtherDoc.write(otherDoc[i].getBytes());
                         }
                     }
-                    try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directory, "applicationForm"))) {
-                        fosApplicationForm.write(applicationForm.getBytes());
+
+                    directoryForApplicationForm.mkdirs();
+                    int loopApplicationForm = applicationForm.length;
+                    for (int i = 0; i < loopApplicationForm; i++) {
+                        try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directoryForApplicationForm, "applicationForm_" + i))) {
+                            fosApplicationForm.write(applicationForm[i].getBytes());
+                        }
                     }
                 }
 
@@ -161,8 +204,8 @@ public class KYCRecordService {
         }
     }
 
-    public KYCRecord update(MultipartFile pan, MultipartFile adhar,
-            MultipartFile[] otherDoc, MultipartFile applicationForm,
+    public KYCRecord update(MultipartFile[] pan, MultipartFile[] adhar,
+            MultipartFile[] otherDoc, MultipartFile[] applicationForm,
             long id, String firstName, String midName, String lastName,
             long adharNo, long mobileNo, String accountType, String branchName,
             String status, String remark, Date date, String panStatus,
@@ -170,11 +213,13 @@ public class KYCRecordService {
             String approvedBy, String uploadedBy, String timeStam)
             throws IOException {
         KYCRecordNew recordNew = get(id);
+        ArrayList<Date> dates = recordNew.getDate();
+        dates.add(date);
+        String oldRemark = recordNew.getRemark();
         String code = recordNew.getCode();
         ArrayList<String> timestam = recordNew.getTimeStam();
         timestam.add(timeStam);
-        KYCRecord record = new KYCRecord(id, firstName, midName, lastName, adharNo, mobileNo, accountType, branchName, status, remark, date, panStatus, adharStatus, otherDocStatus, applicationFormStatus, approvedBy, uploadedBy, code, timestam, null, null, null, null);
-        if (record != null) {
+        if (recordNew != null) {
             try {
 
 //                String filePath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + accountType + "//" + firstName + lastName + "_" + adharNo;
@@ -182,49 +227,91 @@ public class KYCRecordService {
                     String directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Saving" + "//" + accountType + "//" + code;
                     File directory = new File(directoryPath);
                     File directoryForOtherDocs = new File(directoryPath + "//" + "otherDoc");
+                    File directoryForPan = new File(directoryPath + "//" + "pan");
+                    File directoryForAadhar = new File(directoryPath + "//" + "adhar");
+                    File directoryForApplicationForm = new File(directoryPath + "//" + "applicationForm");
                     // Ensure parent directories exist
                     directory.mkdirs();
                     deleteDirectory(directoryForOtherDocs);
-//                    directoryForOtherDocs.delete();
+                    deleteDirectory(directoryForPan);
+                    deleteDirectory(directoryForAadhar);
+                    deleteDirectory(directoryForApplicationForm);
+
+                    directoryForPan.mkdirs();
+                    int loopPan = pan.length;
+                    for (int i = 0; i < loopPan; i++) {
+                        try (FileOutputStream fosPan = new FileOutputStream(new File(directoryForPan, "pan_" + i))) {
+                            fosPan.write(pan[i].getBytes());
+                        }
+                    }
+
+                    directoryForAadhar.mkdirs();
+                    int loopAadhar = adhar.length;
+                    for (int i = 0; i < loopAadhar; i++) {
+                        try (FileOutputStream fosAdhar = new FileOutputStream(new File(directoryForAadhar, "adhar_" + i))) {
+                            fosAdhar.write(adhar[i].getBytes());
+                        }
+                    }
+
                     directoryForOtherDocs.mkdirs();
-                    try (FileOutputStream fosPan = new FileOutputStream(new File(directory, "pan"))) {
-                        fosPan.write(pan.getBytes());
-                    }
-                    try (FileOutputStream fosAdhar = new FileOutputStream(new File(directory, "adhar"))) {
-                        fosAdhar.write(adhar.getBytes());
-                    }
-                    int loop = otherDoc.length;
-                    for (int i = 0; i < loop; i++) {
+                    int loopOtherDoc = otherDoc.length;
+                    for (int i = 0; i < loopOtherDoc; i++) {
                         try (FileOutputStream fosOtherDoc = new FileOutputStream(new File(directoryForOtherDocs, "otherDoc_" + i))) {
                             fosOtherDoc.write(otherDoc[i].getBytes());
                         }
                     }
-                    try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directory, "applicationForm"))) {
-                        fosApplicationForm.write(applicationForm.getBytes());
+
+                    directoryForApplicationForm.mkdirs();
+                    int loopApplicationForm = applicationForm.length;
+                    for (int i = 0; i < loopApplicationForm; i++) {
+                        try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directoryForApplicationForm, "applicationForm_" + i))) {
+                            fosApplicationForm.write(applicationForm[i].getBytes());
+                        }
                     }
                 } else {
                     String directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Current" + "//" + accountType + "//" + code;
                     File directory = new File(directoryPath);
                     File directoryForOtherDocs = new File(directoryPath + "//" + "otherDoc");
+                    File directoryForPan = new File(directoryPath + "//" + "pan");
+                    File directoryForAadhar = new File(directoryPath + "//" + "adhar");
+                    File directoryForApplicationForm = new File(directoryPath + "//" + "applicationForm");
                     // Ensure parent directories exist
                     directory.mkdirs();
                     deleteDirectory(directoryForOtherDocs);
-//                    directoryForOtherDocs.delete();
+                    deleteDirectory(directoryForPan);
+                    deleteDirectory(directoryForAadhar);
+                    deleteDirectory(directoryForApplicationForm);
+
+                    directoryForPan.mkdirs();
+                    int loopPan = pan.length;
+                    for (int i = 0; i < loopPan; i++) {
+                        try (FileOutputStream fosPan = new FileOutputStream(new File(directoryForPan, "pan_" + i))) {
+                            fosPan.write(pan[i].getBytes());
+                        }
+                    }
+
+                    directoryForAadhar.mkdirs();
+                    int loopAadhar = adhar.length;
+                    for (int i = 0; i < loopAadhar; i++) {
+                        try (FileOutputStream fosAdhar = new FileOutputStream(new File(directoryForAadhar, "adhar_" + i))) {
+                            fosAdhar.write(adhar[i].getBytes());
+                        }
+                    }
+
                     directoryForOtherDocs.mkdirs();
-                    try (FileOutputStream fosPan = new FileOutputStream(new File(directory, "pan"))) {
-                        fosPan.write(pan.getBytes());
-                    }
-                    try (FileOutputStream fosAdhar = new FileOutputStream(new File(directory, "adhar"))) {
-                        fosAdhar.write(adhar.getBytes());
-                    }
-                    int loop = otherDoc.length;
-                    for (int i = 0; i < loop; i++) {
+                    int loopOtherDoc = otherDoc.length;
+                    for (int i = 0; i < loopOtherDoc; i++) {
                         try (FileOutputStream fosOtherDoc = new FileOutputStream(new File(directoryForOtherDocs, "otherDoc_" + i))) {
                             fosOtherDoc.write(otherDoc[i].getBytes());
                         }
                     }
-                    try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directory, "applicationForm"))) {
-                        fosApplicationForm.write(applicationForm.getBytes());
+
+                    directoryForApplicationForm.mkdirs();
+                    int loopApplicationForm = applicationForm.length;
+                    for (int i = 0; i < loopApplicationForm; i++) {
+                        try (FileOutputStream fosApplicationForm = new FileOutputStream(new File(directoryForApplicationForm, "applicationForm_" + i))) {
+                            fosApplicationForm.write(applicationForm[i].getBytes());
+                        }
                     }
                 }
 
@@ -233,6 +320,7 @@ public class KYCRecordService {
             }
 //            <--
 
+            KYCRecord record = new KYCRecord(id, firstName, midName, lastName, adharNo, mobileNo, accountType, branchName, status, oldRemark + ", \n\n" + remark, dates, panStatus, adharStatus, otherDocStatus, applicationFormStatus, approvedBy, uploadedBy, code, timestam, null, null, null, null);
             repository.save(record);
             return record;
         }
@@ -254,6 +342,9 @@ public class KYCRecordService {
                 String accountType = kYCRecord.getAccountType();
                 String code = kYCRecord.getCode();
                 File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+                File[] retrieveFilesForPan = retrieveFilesForPan(branchName, accountType, code);
+                File[] retrieveFilesForAadhar = retrieveFilesForAadhar(branchName, accountType, code);
+                File[] retrieveFilesForApplicationForm = retrieveFilesForApplicationForm(branchName, accountType, code);
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
@@ -271,34 +362,53 @@ public class KYCRecordService {
                     kycRecordNew.setMidName(kYCRecord.getMidName());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                    kycRecordNew.setPan(kYCRecord.getPan());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
                     kycRecordNew.setRemark(kYCRecord.getRemark());
                     kycRecordNew.setStatus(kYCRecord.getStatus());
                     kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
                     kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-                    List<byte[]> arrayList = new ArrayList<>();
+
+                    List<byte[]> arrayListForOtherDoc = new ArrayList<>();
                     for (File file : retrieveFilesForOtherDoc) {
-                        arrayList.add(Files.readAllBytes(file.toPath()));
+                        arrayListForOtherDoc.add(Files.readAllBytes(file.toPath()));
                     }
-                    kycRecordNew.setOtherDoc(arrayList);
-                    int length = retrieveFiles.length;
-                    for (int i = 0; i < length; i++) {
+                    kycRecordNew.setOtherDoc(arrayListForOtherDoc);
 
-                        if ("adhar".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-                        if ("pan".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-
+                    List<byte[]> arrayListForPan = new ArrayList<>();
+                    for (File file : retrieveFilesForPan) {
+                        arrayListForPan.add(Files.readAllBytes(file.toPath()));
                     }
+                    kycRecordNew.setPan(arrayListForPan);
+
+                    List<byte[]> arrayListForAadhar = new ArrayList<>();
+                    for (File file : retrieveFilesForAadhar) {
+                        arrayListForAadhar.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setAdhar(arrayListForAadhar);
+
+                    List<byte[]> arrayListForApplication = new ArrayList<>();
+                    for (File file : retrieveFilesForApplicationForm) {
+                        arrayListForApplication.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setApplicationForm(arrayListForApplication);
+//
+//                    int length = retrieveFiles.length;
+//                    for (int i = 0; i < length; i++) {
+//
+//                        if ("adhar".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("pan".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+////
+//                    }
                     recordList.add(kycRecordNew);
                 } catch (IOException ex) {
                     Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
@@ -310,153 +420,6 @@ public class KYCRecordService {
         }
     }
 
-//    public List<KYCRecordNew> getAllBranchListOfCOPs(String userName) {
-//        ArrayList<KYCRecordNew> recordList = new ArrayList<>();
-//        BranchAccess user = service.getUser(userName);
-//        ArrayList<String> branchNameList = user.getBranchNameList();
-//        List<KYCRecord> kYCRecords = getAll();
-//        for (KYCRecord kYCRecord : kYCRecords) {
-//            for (String branchname : branchNameList) {
-//                if (branchname.equals(kYCRecord.getBranchName())) {
-//                    String branchName = kYCRecord.getBranchName();
-//                    String accountType = kYCRecord.getAccountType();
-//                    String code = kYCRecord.getCode();
-//                    File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
-//                    File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
-//                    try {
-//                        KYCRecordNew kycRecordNew = new KYCRecordNew();
-//                        kycRecordNew.setAccountType(accountType);
-//                        kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
-//                        kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
-//                        kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
-//                        kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
-//                        kycRecordNew.setBranchName(branchName);
-//                        kycRecordNew.setCode(code);
-//                        kycRecordNew.setDate(kYCRecord.getDate());
-//                        kycRecordNew.setFirstName(kYCRecord.getFirstName());
-//                        kycRecordNew.setId(kYCRecord.getId());
-//                        kycRecordNew.setLastName(kYCRecord.getLastName());
-//                        kycRecordNew.setMidName(kYCRecord.getMidName());
-//                        kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
-//                        kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-//                        kycRecordNew.setPan(kYCRecord.getPan());
-//                        kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
-//                        kycRecordNew.setRemark(kYCRecord.getRemark());
-//                        kycRecordNew.setStatus(kYCRecord.getStatus());
-//                        kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
-//                        kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-//                        List<byte[]> arrayList = new ArrayList<>();
-//                        for (File file : retrieveFilesForOtherDoc) {
-//                            arrayList.add(Files.readAllBytes(file.toPath()));
-//                        }
-//                        kycRecordNew.setOtherDoc(arrayList);
-//                        int length = retrieveFiles.length;
-//                        for (int i = 0; i < length; i++) {
-//
-//                            if ("adhar".equals(retrieveFiles[i].getName())) {
-//
-//                                kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-//                            }
-//                            if ("applicationForm".equals(retrieveFiles[i].getName())) {
-//
-//                                kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-//                            }
-//                            if ("pan".equals(retrieveFiles[i].getName())) {
-//
-//                                kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-//                            }
-//
-//                        }
-//                        recordList.add(kycRecordNew);
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//            }
-//        }
-//        return recordList;
-//    }
-//
-//    public List<KYCRecordNew> getAllBranchListOfBOM(String userName) {
-//        ArrayList<KYCRecordNew> recordList = new ArrayList<>();
-//        BranchAccess user = service.getUser(userName);
-//        ArrayList<String> branchNameList = user.getBranchNameList();
-//        List<KYCRecord> kYCRecords = getAll();
-//        for (KYCRecord kYCRecord : kYCRecords) {
-//            for (String branchname : branchNameList) {
-//                if (branchname.equals(kYCRecord.getBranchName())) {
-//                    String branchName = kYCRecord.getBranchName();
-//                    String accountType = kYCRecord.getAccountType();
-//                    String code = kYCRecord.getCode();
-//                    File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
-//                    File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
-//                    try {
-//                        KYCRecordNew kycRecordNew = new KYCRecordNew();
-//                        kycRecordNew.setAccountType(accountType);
-//                        kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
-//                        kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
-//                        kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
-//                        kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
-//                        kycRecordNew.setBranchName(branchName);
-//                        kycRecordNew.setCode(code);
-//                        kycRecordNew.setDate(kYCRecord.getDate());
-//                        kycRecordNew.setFirstName(kYCRecord.getFirstName());
-//                        kycRecordNew.setId(kYCRecord.getId());
-//                        kycRecordNew.setLastName(kYCRecord.getLastName());
-//                        kycRecordNew.setMidName(kYCRecord.getMidName());
-//                        kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
-//                        kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-//                        kycRecordNew.setPan(kYCRecord.getPan());
-//                        kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
-//                        kycRecordNew.setRemark(kYCRecord.getRemark());
-//                        kycRecordNew.setStatus(kYCRecord.getStatus());
-//                        kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
-//                        kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-//                        if ("adhar".equals(retrieveFiles[0].getName())) {
-//
-//                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[0].toPath()));
-//                        }
-//                        List<byte[]> arrayList = new ArrayList<>();
-//                        for (File file : retrieveFilesForOtherDoc) {
-//                            arrayList.add(Files.readAllBytes(file.toPath()));
-//                        }
-//                        kycRecordNew.setOtherDoc(arrayList);
-//                        int length = retrieveFiles.length;
-//                        for (int i = 0; i < length; i++) {
-//
-//                            if ("adhar".equals(retrieveFiles[i].getName())) {
-//
-//                                kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-//                            }
-//                            if ("applicationForm".equals(retrieveFiles[i].getName())) {
-//
-//                                kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-//                            }
-//                            if ("pan".equals(retrieveFiles[i].getName())) {
-//
-//                                kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-//                            }
-//
-//                        }
-//                        recordList.add(kycRecordNew);
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//            }
-//        }
-//        return recordList;
-//    }
-//    public List<KYCRecord> getAllBranchListt(String branchName) {
-//        List<KYCRecord> all = repository.findAll();
-//        ArrayList<KYCRecord> recordList = new ArrayList<>();
-//        all.forEach((KYCRecord ele) -> {
-//            if (branchName.equals(ele.getBranchName())) {
-//                recordList.add(ele);
-//            }
-//        });
-//        return recordList;
-//    }
     @Transactional
     public List<KYCRecordNew> getAllBranchList(String userName) {
         ArrayList<KYCRecordNew> recordList = new ArrayList<>();
@@ -479,6 +442,9 @@ public class KYCRecordService {
                     String accountType = kYCRecord.getAccountType();
                     String code = kYCRecord.getCode();
                     File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+                    File[] retrieveFilesForPan = retrieveFilesForPan(branchName, accountType, code);
+                    File[] retrieveFilesForAadhar = retrieveFilesForAadhar(branchName, accountType, code);
+                    File[] retrieveFilesForApplicationForm = retrieveFilesForApplicationForm(branchName, accountType, code);
                     File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                     try {
                         KYCRecordNew kycRecordNew = new KYCRecordNew();
@@ -496,38 +462,53 @@ public class KYCRecordService {
                         kycRecordNew.setMidName(kYCRecord.getMidName());
                         kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                         kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                        kycRecordNew.setPan(kYCRecord.getPan());
                         kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
                         kycRecordNew.setRemark(kYCRecord.getRemark());
                         kycRecordNew.setStatus(kYCRecord.getStatus());
                         kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
                         kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-                        if ("adhar".equals(retrieveFiles[0].getName())) {
 
-                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[0].toPath()));
-                        }
-                        List<byte[]> arrayList = new ArrayList<>();
+                        List<byte[]> arrayListForOtherDoc = new ArrayList<>();
                         for (File file : retrieveFilesForOtherDoc) {
-                            arrayList.add(Files.readAllBytes(file.toPath()));
+                            arrayListForOtherDoc.add(Files.readAllBytes(file.toPath()));
                         }
-                        kycRecordNew.setOtherDoc(arrayList);
-                        int length = retrieveFiles.length;
-                        for (int i = 0; i < length; i++) {
+                        kycRecordNew.setOtherDoc(arrayListForOtherDoc);
 
-                            if ("adhar".equals(retrieveFiles[i].getName())) {
-
-                                kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-                            }
-                            if ("applicationForm".equals(retrieveFiles[i].getName())) {
-
-                                kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-                            }
-                            if ("pan".equals(retrieveFiles[i].getName())) {
-
-                                kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-                            }
-
+                        List<byte[]> arrayListForPan = new ArrayList<>();
+                        for (File file : retrieveFilesForPan) {
+                            arrayListForPan.add(Files.readAllBytes(file.toPath()));
                         }
+                        kycRecordNew.setPan(arrayListForPan);
+
+                        List<byte[]> arrayListForAadhar = new ArrayList<>();
+                        for (File file : retrieveFilesForAadhar) {
+                            arrayListForAadhar.add(Files.readAllBytes(file.toPath()));
+                        }
+                        kycRecordNew.setAdhar(arrayListForAadhar);
+
+                        List<byte[]> arrayListForApplication = new ArrayList<>();
+                        for (File file : retrieveFilesForApplicationForm) {
+                            arrayListForApplication.add(Files.readAllBytes(file.toPath()));
+                        }
+                        kycRecordNew.setApplicationForm(arrayListForApplication);
+//
+//                    int length = retrieveFiles.length;
+//                    for (int i = 0; i < length; i++) {
+//
+//                        if ("adhar".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("pan".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+////
+//                    }
                         recordList.add(kycRecordNew);
                     } catch (IOException ex) {
                         Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
@@ -602,6 +583,9 @@ public class KYCRecordService {
                 String accountType = kYCRecord.getAccountType();
                 String code = kYCRecord.getCode();
                 File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+                File[] retrieveFilesForPan = retrieveFilesForPan(branchName, accountType, code);
+                File[] retrieveFilesForAadhar = retrieveFilesForAadhar(branchName, accountType, code);
+                File[] retrieveFilesForApplicationForm = retrieveFilesForApplicationForm(branchName, accountType, code);
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
@@ -619,34 +603,36 @@ public class KYCRecordService {
                     kycRecordNew.setMidName(kYCRecord.getMidName());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                    kycRecordNew.setPan(kYCRecord.getPan());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
                     kycRecordNew.setRemark(kYCRecord.getRemark());
                     kycRecordNew.setStatus(kYCRecord.getStatus());
                     kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
                     kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-                    List<byte[]> arrayList = new ArrayList<>();
+
+                    List<byte[]> arrayListForOtherDoc = new ArrayList<>();
                     for (File file : retrieveFilesForOtherDoc) {
-                        arrayList.add(Files.readAllBytes(file.toPath()));
+                        arrayListForOtherDoc.add(Files.readAllBytes(file.toPath()));
                     }
-                    kycRecordNew.setOtherDoc(arrayList);
-                    int length = retrieveFiles.length;
-                    for (int i = 0; i < length; i++) {
+                    kycRecordNew.setOtherDoc(arrayListForOtherDoc);
 
-                        if ("adhar".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-                        if ("pan".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-
+                    List<byte[]> arrayListForPan = new ArrayList<>();
+                    for (File file : retrieveFilesForPan) {
+                        arrayListForPan.add(Files.readAllBytes(file.toPath()));
                     }
+                    kycRecordNew.setPan(arrayListForPan);
+
+                    List<byte[]> arrayListForAadhar = new ArrayList<>();
+                    for (File file : retrieveFilesForAadhar) {
+                        arrayListForAadhar.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setAdhar(arrayListForAadhar);
+
+                    List<byte[]> arrayListForApplication = new ArrayList<>();
+                    for (File file : retrieveFilesForApplicationForm) {
+                        arrayListForApplication.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setApplicationForm(arrayListForApplication);
+//
                     recordList.add(kycRecordNew);
                 } catch (IOException ex) {
                     Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
@@ -666,36 +652,35 @@ public class KYCRecordService {
                 String code = kYCRecord.getCode();
                 File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
-                KYCRecordNew kycRecordNew = new KYCRecordNew();
-                kycRecordNew.setAccountType(accountType);
-                kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
-                kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
-                kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
-                kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
-                kycRecordNew.setBranchName(branchName);
-                kycRecordNew.setCode(code);
-                kycRecordNew.setDate(kYCRecord.getDate());
-                kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                kycRecordNew.setId(kYCRecord.getId());
-                kycRecordNew.setLastName(kYCRecord.getLastName());
-                kycRecordNew.setMidName(kYCRecord.getMidName());
-                kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
-                kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                kycRecordNew.setPan(kYCRecord.getPan());
-                kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
-                kycRecordNew.setRemark(kYCRecord.getRemark());
-                kycRecordNew.setStatus(kYCRecord.getStatus());
-                kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
-                kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
+                    KYCRecordNew kycRecordNew = new KYCRecordNew();
+                    kycRecordNew.setAccountType(accountType);
+                    kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
+                    kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
+                    kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
+                    kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
+                    kycRecordNew.setBranchName(branchName);
+                    kycRecordNew.setCode(code);
+                    kycRecordNew.setDate(kYCRecord.getDate());
+                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
+                    kycRecordNew.setId(kYCRecord.getId());
+                    kycRecordNew.setLastName(kYCRecord.getLastName());
+                    kycRecordNew.setMidName(kYCRecord.getMidName());
+                    kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
+                    kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
+                    kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
+                    kycRecordNew.setRemark(kYCRecord.getRemark());
+                    kycRecordNew.setStatus(kYCRecord.getStatus());
+                    kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
+                    kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
                 kycRecordNew.setOtherDoc(null);
                 kycRecordNew.setAdhar(null);
                 kycRecordNew.setApplicationForm(null);
                 kycRecordNew.setPan(null);
-                recordList.add(kycRecordNew);
+                    recordList.add(kycRecordNew);
+                }
             }
-        }
         return recordList.size();
-    }
+        }
 
     @Transactional
     public List<KYCRecord> getAadhar(long adharNo) {
@@ -736,6 +721,9 @@ public class KYCRecordService {
             String accountType = kYCRecord.getAccountType();
             String code = kYCRecord.getCode();
             File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+            File[] retrieveFilesForPan = retrieveFilesForPan(branchName, accountType, code);
+            File[] retrieveFilesForAadhar = retrieveFilesForAadhar(branchName, accountType, code);
+            File[] retrieveFilesForApplicationForm = retrieveFilesForApplicationForm(branchName, accountType, code);
             File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
             try {
                 KYCRecordNew kycRecordNew = new KYCRecordNew();
@@ -753,34 +741,53 @@ public class KYCRecordService {
                 kycRecordNew.setMidName(kYCRecord.getMidName());
                 kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                 kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                kycRecordNew.setPan(kYCRecord.getPan());
                 kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
                 kycRecordNew.setRemark(kYCRecord.getRemark());
                 kycRecordNew.setStatus(kYCRecord.getStatus());
                 kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
                 kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-                List<byte[]> arrayList = new ArrayList<>();
+
+                List<byte[]> arrayListForOtherDoc = new ArrayList<>();
                 for (File file : retrieveFilesForOtherDoc) {
-                    arrayList.add(Files.readAllBytes(file.toPath()));
+                    arrayListForOtherDoc.add(Files.readAllBytes(file.toPath()));
                 }
-                kycRecordNew.setOtherDoc(arrayList);
-                int length = retrieveFiles.length;
-                for (int i = 0; i < length; i++) {
+                kycRecordNew.setOtherDoc(arrayListForOtherDoc);
 
-                    if ("adhar".equals(retrieveFiles[i].getName())) {
-
-                        kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-                    }
-                    if ("applicationForm".equals(retrieveFiles[i].getName())) {
-
-                        kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-                    }
-                    if ("pan".equals(retrieveFiles[i].getName())) {
-
-                        kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-                    }
-
+                List<byte[]> arrayListForPan = new ArrayList<>();
+                for (File file : retrieveFilesForPan) {
+                    arrayListForPan.add(Files.readAllBytes(file.toPath()));
                 }
+                kycRecordNew.setPan(arrayListForPan);
+
+                List<byte[]> arrayListForAadhar = new ArrayList<>();
+                for (File file : retrieveFilesForAadhar) {
+                    arrayListForAadhar.add(Files.readAllBytes(file.toPath()));
+                }
+                kycRecordNew.setAdhar(arrayListForAadhar);
+
+                List<byte[]> arrayListForApplication = new ArrayList<>();
+                for (File file : retrieveFilesForApplicationForm) {
+                    arrayListForApplication.add(Files.readAllBytes(file.toPath()));
+                }
+                kycRecordNew.setApplicationForm(arrayListForApplication);
+//
+//                    int length = retrieveFiles.length;
+//                    for (int i = 0; i < length; i++) {
+//
+//                        if ("adhar".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("pan".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+////
+//                    }
                 return kycRecordNew;
             } catch (IOException ex) {
                 Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
@@ -800,6 +807,9 @@ public class KYCRecordService {
                 String accountType = kYCRecord.getAccountType();
                 String code = kYCRecord.getCode();
                 File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+                File[] retrieveFilesForPan = retrieveFilesForPan(branchName, accountType, code);
+                File[] retrieveFilesForAadhar = retrieveFilesForAadhar(branchName, accountType, code);
+                File[] retrieveFilesForApplicationForm = retrieveFilesForApplicationForm(branchName, accountType, code);
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
@@ -817,34 +827,53 @@ public class KYCRecordService {
                     kycRecordNew.setMidName(kYCRecord.getMidName());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                    kycRecordNew.setPan(kYCRecord.getPan());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
                     kycRecordNew.setRemark(kYCRecord.getRemark());
                     kycRecordNew.setStatus(kYCRecord.getStatus());
                     kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
                     kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-                    List<byte[]> arrayList = new ArrayList<>();
+
+                    List<byte[]> arrayListForOtherDoc = new ArrayList<>();
                     for (File file : retrieveFilesForOtherDoc) {
-                        arrayList.add(Files.readAllBytes(file.toPath()));
+                        arrayListForOtherDoc.add(Files.readAllBytes(file.toPath()));
                     }
-                    kycRecordNew.setOtherDoc(arrayList);
-                    int length = retrieveFiles.length;
-                    for (int i = 0; i < length; i++) {
+                    kycRecordNew.setOtherDoc(arrayListForOtherDoc);
 
-                        if ("adhar".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-                        if ("pan".equals(retrieveFiles[i].getName())) {
-
-                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
-                        }
-
+                    List<byte[]> arrayListForPan = new ArrayList<>();
+                    for (File file : retrieveFilesForPan) {
+                        arrayListForPan.add(Files.readAllBytes(file.toPath()));
                     }
+                    kycRecordNew.setPan(arrayListForPan);
+
+                    List<byte[]> arrayListForAadhar = new ArrayList<>();
+                    for (File file : retrieveFilesForAadhar) {
+                        arrayListForAadhar.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setAdhar(arrayListForAadhar);
+
+                    List<byte[]> arrayListForApplication = new ArrayList<>();
+                    for (File file : retrieveFilesForApplicationForm) {
+                        arrayListForApplication.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setApplicationForm(arrayListForApplication);
+//
+//                    int length = retrieveFiles.length;
+//                    for (int i = 0; i < length; i++) {
+//
+//                        if ("adhar".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("pan".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+////
+//                    }
                     return kycRecordNew;
                 } catch (IOException ex) {
                     Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
@@ -865,33 +894,77 @@ public class KYCRecordService {
                 String accountType = kYCRecord.getAccountType();
                 String code = kYCRecord.getCode();
                 File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
+                File[] retrieveFilesForPan = retrieveFilesForPan(branchName, accountType, code);
+                File[] retrieveFilesForAadhar = retrieveFilesForAadhar(branchName, accountType, code);
+                File[] retrieveFilesForApplicationForm = retrieveFilesForApplicationForm(branchName, accountType, code);
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
-                KYCRecordNew kycRecordNew = new KYCRecordNew();
-                kycRecordNew.setAccountType(accountType);
-                kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
-                kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
-                kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
-                kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
-                kycRecordNew.setBranchName(branchName);
-                kycRecordNew.setCode(code);
-                kycRecordNew.setDate(kYCRecord.getDate());
-                kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                kycRecordNew.setId(kYCRecord.getId());
-                kycRecordNew.setLastName(kYCRecord.getLastName());
-                kycRecordNew.setMidName(kYCRecord.getMidName());
-                kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
-                kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                kycRecordNew.setPan(kYCRecord.getPan());
-                kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
-                kycRecordNew.setRemark(kYCRecord.getRemark());
-                kycRecordNew.setStatus(kYCRecord.getStatus());
-                kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
-                kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
-                kycRecordNew.setOtherDoc(null);
-                kycRecordNew.setAdhar(null);
-                kycRecordNew.setApplicationForm(null);
-                kycRecordNew.setPan(null);
-                return kycRecordNew;
+                try {
+                    KYCRecordNew kycRecordNew = new KYCRecordNew();
+                    kycRecordNew.setAccountType(accountType);
+                    kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
+                    kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
+                    kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
+                    kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
+                    kycRecordNew.setBranchName(branchName);
+                    kycRecordNew.setCode(code);
+                    kycRecordNew.setDate(kYCRecord.getDate());
+                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
+                    kycRecordNew.setId(kYCRecord.getId());
+                    kycRecordNew.setLastName(kYCRecord.getLastName());
+                    kycRecordNew.setMidName(kYCRecord.getMidName());
+                    kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
+                    kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
+                    kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
+                    kycRecordNew.setRemark(kYCRecord.getRemark());
+                    kycRecordNew.setStatus(kYCRecord.getStatus());
+                    kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
+                    kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
+
+                    List<byte[]> arrayListForOtherDoc = new ArrayList<>();
+                    for (File file : retrieveFilesForOtherDoc) {
+                        arrayListForOtherDoc.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setOtherDoc(arrayListForOtherDoc);
+
+                    List<byte[]> arrayListForPan = new ArrayList<>();
+                    for (File file : retrieveFilesForPan) {
+                        arrayListForPan.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setPan(arrayListForPan);
+
+                    List<byte[]> arrayListForAadhar = new ArrayList<>();
+                    for (File file : retrieveFilesForAadhar) {
+                        arrayListForAadhar.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setAdhar(arrayListForAadhar);
+
+                    List<byte[]> arrayListForApplication = new ArrayList<>();
+                    for (File file : retrieveFilesForApplicationForm) {
+                        arrayListForApplication.add(Files.readAllBytes(file.toPath()));
+                    }
+                    kycRecordNew.setApplicationForm(arrayListForApplication);
+//
+//                    int length = retrieveFiles.length;
+//                    for (int i = 0; i < length; i++) {
+//
+//                        if ("adhar".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setAdhar(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("applicationForm".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setApplicationForm(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+//                        if ("pan".equals(retrieveFiles[i].getName())) {
+//
+//                            kycRecordNew.setPan(Files.readAllBytes(retrieveFiles[i].toPath()));
+//                        }
+////
+//                    }
+                    return kycRecordNew;
+                } catch (IOException ex) {
+                    Logger.getLogger(KYCRecordService.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         return null;
@@ -964,6 +1037,72 @@ public class KYCRecordService {
             directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Saving" + "//" + accountType + "//" + code + "//" + "otherDoc";
         } else {
             directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Current" + "//" + accountType + "//" + code + "//" + "otherDoc";
+        }
+        File directory = new File(directoryPath);
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles();
+
+            if (files != null) {
+            } else {
+                System.out.println("No files found in the directory.");
+            }
+            return files;
+        } else {
+            System.out.println("Directory does not exist or is not a valid directory.");
+        }
+        return null;
+    }
+
+    public File[] retrieveFilesForPan(String branchName, String accountType, String code) {
+        String directoryPath = "";
+        if (accountType.endsWith("Saving")) {
+            directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Saving" + "//" + accountType + "//" + code + "//" + "pan";
+        } else {
+            directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Current" + "//" + accountType + "//" + code + "//" + "pan";
+        }
+        File directory = new File(directoryPath);
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles();
+
+            if (files != null) {
+            } else {
+                System.out.println("No files found in the directory.");
+            }
+            return files;
+        } else {
+            System.out.println("Directory does not exist or is not a valid directory.");
+        }
+        return null;
+    }
+
+    public File[] retrieveFilesForAadhar(String branchName, String accountType, String code) {
+        String directoryPath = "";
+        if (accountType.endsWith("Saving")) {
+            directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Saving" + "//" + accountType + "//" + code + "//" + "adhar";
+        } else {
+            directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Current" + "//" + accountType + "//" + code + "//" + "adhar";
+        }
+        File directory = new File(directoryPath);
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles();
+
+            if (files != null) {
+            } else {
+                System.out.println("No files found in the directory.");
+            }
+            return files;
+        } else {
+            System.out.println("Directory does not exist or is not a valid directory.");
+        }
+        return null;
+    }
+
+    public File[] retrieveFilesForApplicationForm(String branchName, String accountType, String code) {
+        String directoryPath = "";
+        if (accountType.endsWith("Saving")) {
+            directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Saving" + "//" + accountType + "//" + code + "//" + "applicationForm";
+        } else {
+            directoryPath = ROOT_F + "//" + branchName + "//" + "CASA" + "//" + "Current" + "//" + accountType + "//" + code + "//" + "applicationForm";
         }
         File directory = new File(directoryPath);
         if (directory.exists() && directory.isDirectory()) {

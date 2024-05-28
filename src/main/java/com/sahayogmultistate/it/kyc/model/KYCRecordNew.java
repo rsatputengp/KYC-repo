@@ -43,7 +43,10 @@ public class KYCRecordNew {
     private String branchName;
     private String status;
     private String remark;
-    private Date date;
+    
+    @Lob
+    @Column(name = "date", length = 3000)
+    private ArrayList<Date> date;
     private String panStatus;
     private String adharStatus;
     private String otherDocStatus;
@@ -58,14 +61,14 @@ public class KYCRecordNew {
     
     @Lob
     @Column(name = "pan", length = 3000)
-    private byte[] pan;
+    private List<byte[]> pan;
     @Lob
     @Column(name = "adhar", length = 3000)
-    private byte[] adhar;
+    private List<byte[]> adhar;
     @Lob
     @Column(name = "otherDoc", length = 5000)
     private List<byte[]> otherDoc;
     @Lob
     @Column(name = "applicationForm", length = 3000)
-    private byte[] applicationForm;
+    private List<byte[]> applicationForm;
 }

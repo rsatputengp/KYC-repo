@@ -39,10 +39,10 @@ public class KYCRecordController {
     }
 
     @PostMapping("/save")
-    public KYCRecord saveIMageOrFile(@RequestParam("pan") MultipartFile pan,
-            @RequestParam("adhar") MultipartFile adhar,
+    public KYCRecord saveIMageOrFile(@RequestParam("pan") MultipartFile[] pan,
+            @RequestParam("adhar") MultipartFile[] adhar,
             @RequestParam("otherDoc") MultipartFile[] otherDoc,
-            @RequestParam("applicationForm") MultipartFile applicationForm,
+            @RequestParam("applicationForm") MultipartFile[] applicationForm,
             @RequestParam("firstName") String firstName,
             @RequestParam("midName") String midName,
             @RequestParam("lastName") String lastName,
@@ -167,10 +167,10 @@ public class KYCRecordController {
     }
 
     @PostMapping("/update")
-    public KYCRecord update(@RequestParam("pan") MultipartFile pan,
-            @RequestParam("adhar") MultipartFile adhar,
+    public KYCRecord update(@RequestParam("pan") MultipartFile[] pan,
+            @RequestParam("adhar") MultipartFile[] adhar,
             @RequestParam("otherDoc") MultipartFile[] otherDoc,
-            @RequestParam("applicationForm") MultipartFile applicationForm,
+            @RequestParam("applicationForm") MultipartFile[] applicationForm,
             @RequestParam("id") long id,
             @RequestParam("firstName") String firstName,
             @RequestParam("midName") String midName,
