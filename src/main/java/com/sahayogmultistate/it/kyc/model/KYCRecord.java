@@ -34,9 +34,7 @@ public class KYCRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    private String firstName;
-    private String midName;
-    private String lastName;
+    private String applicant;
     private long adharNo;
     private long mobileNo;
     private String accountType;

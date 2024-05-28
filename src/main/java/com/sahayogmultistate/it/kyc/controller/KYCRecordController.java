@@ -43,9 +43,7 @@ public class KYCRecordController {
             @RequestParam("adhar") MultipartFile[] adhar,
             @RequestParam("otherDoc") MultipartFile[] otherDoc,
             @RequestParam("applicationForm") MultipartFile[] applicationForm,
-            @RequestParam("firstName") String firstName,
-            @RequestParam("midName") String midName,
-            @RequestParam("lastName") String lastName,
+            @RequestParam("applicant") String applicant,
             @RequestParam("adharNo") long adharNo,
             @RequestParam("mobileNo") long mobileNo,
             @RequestParam("accountType") String accountType,
@@ -66,9 +64,9 @@ public class KYCRecordController {
         Date date = new Date(currentTimeMillis);
         String timeStamp = " Uploaded By - " + uploadedBy + " : " + date.toString();
         KYCRecord record = new KYCRecord();
-        record = service.add(pan, adhar, otherDoc, applicationForm, firstName,
-                midName, lastName, adharNo, mobileNo, accountType, branchName,
-                status, remark, date, panStatus, adharStatus, otherDocStatus,
+        record = service.add(pan, adhar, otherDoc, applicationForm, applicant,
+                adharNo, mobileNo, accountType, branchName, status,
+                remark, date, panStatus, adharStatus, otherDocStatus,
                 applicationFormStatus, approvedBy, uploadedBy, timeStamp);
 //        for (int i = 0; i < 500; i++) {
 //            
@@ -79,7 +77,7 @@ public class KYCRecordController {
 //        }
         return record;
     }
-    
+
 //    @PostMapping("/savekyc")
 //    public String saveIMageOrFileKyc(@RequestParam("pan") MultipartFile pan,
 //            @RequestParam("adhar") MultipartFile adhar,
@@ -113,7 +111,6 @@ public class KYCRecordController {
 //                applicationFormStatus, approvedBy, uploadedBy, timeStamp);
 //        return record.getCode();
 //    }
-
 //    @RequestMapping("add/{file}/{firstName}/{lastName}/{accountNumber}/{accountType}")
 //    public KYCRecord add(@PathVariable MultipartFile file, @PathVariable String firstName,
 //            @PathVariable String lastName,
@@ -127,7 +124,7 @@ public class KYCRecordController {
         List<KYCRecord> list = service.getAllBranchListForDB(userName);
         return list;
     }
-    
+
     @RequestMapping("getAllBranchListOfBOM/{userName}")
     public List<KYCRecord> getAllBranchListOfBOM(@PathVariable String userName) {
         List<KYCRecord> list = service.getAllBranchListForDB(userName);
@@ -139,13 +136,11 @@ public class KYCRecordController {
 //        List<KYCRecordNew> list = service.getBranchList(branchName);
 //        return list;
 //    }
-    
 //    @RequestMapping("getBranchList")
 //    public List<KYCRecordNew> getBranchList() {
 //        List<KYCRecordNew> list = service.getBranchList();
 //        return list;
 //    }
-
     @RequestMapping("get/{id}")
     public KYCRecordNew get(@PathVariable long id) {
         KYCRecordNew record = service.get(id);
@@ -156,11 +151,12 @@ public class KYCRecordController {
     public void delete(@PathVariable long id) {
         service.delete(id);
     }
+
     @RequestMapping("getJsonFile")
     public String getJsonFile() {
         return service.getAllJson();
     }
-    
+
     @RequestMapping("getAadhar/{adharNo}")
     public List<KYCRecord> getAadhar(@PathVariable long adharNo) {
         return service.getAadhar(adharNo);
@@ -172,9 +168,7 @@ public class KYCRecordController {
             @RequestParam("otherDoc") MultipartFile[] otherDoc,
             @RequestParam("applicationForm") MultipartFile[] applicationForm,
             @RequestParam("id") long id,
-            @RequestParam("firstName") String firstName,
-            @RequestParam("midName") String midName,
-            @RequestParam("lastName") String lastName,
+            @RequestParam("applicant") String applicant,
             @RequestParam("adharNo") long adharNo,
             @RequestParam("mobileNo") long mobileNo,
             @RequestParam("accountType") String accountType,
@@ -194,14 +188,14 @@ public class KYCRecordController {
         Date date = new Date(currentTimeMillis);
         String timeStamp = "";
         if ("Approved".equals(status)) {
-            timeStamp = " Approved By - "+approvedBy + " : " + date.toString();
+            timeStamp = " Approved By - " + approvedBy + " : " + date.toString();
         } else {
             timeStamp = status + " : " + date.toString();
         }
-        KYCRecord record = service.update(pan, adhar, otherDoc, applicationForm, id, firstName,
-                midName, lastName, adharNo, mobileNo, accountType, branchName, status,
-                remark, date, panStatus, adharStatus, otherDocStatus,applicationFormStatus,
-                approvedBy, uploadedBy, timeStamp);
+        KYCRecord record = service.update(pan, adhar, otherDoc, applicationForm,
+                id, applicant, adharNo, mobileNo, accountType, branchName,
+                status, remark, date, panStatus, adharStatus, otherDocStatus,
+                applicationFormStatus, approvedBy, uploadedBy, timeStamp);
         return record;
     }
 

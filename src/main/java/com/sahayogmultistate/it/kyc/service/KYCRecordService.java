@@ -48,7 +48,7 @@ public class KYCRecordService {
 
     public KYCRecord add(MultipartFile[] pan, MultipartFile[] adhar,
             MultipartFile[] otherDoc, MultipartFile[] applicationForm,
-            String firstName, String midName, String lastName, long adharNo,
+            String applicant, long adharNo,
             long mobileNo, String accountType, String branchName, String status,
             String remark, Date date, String panStatus, String adharStatus,
             String otherDocStatus, String applicationFormStatus,
@@ -66,9 +66,7 @@ public class KYCRecordService {
         KYCRecordNew byAdhar = getByAdharExist(adharNo, accountType);
         if (byAdhar == null) {
 
-            record.setFirstName(firstName);
-            record.setMidName(midName);
-            record.setLastName(lastName);
+            record.setApplicant(applicant);
             record.setAdharNo(adharNo);
             record.setMobileNo(mobileNo);
             record.setAccountType(accountType);
@@ -206,11 +204,12 @@ public class KYCRecordService {
 
     public KYCRecord update(MultipartFile[] pan, MultipartFile[] adhar,
             MultipartFile[] otherDoc, MultipartFile[] applicationForm,
-            long id, String firstName, String midName, String lastName,
-            long adharNo, long mobileNo, String accountType, String branchName,
-            String status, String remark, Date date, String panStatus,
-            String adharStatus, String otherDocStatus, String applicationFormStatus,
-            String approvedBy, String uploadedBy, String timeStam)
+            long id, String applicant, long adharNo, long mobileNo,
+            String accountType, String branchName, String status,
+            String remark, Date date, String panStatus,
+            String adharStatus, String otherDocStatus,
+            String applicationFormStatus, String approvedBy,
+            String uploadedBy, String timeStam)
             throws IOException {
         KYCRecordNew recordNew = get(id);
         ArrayList<Date> dates = recordNew.getDate();
@@ -320,7 +319,7 @@ public class KYCRecordService {
             }
 //            <--
 
-            KYCRecord record = new KYCRecord(id, firstName, midName, lastName, adharNo, mobileNo, accountType, branchName, status, oldRemark + ", \n\n" + remark, dates, panStatus, adharStatus, otherDocStatus, applicationFormStatus, approvedBy, uploadedBy, code, timestam, null, null, null, null);
+            KYCRecord record = new KYCRecord(id, applicant, adharNo, mobileNo, accountType, branchName, status, oldRemark + ", \n\n" + remark, dates, panStatus, adharStatus, otherDocStatus, applicationFormStatus, approvedBy, uploadedBy, code, timestam, null, null, null, null);
             repository.save(record);
             return record;
         }
@@ -348,6 +347,7 @@ public class KYCRecordService {
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
+                    kycRecordNew.setId(kYCRecord.getId());
                     kycRecordNew.setAccountType(accountType);
                     kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
                     kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
@@ -356,10 +356,7 @@ public class KYCRecordService {
                     kycRecordNew.setBranchName(branchName);
                     kycRecordNew.setCode(code);
                     kycRecordNew.setDate(kYCRecord.getDate());
-                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                    kycRecordNew.setId(kYCRecord.getId());
-                    kycRecordNew.setLastName(kYCRecord.getLastName());
-                    kycRecordNew.setMidName(kYCRecord.getMidName());
+                    kycRecordNew.setApplicant(kYCRecord.getApplicant());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
@@ -448,6 +445,7 @@ public class KYCRecordService {
                     File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                     try {
                         KYCRecordNew kycRecordNew = new KYCRecordNew();
+                        kycRecordNew.setId(kYCRecord.getId());
                         kycRecordNew.setAccountType(accountType);
                         kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
                         kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
@@ -456,10 +454,7 @@ public class KYCRecordService {
                         kycRecordNew.setBranchName(branchName);
                         kycRecordNew.setCode(code);
                         kycRecordNew.setDate(kYCRecord.getDate());
-                        kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                        kycRecordNew.setId(kYCRecord.getId());
-                        kycRecordNew.setLastName(kYCRecord.getLastName());
-                        kycRecordNew.setMidName(kYCRecord.getMidName());
+                        kycRecordNew.setApplicant(kYCRecord.getApplicant());
                         kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                         kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                         kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
@@ -543,6 +538,7 @@ public class KYCRecordService {
                     String accountType = kYCRecord.getAccountType();
                     String code = kYCRecord.getCode();
                     KYCRecord kycRecord = new KYCRecord();
+                    kycRecord.setId(kYCRecord.getId());
                     kycRecord.setAccountType(accountType);
                     kycRecord.setAdharNo(kYCRecord.getAdharNo());
                     kycRecord.setAdharStatus(kYCRecord.getAdharStatus());
@@ -551,10 +547,7 @@ public class KYCRecordService {
                     kycRecord.setBranchName(branchName);
                     kycRecord.setCode(code);
                     kycRecord.setDate(kYCRecord.getDate());
-                    kycRecord.setFirstName(kYCRecord.getFirstName());
-                    kycRecord.setId(kYCRecord.getId());
-                    kycRecord.setLastName(kYCRecord.getLastName());
-                    kycRecord.setMidName(kYCRecord.getMidName());
+                    kycRecord.setApplicant(kYCRecord.getApplicant());
                     kycRecord.setMobileNo(kYCRecord.getMobileNo());
                     kycRecord.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                     kycRecord.setPan(kYCRecord.getPan());
@@ -589,6 +582,7 @@ public class KYCRecordService {
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
+                    kycRecordNew.setId(kYCRecord.getId());
                     kycRecordNew.setAccountType(accountType);
                     kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
                     kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
@@ -597,10 +591,7 @@ public class KYCRecordService {
                     kycRecordNew.setBranchName(branchName);
                     kycRecordNew.setCode(code);
                     kycRecordNew.setDate(kYCRecord.getDate());
-                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                    kycRecordNew.setId(kYCRecord.getId());
-                    kycRecordNew.setLastName(kYCRecord.getLastName());
-                    kycRecordNew.setMidName(kYCRecord.getMidName());
+                    kycRecordNew.setApplicant(kYCRecord.getApplicant());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
@@ -652,35 +643,33 @@ public class KYCRecordService {
                 String code = kYCRecord.getCode();
                 File[] retrieveFiles = retrieveFiles(branchName, accountType, code);
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
-                    KYCRecordNew kycRecordNew = new KYCRecordNew();
-                    kycRecordNew.setAccountType(accountType);
-                    kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
-                    kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
-                    kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
-                    kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
-                    kycRecordNew.setBranchName(branchName);
-                    kycRecordNew.setCode(code);
-                    kycRecordNew.setDate(kYCRecord.getDate());
-                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                    kycRecordNew.setId(kYCRecord.getId());
-                    kycRecordNew.setLastName(kYCRecord.getLastName());
-                    kycRecordNew.setMidName(kYCRecord.getMidName());
-                    kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
-                    kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
-                    kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
-                    kycRecordNew.setRemark(kYCRecord.getRemark());
-                    kycRecordNew.setStatus(kYCRecord.getStatus());
-                    kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
-                    kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
+                KYCRecordNew kycRecordNew = new KYCRecordNew();
+                kycRecordNew.setId(kYCRecord.getId());
+                kycRecordNew.setAccountType(accountType);
+                kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
+                kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
+                kycRecordNew.setApplicationFormStatus(kYCRecord.getApplicationFormStatus());
+                kycRecordNew.setApprovedBy(kYCRecord.getApprovedBy());
+                kycRecordNew.setBranchName(branchName);
+                kycRecordNew.setCode(code);
+                kycRecordNew.setDate(kYCRecord.getDate());
+                kycRecordNew.setApplicant(kYCRecord.getApplicant());
+                kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
+                kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
+                kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
+                kycRecordNew.setRemark(kYCRecord.getRemark());
+                kycRecordNew.setStatus(kYCRecord.getStatus());
+                kycRecordNew.setTimeStam(kYCRecord.getTimeStam());
+                kycRecordNew.setUploadedBy(kYCRecord.getUploadedBy());
                 kycRecordNew.setOtherDoc(null);
                 kycRecordNew.setAdhar(null);
                 kycRecordNew.setApplicationForm(null);
                 kycRecordNew.setPan(null);
-                    recordList.add(kycRecordNew);
-                }
+                recordList.add(kycRecordNew);
             }
-        return recordList.size();
         }
+        return recordList.size();
+    }
 
     @Transactional
     public List<KYCRecord> getAadhar(long adharNo) {
@@ -727,6 +716,7 @@ public class KYCRecordService {
             File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
             try {
                 KYCRecordNew kycRecordNew = new KYCRecordNew();
+                kycRecordNew.setId(kYCRecord.getId());
                 kycRecordNew.setAccountType(accountType);
                 kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
                 kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
@@ -735,10 +725,7 @@ public class KYCRecordService {
                 kycRecordNew.setBranchName(branchName);
                 kycRecordNew.setCode(code);
                 kycRecordNew.setDate(kYCRecord.getDate());
-                kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                kycRecordNew.setId(kYCRecord.getId());
-                kycRecordNew.setLastName(kYCRecord.getLastName());
-                kycRecordNew.setMidName(kYCRecord.getMidName());
+                kycRecordNew.setApplicant(kYCRecord.getApplicant());
                 kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                 kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                 kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
@@ -813,6 +800,7 @@ public class KYCRecordService {
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
+                    kycRecordNew.setId(kYCRecord.getId());
                     kycRecordNew.setAccountType(accountType);
                     kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
                     kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
@@ -821,10 +809,7 @@ public class KYCRecordService {
                     kycRecordNew.setBranchName(branchName);
                     kycRecordNew.setCode(code);
                     kycRecordNew.setDate(kYCRecord.getDate());
-                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                    kycRecordNew.setId(kYCRecord.getId());
-                    kycRecordNew.setLastName(kYCRecord.getLastName());
-                    kycRecordNew.setMidName(kYCRecord.getMidName());
+                    kycRecordNew.setApplicant(kYCRecord.getApplicant());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
@@ -900,6 +885,7 @@ public class KYCRecordService {
                 File[] retrieveFilesForOtherDoc = retrieveFilesForOtherDoc(branchName, accountType, code);
                 try {
                     KYCRecordNew kycRecordNew = new KYCRecordNew();
+                    kycRecordNew.setId(kYCRecord.getId());
                     kycRecordNew.setAccountType(accountType);
                     kycRecordNew.setAdharNo(kYCRecord.getAdharNo());
                     kycRecordNew.setAdharStatus(kYCRecord.getAdharStatus());
@@ -908,10 +894,7 @@ public class KYCRecordService {
                     kycRecordNew.setBranchName(branchName);
                     kycRecordNew.setCode(code);
                     kycRecordNew.setDate(kYCRecord.getDate());
-                    kycRecordNew.setFirstName(kYCRecord.getFirstName());
-                    kycRecordNew.setId(kYCRecord.getId());
-                    kycRecordNew.setLastName(kYCRecord.getLastName());
-                    kycRecordNew.setMidName(kYCRecord.getMidName());
+                    kycRecordNew.setApplicant(kYCRecord.getApplicant());
                     kycRecordNew.setMobileNo(kYCRecord.getMobileNo());
                     kycRecordNew.setOtherDocStatus(kYCRecord.getOtherDocStatus());
                     kycRecordNew.setPanStatus(kYCRecord.getPanStatus());
