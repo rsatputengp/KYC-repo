@@ -48,7 +48,7 @@ public class KYCRecordService {
 
     public KYCRecord add(MultipartFile[] pan, MultipartFile[] adhar,
             MultipartFile[] otherDoc, MultipartFile[] applicationForm,
-            String applicant, long adharNo,
+            String applicant, String adharNo,
             long mobileNo, String accountType, String branchName, String status,
             String remark, Date date, String panStatus, String adharStatus,
             String otherDocStatus, String applicationFormStatus,
@@ -63,7 +63,23 @@ public class KYCRecordService {
         }
         String code = "CODE_0" + (1 + codeNo) + "_" + branchName;
         KYCRecord record = new KYCRecord();
-        KYCRecordNew byAdhar = getByAdharExist(adharNo, accountType);
+        KYCRecordNew byAdhar;
+        if ("Silver Saving".equals(accountType)
+                || "Normal Saving".equals(accountType)
+                || "Current Wealth".equals(accountType)
+                || "Current Gold".equals(accountType)
+                || "Normal Current".equals(accountType)) {
+            String aadharNo = ""+adharNo.indexOf(',');
+            if (!aadharNo.equals("-1")) {
+                String[] aadharNum = adharNo.split(",");
+                byAdhar = getByAdharExist(aadharNum[0], accountType);
+            } else {
+                byAdhar = getByAdharExist(adharNo, accountType);
+            }
+        } else {
+            byAdhar = new KYCRecordNew();
+        }
+
         if (byAdhar == null) {
 
             record.setApplicant(applicant);
@@ -204,7 +220,7 @@ public class KYCRecordService {
 
     public KYCRecord update(MultipartFile[] pan, MultipartFile[] adhar,
             MultipartFile[] otherDoc, MultipartFile[] applicationForm,
-            long id, String applicant, long adharNo, long mobileNo,
+            long id, String applicant, String adharNo, long mobileNo,
             String accountType, String branchName, String status,
             String remark, Date date, String panStatus,
             String adharStatus, String otherDocStatus,
@@ -672,7 +688,7 @@ public class KYCRecordService {
     }
 
     @Transactional
-    public List<KYCRecord> getAadhar(long adharNo) {
+    public List<KYCRecord> getAadhar(String adharNo) {
         return repository.findByAdharNo(adharNo);
     }
 //    public List<KYCRecord> getAadhar(long adharNo) {
@@ -784,10 +800,10 @@ public class KYCRecordService {
     }
 
     @Transactional
-    public KYCRecordNew getByAdhar(long OldAdharNo, String OldAccountType) {
+    public KYCRecordNew getByAdhar(String OldAdharNo, String OldAccountType) {
         List<KYCRecord> all = repository.findByAdharNoAndaccountType(OldAdharNo, OldAccountType);
         for (KYCRecord kYCRecord : all) {
-            long adharno = kYCRecord.getAdharNo();
+            String adharno = kYCRecord.getAdharNo();
             String accounttype = kYCRecord.getAccountType();
             if (adharno == OldAdharNo && accounttype.equals(OldAccountType)) {
                 String branchName = kYCRecord.getBranchName();
@@ -869,10 +885,10 @@ public class KYCRecordService {
     }
 
     @Transactional
-    public KYCRecordNew getByAdharExist(long OldAdharNo, String OldAccountType) {
+    public KYCRecordNew getByAdharExist(String OldAdharNo, String OldAccountType) {
         List<KYCRecord> all = repository.findByAdharNoAndaccountType(OldAdharNo, OldAccountType);
         for (KYCRecord kYCRecord : all) {
-            long adharno = kYCRecord.getAdharNo();
+            String adharno = kYCRecord.getAdharNo();
             String accounttype = kYCRecord.getAccountType();
             if (adharno == OldAdharNo && accounttype.equals(OldAccountType)) {
                 String branchName = kYCRecord.getBranchName();

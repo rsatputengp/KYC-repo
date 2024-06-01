@@ -20,12 +20,12 @@ import org.springframework.stereotype.Repository;
 public interface IKYCRecordRepository extends JpaRepository<KYCRecord, Long> {
 
     @Query("SELECT k FROM KYCRecord k WHERE k.adharNo = :adharNo AND k.accountType = :accountType")
-    List<KYCRecord> findByAdharNoAndaccountType(@Param("adharNo") long adharNo, @Param("accountType") String accountType);
+    List<KYCRecord> findByAdharNoAndaccountType(@Param("adharNo") String adharNo, @Param("accountType") String accountType);
 
     @Query("SELECT k FROM KYCRecord k WHERE k.branchName = :branchName")
     List<KYCRecord> findAllByBranchName(@Param("branchName") String branchName);
 
     @Query("SELECT k FROM KYCRecord k WHERE k.adharNo = :adharNo")
-    List<KYCRecord> findByAdharNo(@Param("adharNo") long adharNo);
+    List<KYCRecord> findByAdharNo(@Param("adharNo") String adharNo);
 
 }

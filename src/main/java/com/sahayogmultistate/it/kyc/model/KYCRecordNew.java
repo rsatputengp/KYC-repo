@@ -35,16 +35,18 @@ public class KYCRecordNew {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String applicant;
-    private long adharNo;
+    private String adharNo;
     private long mobileNo;
     private String accountType;
     private String branchName;
     private String status;
+    @Column(name = "remark", length = 5000)
     private String remark;
-    
+
     @Lob
     @Column(name = "date", length = 3000)
     private ArrayList<Date> date;
+    
     private String panStatus;
     private String adharStatus;
     private String otherDocStatus;
@@ -52,11 +54,11 @@ public class KYCRecordNew {
     private String approvedBy;
     private String uploadedBy;
     private String code;
-    
+
     @Lob
     @Column(name = "timeStam", length = 3000)
     private ArrayList<String> timeStam;
-    
+
     @Lob
     @Column(name = "pan", length = 3000)
     private List<byte[]> pan;

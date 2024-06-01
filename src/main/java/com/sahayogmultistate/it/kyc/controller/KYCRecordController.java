@@ -44,7 +44,7 @@ public class KYCRecordController {
             @RequestParam("otherDoc") MultipartFile[] otherDoc,
             @RequestParam("applicationForm") MultipartFile[] applicationForm,
             @RequestParam("applicant") String applicant,
-            @RequestParam("adharNo") long adharNo,
+            @RequestParam("adharNo") String adharNo,
             @RequestParam("mobileNo") long mobileNo,
             @RequestParam("accountType") String accountType,
             @RequestParam("branchName") String branchName,
@@ -158,7 +158,7 @@ public class KYCRecordController {
     }
 
     @RequestMapping("getAadhar/{adharNo}")
-    public List<KYCRecord> getAadhar(@PathVariable long adharNo) {
+    public List<KYCRecord> getAadhar(@PathVariable String adharNo) {
         return service.getAadhar(adharNo);
     }
 
@@ -169,7 +169,7 @@ public class KYCRecordController {
             @RequestParam("applicationForm") MultipartFile[] applicationForm,
             @RequestParam("id") long id,
             @RequestParam("applicant") String applicant,
-            @RequestParam("adharNo") long adharNo,
+            @RequestParam("adharNo") String adharNo,
             @RequestParam("mobileNo") long mobileNo,
             @RequestParam("accountType") String accountType,
             @RequestParam("branchName") String branchName,

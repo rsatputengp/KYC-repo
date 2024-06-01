@@ -35,15 +35,16 @@ public class KYCRecord {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String applicant;
-    private long adharNo;
+    private String adharNo;
     private long mobileNo;
     private String accountType;
     private String branchName;
     private String status;
+    @Column(name = "remark", length = 5000)
     private String remark;
 
     @Lob
-    @Column(name = "date", length = 3000)
+    @Column(name = "date", length = 5000)
     private ArrayList<Date> date;
     
     private String panStatus;
