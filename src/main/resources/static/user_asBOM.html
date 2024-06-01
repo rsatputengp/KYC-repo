@@ -669,7 +669,7 @@
                     <tbody>
                         <tr class="cardviewtr" ng-repeat="record in list| continuousSubstringFilter:search:['code','firstName','midName', 'lastName','adharNo','accountType','branchName','date','status','remark','uploadedBy','approvedBy']">
                             <td class="idpoint" ng-click="editRecord(record)">{{record.code.substring(5, 15)}}</td>
-                            <td >{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
+                            <td >{{record.applicant}}</td>
                             <td >{{record.adharNo}}</td>
                             <td >{{record.accountType}}</td>
                             <td >{{record.branchName}}</td>

@@ -39,7 +39,7 @@
                 font-family: Arial, sans-serif;
                 background-color: #f4f4f4;
             }
-            
+
             .container {
                 max-width: 60%;
                 margin: 0 auto;
@@ -286,6 +286,19 @@
                 z-index: 999;
             }
 
+            .popupAadhar {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px; 
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+            }
+
             .popup-content {
                 /*text-align: center;*/
             }
@@ -404,16 +417,16 @@
                 /*text-overflow: ellipsis;*/
                 font-size: 16px;  
             }
-            
+
             .adjSelect{
                 margin-left: 14px;
             }
-            
-            
+
+
             .form-control{
                 width:95% !important;
             }
-            
+
 
             @media screen and (min-width: 0px) and (max-width: 320px) {
                 .wrap-doc-content {
@@ -493,7 +506,7 @@
                                         <optgroup label="Non-Individual Current Account">
                                             <option value="Sole Proprietorship">Sole Proprietorship</option>
                                             <option value="Partnership Module">Partnership Module</option>
-                                            <option value="Public/Private LTD Company">Normal Current</option>
+                                            <option value="Public/Private LTD Company">Public/Private LTD Company</option>
                                             <option value="TASC">TASC</option>
                                         </optgroup>
                                     </select>
@@ -518,7 +531,7 @@
                                 </div>
 
                                 <div class="col-10">    
-                                    <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="applicant1" name="firstName" class="form-control "  placeholder="First Applicant" ng-model="applicant1" required="">
+                                    <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="applicant1" name="applicant1" class="form-control "  placeholder="First Applicant" ng-model="applicant1" required="">
                                 </div>
 
                             </div>
@@ -531,7 +544,7 @@
                                 </div>
 
                                 <div class="col ">
-                                    <input type="text" pattern="[A-Za-z]{0,20}" id="applicant2" name="midName" class="form-control"  placeholder="Second Applicant" ng-model="applicant2" required="">
+                                    <input type="text" pattern="[A-Za-z]{0,20}" id="applicant2" name="applicant2" class="form-control"  placeholder="Second Applicant" ng-model="applicant2">
                                 </div>
 
 
@@ -545,7 +558,7 @@
                                 </div>
 
                                 <div class="col ">
-                                    <input type="text" pattern="[A-Za-z]{0,20}" id="applicant3" name="lastName" class="form-control" placeholder="Third Applicant" ng-model="applicant3" required="">
+                                    <input type="text" pattern="[A-Za-z]{0,20}" id="applicant3" name="applicant3" class="form-control" placeholder="Third Applicant" ng-model="applicant3">
                                 </div>
 
                             </div>
@@ -566,168 +579,24 @@
                                     <div class="row justify-content-center">
                                         <div class="col-4" >
 
-                                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo1" name="adharNo" class="form-inputf" ng-model="adharNo1" placeholder="Aadhar-1" required="">
-                                            <img id="info-icon_A" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
-                                            <div ng-show="visibelForAadharDetails" id="popup_A" class="popup list-container">
-                                                <div style=" color: black; text-align: left;">
-                                                    <div style="position: sticky; top: 0;">
-                                                        <span class="close" id="close-btn_A">❌</span>
-                                                        <h2 class="form-heading" >KYC Verification Details</h2>
-                                                    </div>
+                                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo1" name="adharNo" class="form-inputf" ng-model="adharNo1" placeholder="Aadhar-1">
+                                            <img id="info-icon_A1" class="imgsync" ng-click="aadharcheck(adharNo1)" src="image/sync.png" alt=""/>
 
-                                                    <table class="table" style="border: solid #80C37D thin; border-radius: 5px;" >
-                                                        <thead>
-                                                            <tr class="cardviewth" >
-                                                                <th scope="col">Ack_No.</th>
-                                                                <th scope="col">Name</th>
-                                                                <th scope="col">Aadhar No.</th>
-                                                                <th scope="col">Acc Type</th>
-                                                                <th scope="col">Branch</th>
-                                                                <th scope="col">Status</th>
-                                                                <th scope="col">Uploaded By</th>
-                                                                <th scope="col">Approved By</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="cardviewtr" ng-repeat="record in list">
-                                                                <th scope="row">{{record.code.substring(5, 15)}}</td>
-                                                                <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                                                                <td>{{record.adharNo}}</td>
-                                                                <td>{{record.accountType}}</td>
-                                                                <td>{{record.branchName}}</td>
-                                                                <td>{{record.status}}</td>
-                                                                <td>{{record.uploadedBy}}</td>
-                                                                <td>{{record.approvedBy}}</td>
-                                                            </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
                                         </div>
-
-
-
 
                                         <!--2nd addhar-->
                                         <div class="col-4 " ng-show="showAadhar2">
                                             <!--                                    <label for="adharNo" class="form-label">Aadhar Number:</label>-->
-                                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo2" name="2_adharNo" class="form-inputf" ng-model="adharNo2" placeholder="Aadhar-2" required="">
-                                            <img id="info-icon_A" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
-                                            <div ng-show="visibelForAadharDetails" id="popup_A" class="popup list-container">
-                                                <div style=" color: black; text-align: left;">
-                                                    <div style="position: sticky; top: 0;">
-                                                        <span class="close" id="close-btn_A">❌</span>
-                                                        <h2 class="form-heading" >KYC Verification Details</h2>
-                                                    </div>
-
-                                                    <table class="table" style="border: solid #80C37D thin; border-radius: 5px;" >
-                                                        <thead>
-                                                            <tr class="cardviewth" >
-                                                                <th scope="col">Ack_No.</th>
-                                                                <th scope="col">Name</th>
-                                                                <th scope="col">Aadhar No.</th>
-                                                                <th scope="col">Acc Type</th>
-                                                                <th scope="col">Branch</th>
-                                                                <th scope="col">Status</th>
-                                                                <th scope="col">Uploaded By</th>
-                                                                <th scope="col">Approved By</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="cardviewtr" ng-repeat="record in list">
-                                                                <th scope="row">{{record.code.substring(5, 15)}}</td>
-                                                                <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                                                                <td>{{record.adharNo}}</td>
-                                                                <td>{{record.accountType}}</td>
-                                                                <td>{{record.branchName}}</td>
-                                                                <td>{{record.status}}</td>
-                                                                <td>{{record.uploadedBy}}</td>
-                                                                <td>{{record.approvedBy}}</td>
-                                                            </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo2" name="adharNo2" class="form-inputf" ng-model="adharNo2" placeholder="Aadhar-2">
+                                            <img id="info-icon_A2" class="imgsync" ng-click="aadharcheck(adharNo2)" src="image/sync.png" alt=""/>
                                         </div>
-
-
 
                                         <!--/ 3rd aadhar -->
                                         <div class="col-4 " ng-show="showAadhar3">
                                             <!--                                    <label for="adharNo" class="form-label">Aadhar Number:</label>-->
-                                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo3" name="3_adharNo" class="form-inputf" ng-model="adharNo3" placeholder="Aadhar-3" required="">
-                                            <img id="info-icon_A" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
-                                            <div ng-show="visibelForAadharDetails" id="popup_A" class="popup list-container">
-                                                <div style=" color: black; text-align: left;">
-                                                    <div style="position: sticky; top: 0;">
-                                                        <span class="close" id="close-btn_A">❌</span>
-                                                        <h2 class="form-heading" >KYC Verification Details</h2>
-                                                    </div>
-
-                                                    <table class="table" style="border: solid #80C37D thin; border-radius: 5px;" >
-                                                        <thead>
-                                                            <tr class="cardviewth" >
-                                                                <th scope="col">Ack_No.</th>
-                                                                <th scope="col">Name</th>
-                                                                <th scope="col">Aadhar No.</th>
-                                                                <th scope="col">Acc Type</th>
-                                                                <th scope="col">Branch</th>
-                                                                <th scope="col">Status</th>
-                                                                <th scope="col">Uploaded By</th>
-                                                                <th scope="col">Approved By</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="cardviewtr" ng-repeat="record in list">
-                                                                <th scope="row">{{record.code.substring(5, 15)}}</td>
-                                                                <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                                                                <td>{{record.adharNo}}</td>
-                                                                <td>{{record.accountType}}</td>
-                                                                <td>{{record.branchName}}</td>
-                                                                <td>{{record.status}}</td>
-                                                                <td>{{record.uploadedBy}}</td>
-                                                                <td>{{record.approvedBy}}</td>
-                                                            </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo3" name="adharNo3" class="form-inputf" ng-model="adharNo3" placeholder="Aadhar-3">
+                                            <img id="info-icon_A3" class="imgsync" ng-click="aadharcheck(adharNo3)" src="image/sync.png" alt=""/>
                                         </div>
-
-                                        <!--button for add applicant-->
-
-
-
-
-                                        <script>
-                                            document.addEventListener('DOMContentLoaded', function () {
-                                                // Get the elements
-                                                //                                    var checkAdharValue = document.getElementById('adharNo').value;
-                                                //                                    console.log(document.getElementById('adharNo').value.length);
-                                                //                                    console.log(document.getElementById('adharNo').value.length === "12");
-                                                //                                    if(document.getElementById('adharNo').value.length === 12){
-                                                const infoIcon = document.getElementById('info-icon_A');
-                                                const popup = document.getElementById('popup_A');
-                                                const closeBtn = document.getElementById('close-btn_A');
-                                                // Show the popup when info icon is clicked
-                                                infoIcon.addEventListener('click', function (event) {
-                                                    // Prevent form submission when clicking the info icon
-                                                    event.preventDefault();
-                                                    event.stopPropagation();
-                                                    popup.style.display = 'block';
-                                                });
-                                                // Close the popup when the close button is clicked
-                                                closeBtn.addEventListener('click', function () {
-                                                    popup.style.display = 'none';
-                                                });
-                                                // Close the popup if the user clicks outside the popup
-                                                window.addEventListener('click', function (event) {
-                                                    if (event.target === popup) {
-                                                        popup.style.display = 'none';
-                                                    }
-                                                });
-                                                //                                    }else{
-                                                //                                        
-                                                //                                    }
-                                            });
-                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -741,42 +610,8 @@
 
                                 <div class="col-6" ng-show="showAadharforInd" >
                                     <label for="mobileNo" class="form-label">Aadhar Number :</label>
-                                    <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo1" name="adharNo" class="form-input" ng-model="adharNo1"  placeholder="Aadhar-1" required="">
-                                    <img id="info-icon_A" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
-                                    <div ng-show="visibelForAadharDetails" id="popup_A" class="popup list-container">
-                                        <div style=" color: black; text-align: left;">
-                                            <div style="position: sticky; top: 0;">
-                                                <span class="close" id="close-btn_A">❌</span>
-                                                <h2 class="form-heading" >KYC Verification Details</h2>
-                                            </div>
-
-                                            <table class="table" style="border: solid #80C37D thin; border-radius: 5px;" >
-                                                <thead>
-                                                    <tr class="cardviewth" >
-                                                        <th scope="col">Ack_No.</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Aadhar No.</th>
-                                                        <th scope="col">Acc Type</th>
-                                                        <th scope="col">Branch</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Uploaded By</th>
-                                                        <th scope="col">Approved By</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="cardviewtr" ng-repeat="record in list">
-                                                        <th scope="row">{{record.code.substring(5, 15)}}</td>
-                                                        <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                                                        <td>{{record.adharNo}}</td>
-                                                        <td>{{record.accountType}}</td>
-                                                        <td>{{record.branchName}}</td>
-                                                        <td>{{record.status}}</td>
-                                                        <td>{{record.uploadedBy}}</td>
-                                                        <td>{{record.approvedBy}}</td>
-                                                    </tr>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo" name="adharNo" class="form-input" ng-model="adharNo"  placeholder="Aadhar-1">
+                                    <img id="info-icon_A" class="imgsync" ng-click="aadharcheck(adharNo)" src="image/sync.png" alt=""/>
                                 </div>
 
 
@@ -926,31 +761,31 @@
                                             </div>
                                         </div>
                                         <script>
-                                            // ... (existing code)
+                                                     // ... (existing code)
 
-                                            document.addEventListener('DOMContentLoaded', function () {
-                                                // Get the elements
-                                                const infoIcon = document.getElementById('info-icon');
-                                                const popup = document.getElementById('popup');
-                                                const closeBtn = document.getElementById('close-btn');
-                                                // Show the popup when info icon is clicked
-                                                infoIcon.addEventListener('click', function (event) {
-                                                    // Prevent form submission when clicking the info icon
-                                                    event.preventDefault();
-                                                    event.stopPropagation();
-                                                    popup.style.display = 'block';
-                                                });
-                                                // Close the popup when the close button is clicked
-                                                closeBtn.addEventListener('click', function () {
-                                                    popup.style.display = 'none';
-                                                });
-                                                // Close the popup if the user clicks outside the popup
-                                                window.addEventListener('click', function (event) {
-                                                    if (event.target === popup) {
-                                                        popup.style.display = 'none';
-                                                    }
-                                                });
-                                            });
+                                                     document.addEventListener('DOMContentLoaded', function () {
+                                                         // Get the elements
+                                                         const infoIcon = document.getElementById('info-icon');
+                                                         const popup = document.getElementById('popup');
+                                                         const closeBtn = document.getElementById('close-btn');
+                                                         // Show the popup when info icon is clicked
+                                                         infoIcon.addEventListener('click', function (event) {
+                                                             // Prevent form submission when clicking the info icon
+                                                             event.preventDefault();
+                                                             event.stopPropagation();
+                                                             popup.style.display = 'block';
+                                                         });
+                                                         // Close the popup when the close button is clicked
+                                                         closeBtn.addEventListener('click', function () {
+                                                             popup.style.display = 'none';
+                                                         });
+                                                         // Close the popup if the user clicks outside the popup
+                                                         window.addEventListener('click', function (event) {
+                                                             if (event.target === popup) {
+                                                                 popup.style.display = 'none';
+                                                             }
+                                                         });
+                                                     });
                                         </script>
                                         <input class="choose-input" type="file" id="otherDoc" name="otherDoc" accept=".pdf" onchange="checkVal('otherDoc')" required="" multiple="true"> 
                                         <!-- </div> -->
@@ -977,6 +812,42 @@
                                 </div> 
                             </div>
                         </form>
+
+                        <div ng-show="forAadharDetails" class="popupAadhar list-container">
+                            <div style=" color: black; text-align: left;">
+                                <div style="position: sticky; top: 0;">
+                                    <span class="close" ng-click="closeAadharDetails()">❌</span>
+                                    <h2 class="form-heading" >KYC Verification Details</h2>
+                                </div>
+
+                                <table class="table" style="border: solid #80C37D thin; border-radius: 5px;" >
+                                    <thead>
+                                        <tr class="cardviewth" >
+                                            <th scope="col">Ack_No.</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Aadhar No.</th>
+                                            <th scope="col">Acc Type</th>
+                                            <th scope="col">Branch</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Uploaded By</th>
+                                            <th scope="col">Approved By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cardviewtr" ng-repeat="record in list">
+                                            <td scope="row">{{record.code.substring(5, 15)}}</td>
+                                            <td>{{record.applicant}}</td>
+                                            <td>{{record.adharNo}}</td>
+                                            <td>{{record.accountType}}</td>
+                                            <td>{{record.branchName}}</td>
+                                            <td>{{record.status}}</td>
+                                            <td>{{record.uploadedBy}}</td>
+                                            <td>{{record.approvedBy}}</td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
