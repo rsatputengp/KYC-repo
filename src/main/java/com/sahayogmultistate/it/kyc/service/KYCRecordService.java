@@ -68,8 +68,17 @@ public class KYCRecordService {
                 || "Normal Saving".equals(accountType)
                 || "Current Wealth".equals(accountType)
                 || "Current Gold".equals(accountType)
-                || "Normal Current".equals(accountType)) {
-            String aadharNo = ""+adharNo.indexOf(',');
+                || "Normal Current".equals(accountType)
+                || "Joint Silver Saving".equals(accountType)
+                || "Joint Normal Saving".equals(accountType)
+                || "Joint Current Wealth".equals(accountType)
+                || "Joint Current Gold".equals(accountType)
+                || "Joint Normal Current".equals(accountType)
+                || "Sole Proprietorship".equals(accountType)
+                || "Partnership Module".equals(accountType)
+                || "Public/Private LTD Company".equals(accountType)
+                || "TASC".equals(accountType)) {
+            String aadharNo = "" + adharNo.indexOf(',');
             if (!aadharNo.equals("-1")) {
                 String[] aadharNum = adharNo.split(",");
                 byAdhar = getByAdharExist(aadharNum[0], accountType);
@@ -801,11 +810,19 @@ public class KYCRecordService {
 
     @Transactional
     public KYCRecordNew getByAdhar(String OldAdharNo, String OldAccountType) {
-        List<KYCRecord> all = repository.findByAdharNoAndaccountType(OldAdharNo, OldAccountType);
+        List<KYCRecord> all = findByAdharNoAndaccountType(OldAdharNo, OldAccountType);
         for (KYCRecord kYCRecord : all) {
             String adharno = kYCRecord.getAdharNo();
             String accounttype = kYCRecord.getAccountType();
-            if (adharno == OldAdharNo && accounttype.equals(OldAccountType)) {
+            String aadharNo = "" + adharno.indexOf(',');
+            String aadharNu;
+            if (!aadharNo.equals("-1")) {
+                String[] aadharNum = adharno.split(",");
+                aadharNu = aadharNum[0];
+            } else {
+                aadharNu = adharno;
+            }
+            if (aadharNu == OldAdharNo && accounttype.equals(OldAccountType)) {
                 String branchName = kYCRecord.getBranchName();
                 String accountType = kYCRecord.getAccountType();
                 String code = kYCRecord.getCode();
@@ -886,11 +903,19 @@ public class KYCRecordService {
 
     @Transactional
     public KYCRecordNew getByAdharExist(String OldAdharNo, String OldAccountType) {
-        List<KYCRecord> all = repository.findByAdharNoAndaccountType(OldAdharNo, OldAccountType);
+        List<KYCRecord> all = findByAdharNoAndaccountType(OldAdharNo, OldAccountType);
         for (KYCRecord kYCRecord : all) {
             String adharno = kYCRecord.getAdharNo();
             String accounttype = kYCRecord.getAccountType();
-            if (adharno == OldAdharNo && accounttype.equals(OldAccountType)) {
+            String aadharNo = "" + adharno.indexOf(',');
+            String aadharNu;
+            if (!aadharNo.equals("-1")) {
+                String[] aadharNum = adharno.split(",");
+                aadharNu = aadharNum[0];
+            } else {
+                aadharNu = adharno;
+            }
+            if (aadharNu.equals(OldAdharNo) && accounttype.equals(OldAccountType)) {
                 String branchName = kYCRecord.getBranchName();
                 String accountType = kYCRecord.getAccountType();
                 String code = kYCRecord.getCode();
@@ -1136,6 +1161,33 @@ public class KYCRecordService {
             directory.delete();
         } else {
 //            System.out.println("Directory does not exist.");
+        }
+    }
+
+    private List<KYCRecord> findByAdharNoAndaccountType(String OldAdharNo, String OldAccountType) {
+        ArrayList<KYCRecord> recordList = new ArrayList<>();
+        List<KYCRecord> findAll = getKYCRescordsall();
+        if (!findAll.isEmpty()) {
+
+            for (KYCRecord kYCRecord : findAll) {
+                String accountType = kYCRecord.getAccountType();
+                String adharNo = kYCRecord.getAdharNo();
+
+                String aadharNo = "" + adharNo.indexOf(',');
+                String aadharNu;
+                if (!aadharNo.equals("-1")) {
+                    String[] aadharNum = adharNo.split(",");
+                    aadharNu = aadharNum[0];
+                } else {
+                    aadharNu = adharNo;
+                }
+                if (aadharNu.equals(OldAdharNo) && accountType.equals(OldAccountType)) {
+                    recordList.add(kYCRecord);
+                }
+            }
+            return recordList;
+        } else {
+            return recordList;
         }
     }
 
