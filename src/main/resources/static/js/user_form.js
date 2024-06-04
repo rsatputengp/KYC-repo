@@ -33,18 +33,16 @@
                  });
 
          $scope.validateForm = function () {
-             var accountTypeval = document.getElementById("accountType").value;
-             if (accountTypeval === "Silver Saving" || accountTypeval === "Normal Saving" ||
-                     accountTypeval === "Current Wealth" || accountTypeval === "Current Gold" ||
-                     accountTypeval === "Normal Current") {
+//             var accountTypeElement = document.getElementById("accountType").value;
+             if ($scope.accountType) {
                  return true;
              } else {
                  alert("Please! select the Account Type.");
                  return false;
              }
          };
-         
-         $scope.closeAadharDetails = function (){
+
+         $scope.closeAadharDetails = function () {
              $scope.forAadharDetails = false;
          };
 
@@ -153,8 +151,6 @@
                      .then(function (response) {
                          debugger;
                          $scope.list = response.data;
-//                        alert($scope.list.length);
-//                        alert(response.data);
                          if ($scope.list.length === 0) {
                              $scope.forAadharDetails = false;
                          } else {
@@ -163,13 +159,6 @@
                          }
 
                          if ($scope.validateForm()) {
-//                             var panf = document.getElementById("pan").files[0];
-//                             $scope.panfile = panf;
-//                             var adharf = document.getElementById("adhar").files[0];
-//                             $scope.adharfile = adharf;
-//                             var applicationFormf = document.getElementById("applicationForm").files[0];
-//                             $scope.applicationFormfile = applicationFormf;
-
 
                              var form = new FormData();
                              var loopForPan = document.getElementById("pan").files.length;
@@ -192,63 +181,35 @@
                                  form.append("otherDoc", document.getElementById("otherDoc").files[i], document.getElementById("otherDoc").localName);
                              }
 
-//                             switch (loopsize) {
-//                                 case 5:
-////            alert(loopsize === "5");
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[0], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[1], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[2], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[3], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[4], document.getElementById("otherDoc").localName);
-//                                     return;
-//                                 case 4:
-////            alert(loopsize === "4");
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[0], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[1], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[2], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[3], document.getElementById("otherDoc").localName);
-//                                     return;
-//                                 case 3:
-////            alert(loopsize === "3");
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[0], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[1], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[2], document.getElementById("otherDoc").localName);
-//                                     return;
-//                                 case 2:
-////            alert(loopsize === "2");
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[0], document.getElementById("otherDoc").localName);
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[1], document.getElementById("otherDoc").localName);
-//                                     return;
-//                                 case 1:
-////            alert(loopsize === "1");
-//                                     form.append("otherDoc", document.getElementById("otherDoc").files[0], document.getElementById("otherDoc").localName);
-//                                     return;
-//                             }
-
-
 
                              if ($scope.showApp2 === true && $scope.showApp3 === true) {
                                  if (($scope.applicant1) && ($scope.applicant2) && ($scope.applicant3)) {
-                                     form.append("applicant", $scope.applicant1 + "," + $scope.applicant2 + "," + $scope.applicant3);
+                                     form.append("applicant", $scope.applicant1);
+                                     form.append("applicant", $scope.applicant2);
+                                     form.append("applicant", $scope.applicant3);
                                  } else {
                                      alert("Please enter all applicant name.");
                                      return;
                                  }
                                  if (($scope.adharNo1) && ($scope.adharNo2) && ($scope.adharNo3)) {
-                                     form.append("adharNo", $scope.adharNo1 + "," + $scope.adharNo2 + "," + $scope.adharNo3);
+                                     form.append("adharNo", $scope.adharNo1);
+                                     form.append("adharNo", $scope.adharNo2);
+                                     form.append("adharNo", $scope.adharNo3);
                                  } else {
                                      alert("Please enter all Aadhar No.");
                                      return;
                                  }
                              } else if ($scope.showApp2 === true) {
                                  if (($scope.applicant1) && ($scope.applicant2)) {
-                                     form.append("applicant", $scope.applicant1 + "," + $scope.applicant2);
+                                     form.append("applicant", $scope.applicant1);
+                                     form.append("applicant", $scope.applicant2);
                                  } else {
                                      alert("Please enter all applicant name.");
                                      return;
                                  }
                                  if (($scope.adharNo1) && ($scope.adharNo2)) {
-                                     form.append("adharNo", $scope.adharNo1 + "," + $scope.adharNo2);
+                                     form.append("adharNo", $scope.adharNo1);
+                                     form.append("adharNo", $scope.adharNo2);
                                  } else {
                                      alert("Please enter all Aadhar No.");
                                      return;
@@ -296,9 +257,11 @@
                                  "contentType": false,
                                  "data": form
                              };
-                             $.ajax(settings).done(function (response) {
-                                 $scope.responseData = response.data;
-                                 var Ack = $scope.responseData.code;
+                             $.ajax(settings).done(function (response) { debugger;
+                                 var responseData = JSON.parse(response);
+                                 
+//                                $scope.forId = response.split(",");
+                                var Ack = responseData.code;
                                  if ("" === response) {
                                      alert("Already have an Account Type for this Aadhar number !");
                                  } else {
