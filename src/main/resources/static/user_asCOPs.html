@@ -533,41 +533,41 @@
                             </div>
                         </div>
                         <script>
-                             // Get the elements
-                             const infoIcon = document.getElementById('info-icon');
-                             const popup = document.getElementById('popup');
-                             const closeBtn = document.getElementById('close-btn');
-                             // Show the popup when info icon is clicked
-                             infoIcon.addEventListener('click', () => {
-                             popup.style.display = 'block';
-                             });
-                             // Close the popup when the close button is clicked
-                             closeBtn.addEventListener('click', () => {
-                             popup.style.display = 'none';
-                             });
-                             // Close the popup if user clicks outside the popup
-                             window.addEventListener('click', (e) => {
-                             if (e.target === popup) {
-                             popup.style.display = 'none';
-                             }
-                             });
+                            // Get the elements
+                            const infoIcon = document.getElementById('info-icon');
+                            const popup = document.getElementById('popup');
+                            const closeBtn = document.getElementById('close-btn');
+                            // Show the popup when info icon is clicked
+                            infoIcon.addEventListener('click', () => {
+                            popup.style.display = 'block';
+                            });
+                            // Close the popup when the close button is clicked
+                            closeBtn.addEventListener('click', () => {
+                            popup.style.display = 'none';
+                            });
+                            // Close the popup if user clicks outside the popup
+                            window.addEventListener('click', (e) => {
+                            if (e.target === popup) {
+                            popup.style.display = 'none';
+                            }
+                            });
                         </script>
                     </div>
                 </header>
                 <script>
-                     // Function to display and continuously update the timestamp
-                     function updateTimestamp() {
-                     var now = new Date();
-                     var date = now.toLocaleDateString();
-                     var time = now.toLocaleTimeString();
-                     // Display date and time on separate lines
-                     var timestamp = date + " , " + time;
-                     document.getElementById('timestamp').innerHTML = timestamp;
-                     }
+                    // Function to display and continuously update the timestamp
+                    function updateTimestamp() {
+                    var now = new Date();
+                    var date = now.toLocaleDateString();
+                    var time = now.toLocaleTimeString();
+                    // Display date and time on separate lines
+                    var timestamp = date + " , " + time;
+                    document.getElementById('timestamp').innerHTML = timestamp;
+                    }
 
-                     // Call the function initially and set up an interval to update the timestamp every second
-                     updateTimestamp();
-                     setInterval(updateTimestamp, 1000); // Update every second
+                    // Call the function initially and set up an interval to update the timestamp every second
+                    updateTimestamp();
+                    setInterval(updateTimestamp, 1000); // Update every second
                 </script>
             </div>
             <br>
@@ -614,8 +614,8 @@
                     </thead>
                     <tr class="cardviewtr" ng-repeat="record in list| continuousSubstringFilter:search:['code','firstName','midName', 'lastName','adharNo','accountType','branchName','date','status','remark','uploadedBy','approvedBy']">
                         <td class="idpoint" ng-click="editRecord(record)">{{record.code.substring(5, 15)}}</td>
-                        <td >{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                        <td >{{record.adharNo}}</td>
+                        <td >{{record.applicant.split(',')[0]}}</td>
+                        <td >{{record.adharNo.split(',')[0]}}</td>
                         <td >{{record.accountType}}</td>
                         <td >{{record.branchName}}</td>
                         <td >
@@ -649,234 +649,347 @@
                 </table>
             </div>
         </div>    
-        <div ng-show="formContainerVisible" class="containernew">
-            <h1 class="form-heading">KYC Verification</h1>
-            <form id="myForm">
-                <table class="tablecontainer">
-                    <tr>
-                        <td>
-                            <label for="formProgress" class="form-label">Status :</label>
-                            <input type="text" class="form-input" required value="status" ng-model="status" readonly="">
-                        </td>
-                        <td>
-                            <label for="id" class="form-label">ID:</label>
-                            <input type="text" class="form-input" required value="id" ng-model="id" readonly="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" ng-show="notVisible_OnApprovalBOM">
-                            <label for="formProgress" class="form-label">Remark by BOM :</label><br>
-                            <textarea rows="3" cols="50" class="form-inputNew" required value="oldRemark" ng-model="oldRemark" readonly=""></textarea>
-                        </td>
-                        <td colspan="2" ng-show="notVisible_OnApprovalCOPs">
-                            <label for="formProgress" class="form-label">Remark by COPs :</label><br>
-                            <textarea rows="3" cols="50" class="form-inputNew" required value="oldRemark" ng-model="oldRemark" readonly=""></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
-                            <label style="text-align: left; font-size: 18px;" for="applicantName" class="form-label"> APPLICANT </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label for="id" class="form-label">Name :</label>
-                            <input type="text" id="firstName" name="firstName" class="ownfield" value="First Name" placeholder="First Name" ng-model="firstName" readonly="" required="">
-                            <input type="text" id="midName" name="midName" class="ownfield" value="Middle Name" placeholder="Middle Name" ng-model="midName" readonly="" required="">
-                            <input type="text" id="lastName" name="lastName" class="ownfield" value="Last Name" placeholder="Last Name" ng-model="lastName" readonly="" required="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="branchName" class="form-label">Branch Name:</label>
-                            <select id="branchName" name="branchName" class="form-input" ng-model="branchName"   required="">
-                                <option value="{{reco.branchName}}">{{reco.branchName}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <label for="adharNo" class="form-label">Aadhar Number :</label>
-                            <input type="text" id="adharNo" name="adharNo" class="form-input" ng-model="adharNo" readonly="" required="">
-                            <img id="info-adhar" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
-                            <div id="popup-adhar" class="popup list-container">
-                                <div style=" color: black; text-align: left;">
-                                    <div style="position: sticky; top: 0;">
-                                        <span class="close" id="close-btn-adhar">❌</span>
-                                        <h2 class="form-heading" >KYC Verification Details</h2>
+
+
+        <div ng-show="formContainerVisible" class="containernew col-md-7 mt-3">
+            <div class="row">
+                <div class ="col-md-12 ">
+                    <div class="p-1">
+                        <h1 class="form-heading">KYC Verification</h1>
+                    </div>
+                    <div class="my-card p-3">  
+                        <form id="myForm">
+                            <div class="tablecontainer">
+                                <div class="row">
+                                    <div  class="col">
+                                        <label for="formProgress" class="form-label">Status :</label>
+                                        <input type="text" class="form-input" required value="status" ng-model="status" readonly="">
+                                    </div>
+                                    <div class="col" >
+                                        <label for="id" class="form-label">ID:</label>
+                                        <input type="text" class="form-input" required value="id" ng-model="id" readonly="">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col" ng-show="notVisible_OnApprovalBOM">
+                                        <label for="formProgress" class="form-label">Remark by BOM :</label><br>
+                                        <textarea rows="3" cols="50" class="form-inputNew" required value="oldRemark" ng-model="oldRemark" readonly=""></textarea>
+                                    </div>
+                                    <div class="col" ng-show="notVisible_OnApprovalCOPs">
+                                        <label for="formProgress" class="form-label">Remark by COPs :</label><br>
+                                        <textarea rows="3" cols="50" class="form-inputNew" required value="oldRemark" ng-model="oldRemark" readonly=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr style="height: 1px; border: thin; background-color: #80C37D;  margin-bottom: 10px; width: 100%;">
+                                        <label style="text-align: left; font-size: 18px;" for="applicantName" class="form-label"> APPLICANT </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-row mb-3 mr-md-auto  justify-content-center ">
+                                    <!--<div class="col-md-1 pt-1  mr-md-auto">-->
+                                    <div class="col-sm-2 pt-1 ">
+                                        <label for="id" class="form-label ">1st Applicant :</label>
                                     </div>
 
-                                    <table style="border: solid #80C37D thin; border-radius: 5px;" >
-                                        <tr class="cardviewth" style="background-color: #80C37D;" >
-                                            <th>Ack_No.</th>
-                                            <th>Name</th>
-                                            <th>Aadhar No.</th>
-                                            <th>Acc Type</th>
-                                            <th>Branch</th>
-                                            <th>Status</th>
-                                            <th>Uploaded By</th>
-                                            <th>Approved By</th>
-                                        </tr>
-                                        <tr class="cardviewtr" ng-repeat="record in list_Adhar">
-                                            <td>{{record.code.substring(5, 15)}}</td>
-                                            <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                                            <td>{{record.adharNo}}</td>
-                                            <td>{{record.accountType}}</td>
-                                            <td>{{record.branchName}}</td>
-                                            <td>{{record.status}}</td>
-                                            <td>{{record.uploadedBy}}</td>
-                                            <td>{{record.approvedBy}}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <script>
-                                 // Get the elements
-                                 const infoAdhar = document.getElementById('info-adhar');
-                                 const popupAdhar = document.getElementById('popup-adhar');
-                                 const closeAdhar = document.getElementById('close-btn-adhar');
-                                 // Show the popup when info icon is clicked
-                                 infoAdhar.addEventListener('click', () => {
-                                 popupAdhar.style.display = 'block';
-                                 });
-                                 // Close the popup when the close button is clicked
-                                 closeAdhar.addEventListener('click', () => {
-                                 popupAdhar.style.display = 'none';
-                                 });
-                                 // Close the popup if user clicks outside the popup
-                                 window.addEventListener('click', (e) => {
-                                 if (e.target === popupAdhar) {
-                                 popupAdhar.style.display = 'none';
-                                 }
-                                 });
-                            </script>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 50%">
-                            <label for="accountType" class="form-label">Account Type:</label>
-                            <select id="accountType" name="accountType" class="form-input" ng-model="accountType" required="">
-                                <option value="{{reco.accountType}}">{{reco.accountType}}</option>
-                                <!--                                <optgroup label="Saving Account">
-                                                                    <option value="Silver Saving">Silver Saving</option>
-                                                                    <option value="Normal Saving">Normal Saving</option>
-                                                                </optgroup>
-                                                                <optgroup label="Current Account">
-                                                                    <option value="Current Wealth">Current Wealth</option>
-                                                                    <option value="Current Gold">Current Gold</option>
-                                                                    <option value="Normal Current">Normal Current</option>
-                                                                </optgroup>-->
-                            </select>
-                        </td>
-                        <td>
-                            <label for="adharNo" class="form-label">Mobile Number :</label>
-                            <input type="text" id="mobileNo" name="mobileNo" class="form-input" ng-model="mobileNo" readonly="" required="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="align-items: center; ">
-                            <div style="width: 100%; display: inline-block">
-                                <label style="text-align: center; font-size: 18px;" for="applicantName" class="form-label"> DOCUMENTS </label>
-                            </div>
-                            <div class="vertical_line docdiv">
-                                <div class="docdivIn_F">
-                                    <label class="form-label">PAN Card / Form-16</label><br>
-                                </div>
-                                <div class="docdivIn_S">
-                                    <img class="rcornersimgE" id="imgPan" src="image/Pan_img.webp" alt="Image" ng-click="viewPan()"/><br>
-                                    <div style="padding-top: 5px;"></div>
-                                    <button type="button" class="form-buttonGr" ng-click="onPanStatusA('onPanStatusAC')" id="onPanStatusAC">Accept</button>
-                                    <button type="button" class="form-buttonRe" ng-click="onPanStatusR('onPanStatusRE')" id="onPanStatusRE">Reject</button>
-                                </div>
-                                <!--<input type="file" id="inputPan" name="panCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
-                            </div>
-                            <div class="vertical_line docdiv">
-                                <div class="docdivIn_F">
-                                    <label class="form-label">Aadhar Card </label><br>
-                                </div>
-                                <div class="docdivIn_S">
-                                    <img class="rcornersimgE" id="imgAdhar" src="image/Aadhar_img.png" alt="Image" ng-click="viewAadhar()"/><br>
-                                    <div style="padding-top: 5px;"></div>
-                                    <button type="button" class="form-buttonGr" ng-click="onAdharStatusA('onAdharStatusAC')" id="onAdharStatusAC">Accept</button>
-                                    <button type="button" class="form-buttonRe" ng-click="onAdharStatusR('onAdharStatusRE')" id="onAdharStatusRE">Reject</button>
-                                </div>
-                                <!--<input type="file" id="inputAdhar" name="adharCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
-                            </div>
-                            <div class="vertical_line docdiv">
-                                <div class="docdivIn_F">
-                                    <label class="form-label">Other Docs</label><br>
-                                </div>
-                                <div class="docdivIn_S">
-                                    <img class="rcornersimgE" id="imgotherDoc"  ng-click="viewPdfOther()" src="image/pdfimg.png" alt=""/><br>
-                                    <div style="padding-top: 5px;"></div>
-                                    <button type="button" class="form-buttonGr" ng-click="onOtherDocsStatusA('onOtherDocsStatusAC')" id="onOtherDocsStatusAC">Accept</button>
-                                    <button type="button" class="form-buttonRe" ng-click="onOtherDocsStatusR('onOtherDocsStatusRE')" id="onOtherDocsStatusRE">Reject</button>
-                                </div>
-                                <!--<input type="file" id="inputotherDoc" name="otherDocCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
-                            </div>
-                            <div class="docdiv">
-                                <div class="docdivIn_F">
-                                    <label class="form-label">Client Form</label><br>
-                                </div>
-                                <div class="docdivIn_S">
-                                    <img class="rcornersimgE" id="imgapplicationForm"  ng-click="viewPdfApp()" src="image/pdfimg.png" alt=""/><br>
-                                    <div style="padding-top: 5px;"></div>
-                                    <button type="button" class="form-buttonGr" ng-click="onapplicationFormStatusA('onapplicationFormStatusAC')" id="onapplicationFormStatusAC">Accept</button>
-                                    <button type="button" class="form-buttonRe" ng-click="onapplicationFormStatusR('onapplicationFormStatusRE')" id="onapplicationFormStatusRE">Reject</button>
-                                </div>
-                                <!--<input type="file" id="inputotherDoc" name="otherDocCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <div class="form-group">
-                    <label for="formProgress" class="form-label">Remark</label>
-                    <!--<textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" pattern=".{1,240}" ng-model="remark" ng-change="checkLength()" required=""></textarea>-->
-                    <textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" ng-model="remark" required=""></textarea>
-                    <input type="text" id="approvedBy" name="approvedBy" class="form-input" value="approvedBy" ng-model="approvedBy" hidden="">
-                    <input type="text" id="uploadedBy" name="uploadedBy" class="form-input" value="uploadedBy" ng-model="uploadedBy" hidden="">
-                </div>
-                <input type="submit" class="form-button padbutton" ng-click="userEdit('Approved')" value="Approve" name="Approve" ng-show="notVisible_OnAccept">
-                <input type="submit" class="form-button padbutton" ng-click="userEdit('Pending at BOM')" value="Pending at BOM" ng-show="notVisible_OnAcceptP" name="Pending at BOM">
+                                    <div class="col-10">    
+                                        <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}" id="applicant1" name="applicant1" class="form-control "  placeholder="First Applicant" ng-model="applicant1" required="" readonly="">
+                                    </div>
 
-                <a  href="{{uRl}}user_asCOPs.html" >
-                    <button type="button" class="form-button padbutton" > Cancel </button>
-                </a>
-            </form>
-        </div>
-        <br>
+                                </div>
+
+
+                                <div class="form-row mb-3 mr-md-auto  justify-content-center " ng-show="showApp2" >
+                                    <!--<div class="col-md-1 pt-1  mr-md-auto">-->
+                                    <div class="col-sm-2 pt-1 ">
+                                        <label for="id" class="form-label ">2nd Applicant :</label>
+                                    </div>
+
+                                    <div class="col ">
+                                        <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}"  id="applicant2" name="applicant2" class="form-control"  placeholder="Second Applicant" ng-model="applicant2" readonly="">
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-row mb-3 mr-md-auto  justify-content-center "  ng-show="showApp3">
+                                    <!--<div class="col-md-1 pt-1  mr-md-auto">-->
+                                    <div class="col-sm-2 pt-1 ">
+                                        <label for="id" class="form-label ">3rd Applicant :</label>
+                                    </div>
+
+                                    <div class="col ">
+                                        <input type="text" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$ {0,25}"  id="applicant3" name="applicant3" class="form-control" placeholder="Third Applicant" ng-model="applicant3" readonly="">
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="branchName" class="form-label">Branch Name:</label>
+                                        <select id="branchName" name="branchName" class="form-input" ng-model="branchName"   required="">
+                                            <option value="{{reco.branchName}}">{{reco.branchName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col" ng-show="showAadhar1" >
+                                        <label for="adharNo" class="form-label">Aadhar Number :</label>
+                                        <input type="text" id="adharNo" name="adharNo" class="form-input" ng-model="adharNo" readonly="" required="">
+                                        <img id="info-adhar" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
+                                        <div id="popup-adhar" class="popup list-container">
+                                            <div style=" color: black; text-align: left;">
+                                                <div style="position: sticky; top: 0;">
+                                                    <span class="close" id="close-btn-adhar">❌</span>
+                                                    <h2 class="form-heading" >KYC Verification Details</h2>
+                                                </div>
+
+                                                <table style="border: solid #80C37D thin; border-radius: 5px;" >
+                                                    <tr class="cardviewth" style="background-color: #80C37D;" >
+                                                        <th>Ack_No.</th>
+                                                        <th>Name</th>
+                                                        <th>Aadhar No.</th>
+                                                        <th>Acc Type</th>
+                                                        <th>Branch</th>
+                                                        <th>Status</th>
+                                                        <th>Uploaded By</th>
+                                                        <th>Approved By</th>
+                                                    </tr>
+                                                    <tr class="cardviewtr" ng-repeat="record in list_Adhar">
+                                                        <td>{{record.code.substring(5, 15)}}</td>
+                                                        <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
+                                                        <td>{{record.adharNo}}</td>
+                                                        <td>{{record.accountType}}</td>
+                                                        <td>{{record.branchName}}</td>
+                                                        <td>{{record.status}}</td>
+                                                        <td>{{record.uploadedBy}}</td>
+                                                        <td>{{record.approvedBy}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            // Get the elements
+                                            const infoAdhar = document.getElementById('info-adhar');
+                                            const popupAdhar = document.getElementById('popup-adhar');
+                                            const closeAdhar = document.getElementById('close-btn-adhar');
+                                            // Show the popup when info icon is clicked
+                                            infoAdhar.addEventListener('click', () => {
+                                            popupAdhar.style.display = 'block';
+                                            });
+                                            // Close the popup when the close button is clicked
+                                            closeAdhar.addEventListener('click', () => {
+                                            popupAdhar.style.display = 'none';
+                                            });
+                                            // Close the popup if user clicks outside the popup
+                                            window.addEventListener('click', (e) => {
+                                            if (e.target === popupAdhar) {
+                                            popupAdhar.style.display = 'none';
+                                            }
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+
+
+                                <!--for displaying 2-->
+                                <div class="form-row mb-3 mt-3 "  ng-show="showAadhar2">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="adharNo" class="form-label" style="display:inline-block;">Aadhar Number :</label>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-4" >
+
+                                                <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo1" name="adharNo" class="form-input" ng-model="adharNo1" placeholder="Aadhar-1" readonly="">
+                                                <img id="info-icon_A1" class="imgsync" ng-click="aadharcheck(adharNo1)" src="image/sync.png" alt=""/>
+
+                                            </div>
+
+                                            <!--2nd addhar-->
+                                            <div class="col-4 " >
+                                                <!--                                    <label for="adharNo" class="form-label">Aadhar Number:</label>-->
+                                                <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo2" name="adharNo2" class="form-input" ng-model="adharNo2" placeholder="Aadhar-2" readonly="">
+                                                <img id="info-icon_A2" class="imgsync" ng-click="aadharcheck(adharNo2)" src="image/sync.png" alt=""/>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--for displaying 3-->
+                                <div class="form-row mb-3 mt-3 " ng-show="showAadhar3">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="adharNo" class="form-label" style="display:inline-block;">Aadhar Number :</label>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-4" >
+
+                                                <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo1" name="adharNo" class="form-input" ng-model="adharNo1" placeholder="Aadhar-1" readonly="">
+                                                <img id="info-icon_A1" class="imgsync" ng-click="aadharcheck(adharNo1)" src="image/sync.png" alt=""/>
+
+                                            </div>
+
+                                            <!--2nd addhar-->
+                                            <div class="col-4 " >
+                                                <!--                                    <label for="adharNo" class="form-label">Aadhar Number:</label>-->
+                                                <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo2" name="adharNo2" class="form-input" ng-model="adharNo2" placeholder="Aadhar-2" readonly="">
+                                                <img id="info-icon_A2" class="imgsync" ng-click="aadharcheck(adharNo2)" src="image/sync.png" alt=""/>
+                                            </div>
+
+                                            <!--/ 3rd aadhar -->
+                                            <div class="col-4 " >
+                                                <!--                                    <label for="adharNo" class="form-label">Aadhar Number:</label>-->
+                                                <input type="tel"  title="Aadhar Number must be 12 length."  pattern="[0-9]{12}" id="adharNo3" name="adharNo3" class="form-input" ng-model="adharNo3" placeholder="Aadhar-3" readonly="">
+                                                <img id="info-icon_A3" class="imgsync" ng-click="aadharcheck(adharNo3)" src="image/sync.png" alt=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <label for="accountType" class="form-label">Account Type:</label>
+                                        <select id="accountType" name="accountType" class="form-input" ng-model="accountType" required="">
+                                            <option value="{{reco.accountType}}">{{reco.accountType}}</option>
+                                            <!--                                <optgroup label="Saving Account">
+                                                                                <option value="Silver Saving">Silver Saving</option>
+                                                                                <option value="Normal Saving">Normal Saving</option>
+                                                                            </optgroup>
+                                                                            <optgroup label="Current Account">
+                                                                                <option value="Current Wealth">Current Wealth</option>
+                                                                                <option value="Current Gold">Current Gold</option>
+                                                                                <option value="Normal Current">Normal Current</option>
+                                                                            </optgroup>-->
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="adharNo" class="form-label">Mobile Number :</label>
+                                        <input type="text" id="mobileNo" name="mobileNo" class="form-input" ng-model="mobileNo" readonly="" required="">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div colspan="2" style="align-items: center; ">
+                                        <div style="width: 100%; display: inline-block">
+                                            <label style="text-align: center; font-size: 18px;" for="applicantName" class="form-label"> DOCUMENTS </label>
+                                        </div>
+                                        <div class="vertical_line docdiv">
+                                            <div class="docdivIn_F">
+                                                <label class="form-label">PAN Card / Form-16</label><br>
+                                            </div>
+                                            <div class="docdivIn_S">
+                                                <img class="rcornersimgE" id="imgPan" src="image/Pan_img.webp" alt="Image" ng-click="viewPan()"/><br>
+                                                <div style="padding-top: 5px;"></div>
+                                                <button type="button" class="form-buttonGr" ng-click="onPanStatusA('onPanStatusAC')" id="onPanStatusAC">Accept</button>
+                                                <button type="button" class="form-buttonRe" ng-click="onPanStatusR('onPanStatusRE')" id="onPanStatusRE">Reject</button>
+                                            </div>
+                                            <!--<input type="file" id="inputPan" name="panCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
+                                        </div>
+                                        <div class="vertical_line docdiv">
+                                            <div class="docdivIn_F">
+                                                <label class="form-label">Aadhar Card </label><br>
+                                            </div>
+                                            <div class="docdivIn_S">
+                                                <img class="rcornersimgE" id="imgAdhar" src="image/Aadhar_img.png" alt="Image" ng-click="viewAadhar()"/><br>
+                                                <div style="padding-top: 5px;"></div>
+                                                <button type="button" class="form-buttonGr" ng-click="onAdharStatusA('onAdharStatusAC')" id="onAdharStatusAC">Accept</button>
+                                                <button type="button" class="form-buttonRe" ng-click="onAdharStatusR('onAdharStatusRE')" id="onAdharStatusRE">Reject</button>
+                                            </div>
+                                            <!--<input type="file" id="inputAdhar" name="adharCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
+                                        </div>
+                                        <div class="vertical_line docdiv">
+                                            <div class="docdivIn_F">
+                                                <label class="form-label">Other Docs</label><br>
+                                            </div>
+                                            <div class="docdivIn_S">
+                                                <img class="rcornersimgE" id="imgotherDoc"  ng-click="viewPdfOther()" src="image/pdfimg.png" alt=""/><br>
+                                                <div style="padding-top: 5px;"></div>
+                                                <button type="button" class="form-buttonGr" ng-click="onOtherDocsStatusA('onOtherDocsStatusAC')" id="onOtherDocsStatusAC">Accept</button>
+                                                <button type="button" class="form-buttonRe" ng-click="onOtherDocsStatusR('onOtherDocsStatusRE')" id="onOtherDocsStatusRE">Reject</button>
+                                            </div>
+                                            <!--<input type="file" id="inputotherDoc" name="otherDocCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
+                                        </div>
+                                        <div class="docdiv">
+                                            <div class="docdivIn_F">
+                                                <label class="form-label">Client Form</label><br>
+                                            </div>
+                                            <div class="docdivIn_S">
+                                                <img class="rcornersimgE" id="imgapplicationForm"  ng-click="viewPdfApp()" src="image/pdfimg.png" alt=""/><br>
+                                                <div style="padding-top: 5px;"></div>
+                                                <button type="button" class="form-buttonGr" ng-click="onapplicationFormStatusA('onapplicationFormStatusAC')" id="onapplicationFormStatusAC">Accept</button>
+                                                <button type="button" class="form-buttonRe" ng-click="onapplicationFormStatusR('onapplicationFormStatusRE')" id="onapplicationFormStatusRE">Reject</button>
+                                            </div>
+                                            <!--<input type="file" id="inputotherDoc" name="otherDocCard" accept=".jpg, .jpeg, .png, .pdf" required>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formProgress" class="form-label">Remark</label>
+                                <!--<textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" pattern=".{1,240}" ng-model="remark" ng-change="checkLength()" required=""></textarea>-->
+                                <textarea rows="3" cols="50" id="remark" name="remark" class="form-inputNew" value="remark" ng-model="remark" required=""></textarea>
+                                <input type="text" id="approvedBy" name="approvedBy" class="form-input" value="approvedBy" ng-model="approvedBy" hidden="">
+                                <input type="text" id="uploadedBy" name="uploadedBy" class="form-input" value="uploadedBy" ng-model="uploadedBy" hidden="">
+                            </div>
+                            <input type="submit" class="form-button padbutton" ng-click="userEdit('Approved')" value="Approve" name="Approve" ng-show="notVisible_OnAccept">
+                            <input type="submit" class="form-button padbutton" ng-click="userEdit('Pending at BOM')" value="Pending at BOM" ng-show="notVisible_OnAcceptP" name="Pending at BOM">
+
+                            <a  href="{{uRl}}user_asCOPs.html" >
+                                <button type="button" class="form-button padbutton" > Cancel </button>
+                            </a>
+                        </form>
+                    </div>    
+                </div>
+            </div>
+        </div>    
+
         <div style="border-radius: 4px; margin-left: 16px; margin-right: 16px; background-color: #004516; color: white; font-size: 16px; text-align: center; opacity: 0.5; ">
             ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
         </div>
         <script>
-             document.getElementById('myForm').addEventListener('keydown', function (event) {
+            document.getElementById('myForm').addEventListener('keydown', function (event) {
 //            var key = event.which || event.keyCode;
 //            if (key === 13) {
 //                event.preventDefault();
 //            }
-             if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
-             event.preventDefault();
-             }
-             });
-             ///session tinme out code here
-             var idleTimeout = 900000; // 5 minutes in milliseconds
-             var idleTimer;
-             function resetTimer() {
-             clearTimeout(idleTimer);
-             idleTimer = setTimeout(logout, idleTimeout);
-             }
+            if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+            event.preventDefault();
+            }
+            });
+            ///session tinme out code here
+            var idleTimeout = 900000; // 5 minutes in milliseconds
+            var idleTimer;
+            function resetTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(logout, idleTimeout);
+            }
 
-             function logout() {
-             window.localStorage.removeItem("user_asCOPs");
-             location.reload();
-             console.log("User automatically logged out due to inactivity.");
-             }
+            function logout() {
+            window.localStorage.removeItem("user_asCOPs");
+            location.reload();
+            console.log("User automatically logged out due to inactivity.");
+            }
 
-             // Initial setup
-             resetTimer();
-             // Listen for user activity
-             window.addEventListener('mousemove', resetTimer);
-             window.addEventListener('keydown', resetTimer);
-             window.addEventListener('scroll', resetTimer);
+            // Initial setup
+            resetTimer();
+            // Listen for user activity
+            window.addEventListener('mousemove', resetTimer);
+            window.addEventListener('keydown', resetTimer);
+            window.addEventListener('scroll', resetTimer);
         </script>
     </body>
 </html>

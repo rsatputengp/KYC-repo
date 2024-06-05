@@ -88,12 +88,62 @@
                  $http.get($scope.uRl + "kyc/get/" + record.id)
                          .then(function (response) {
                              $scope.list1 = response.data;
+                     
+                             
+                               var applicantArray = $scope.list1.applicant;
+                             var applicantloop = applicantArray.split(",");
+
+                             var aadharArray = $scope.list1.adharNo;
+                             var aadharloop = aadharArray.split(",");
+                             var aadharloopsize = aadharloop.length;
+                             if (aadharloopsize === 3) {
+                                 $scope.showApp2 = true;
+                                 $scope.showApp3 = true;
+                                 $scope.showAadhar1 = false;
+                                 $scope.showAadhar2 = false;
+                                 $scope.showAadhar3 = true;
+
+                             } else if (aadharloopsize === 2) {
+                                 $scope.showApp2 = true;
+                                 $scope.showAadhar1 = false;
+                                 $scope.showAadhar2 = true;
+                                 $scope.showAadhar3 = false;
+
+                             } else if (aadharloopsize === 1) {
+                                 $scope.showAadhar1 = true;
+                                 $scope.showAadhar2 = false;
+                                 $scope.showAadhar3 = false;
+
+                             }
+                             
+                     
                              $scope.reco = $scope.list1;
                              $scope.id = $scope.list1.id;
-                             $scope.firstName = $scope.list1.firstName;
-                             $scope.midName = $scope.list1.midName;
-                             $scope.lastName = $scope.list1.lastName;
-                             $scope.adharNo = $scope.list1.adharNo;
+                             
+                              if ($scope.showApp2 === true && $scope.showApp3 === true) {
+                                 $scope.adharNo1 = aadharloop[0];
+                                 $scope.adharNo2 = aadharloop[1];
+                                 $scope.adharNo3 = aadharloop[2];
+
+                                 $scope.applicant1 = applicantloop[0];
+                                 $scope.applicant2 = applicantloop[1];
+                                 $scope.applicant3 = applicantloop[2];
+
+                             } else if ($scope.showApp2 === true) {
+                                 $scope.adharNo1 = aadharloop[0];
+                                 $scope.adharNo2 = aadharloop[1];
+
+                                 $scope.applicant1 = applicantloop[0];
+                                 $scope.applicant2 = applicantloop[1];
+
+                             } else {
+                                 $scope.adharNo = aadharloop[0];
+
+                                 $scope.applicant1 = applicantloop[0];
+                             }
+                             
+                             
+                    
                              $scope.mobileNo = $scope.list1.mobileNo;
                              $scope.accout_Type = $scope.list1.accountType;
                              $scope.accountType = $scope.list1.accountType;
