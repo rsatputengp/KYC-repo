@@ -347,6 +347,19 @@
                 z-index: 999;
             }
 
+            .popupAadhar {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px; 
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+            }
+
             .close {
                 position: absolute;
                 top: 10px;
@@ -533,41 +546,41 @@
                             </div>
                         </div>
                         <script>
-                            // Get the elements
-                            const infoIcon = document.getElementById('info-icon');
-                            const popup = document.getElementById('popup');
-                            const closeBtn = document.getElementById('close-btn');
-                            // Show the popup when info icon is clicked
-                            infoIcon.addEventListener('click', () => {
-                            popup.style.display = 'block';
-                            });
-                            // Close the popup when the close button is clicked
-                            closeBtn.addEventListener('click', () => {
-                            popup.style.display = 'none';
-                            });
-                            // Close the popup if user clicks outside the popup
-                            window.addEventListener('click', (e) => {
-                            if (e.target === popup) {
-                            popup.style.display = 'none';
-                            }
-                            });
+                             // Get the elements
+                             const infoIcon = document.getElementById('info-icon');
+                             const popup = document.getElementById('popup');
+                             const closeBtn = document.getElementById('close-btn');
+                             // Show the popup when info icon is clicked
+                             infoIcon.addEventListener('click', () => {
+                             popup.style.display = 'block';
+                             });
+                             // Close the popup when the close button is clicked
+                             closeBtn.addEventListener('click', () => {
+                             popup.style.display = 'none';
+                             });
+                             // Close the popup if user clicks outside the popup
+                             window.addEventListener('click', (e) => {
+                             if (e.target === popup) {
+                             popup.style.display = 'none';
+                             }
+                             });
                         </script>
                     </div>
                 </header>
                 <script>
-                    // Function to display and continuously update the timestamp
-                    function updateTimestamp() {
-                    var now = new Date();
-                    var date = now.toLocaleDateString();
-                    var time = now.toLocaleTimeString();
-                    // Display date and time on separate lines
-                    var timestamp = date + " , " + time;
-                    document.getElementById('timestamp').innerHTML = timestamp;
-                    }
+                     // Function to display and continuously update the timestamp
+                     function updateTimestamp() {
+                     var now = new Date();
+                     var date = now.toLocaleDateString();
+                     var time = now.toLocaleTimeString();
+                     // Display date and time on separate lines
+                     var timestamp = date + " , " + time;
+                     document.getElementById('timestamp').innerHTML = timestamp;
+                     }
 
-                    // Call the function initially and set up an interval to update the timestamp every second
-                    updateTimestamp();
-                    setInterval(updateTimestamp, 1000); // Update every second
+                     // Call the function initially and set up an interval to update the timestamp every second
+                     updateTimestamp();
+                     setInterval(updateTimestamp, 1000); // Update every second
                 </script>
             </div>
             <br>
@@ -738,58 +751,27 @@
                                     <div class="col" ng-show="showAadhar1" >
                                         <label for="adharNo" class="form-label">Aadhar Number :</label>
                                         <input type="text" id="adharNo" name="adharNo" class="form-input" ng-model="adharNo" readonly="" required="">
-                                        <img id="info-adhar" class="imgsync" ng-click="aadharcheck()" src="image/sync.png" alt=""/>
-                                        <div id="popup-adhar" class="popup list-container">
-                                            <div style=" color: black; text-align: left;">
-                                                <div style="position: sticky; top: 0;">
-                                                    <span class="close" id="close-btn-adhar">❌</span>
-                                                    <h2 class="form-heading" >KYC Verification Details</h2>
-                                                </div>
-
-                                                <table style="border: solid #80C37D thin; border-radius: 5px;" >
-                                                    <tr class="cardviewth" style="background-color: #80C37D;" >
-                                                        <th>Ack_No.</th>
-                                                        <th>Name</th>
-                                                        <th>Aadhar No.</th>
-                                                        <th>Acc Type</th>
-                                                        <th>Branch</th>
-                                                        <th>Status</th>
-                                                        <th>Uploaded By</th>
-                                                        <th>Approved By</th>
-                                                    </tr>
-                                                    <tr class="cardviewtr" ng-repeat="record in list_Adhar">
-                                                        <td>{{record.code.substring(5, 15)}}</td>
-                                                        <td>{{record.firstName}} {{record.midName}} {{record.lastName}}</td>
-                                                        <td>{{record.adharNo}}</td>
-                                                        <td>{{record.accountType}}</td>
-                                                        <td>{{record.branchName}}</td>
-                                                        <td>{{record.status}}</td>
-                                                        <td>{{record.uploadedBy}}</td>
-                                                        <td>{{record.approvedBy}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <script>
-                                            // Get the elements
-                                            const infoAdhar = document.getElementById('info-adhar');
-                                            const popupAdhar = document.getElementById('popup-adhar');
-                                            const closeAdhar = document.getElementById('close-btn-adhar');
-                                            // Show the popup when info icon is clicked
-                                            infoAdhar.addEventListener('click', () => {
-                                            popupAdhar.style.display = 'block';
-                                            });
-                                            // Close the popup when the close button is clicked
-                                            closeAdhar.addEventListener('click', () => {
-                                            popupAdhar.style.display = 'none';
-                                            });
-                                            // Close the popup if user clicks outside the popup
-                                            window.addEventListener('click', (e) => {
-                                            if (e.target === popupAdhar) {
-                                            popupAdhar.style.display = 'none';
-                                            }
-                                            });
-                                        </script>
+                                        <img id="info-adhar" class="imgsync" ng-click="aadharcheck(adharNo)" src="image/sync.png" alt=""/>
+                                        <!--                                        <script>
+                                                                                     // Get the elements
+                                                                                     const infoAdhar = document.getElementById('info-adhar');
+                                                                                     const popupAdhar = document.getElementById('popup-adhar');
+                                                                                     const closeAdhar = document.getElementById('close-btn-adhar');
+                                                                                     // Show the popup when info icon is clicked
+                                                                                     infoAdhar.addEventListener('click', () => {
+                                                                                     popupAdhar.style.display = 'block';
+                                                                                     });
+                                                                                     // Close the popup when the close button is clicked
+                                                                                     closeAdhar.addEventListener('click', () => {
+                                                                                     popupAdhar.style.display = 'none';
+                                                                                     });
+                                                                                     // Close the popup if user clicks outside the popup
+                                                                                     window.addEventListener('click', (e) => {
+                                                                                     if (e.target === popupAdhar) {
+                                                                                     popupAdhar.style.display = 'none';
+                                                                                     }
+                                                                                     });
+                                                                                </script>-->
                                     </div>
                                 </div>
 
@@ -952,6 +934,41 @@
                                 <button type="button" class="form-button padbutton" > Cancel </button>
                             </a>
                         </form>
+                        
+                        <div ng-show="visibelForAadharDetails" class="popupAadhar list-container">
+                            <div style=" color: black; text-align: left;">
+                                <div style="position: sticky; top: 0;">
+                                    <span class="close" ng-click="closeAadharDetails()">❌</span>
+                                    <h2 class="form-heading" >KYC Verification Details</h2>
+                                </div>
+
+                                <table class="table" style="border: solid #80C37D thin; border-radius: 5px;" >
+                                    <thead>
+                                        <tr class="cardviewth" >
+                                            <th scope="col">Ack_No.</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Aadhar No.</th>
+                                            <th scope="col">Acc Type</th>
+                                            <th scope="col">Branch</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Uploaded By</th>
+                                            <th scope="col">Approved By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cardviewtr" ng-repeat="record in list_Adhar">
+                                            <td scope="row">{{record.code.substring(5, 15)}}</td>
+                                            <td>{{record.applicant}}</td>
+                                            <td>{{record.adharNo}}</td>
+                                            <td>{{record.accountType}}</td>
+                                            <td>{{record.branchName}}</td>
+                                            <td>{{record.status}}</td>
+                                            <td>{{record.uploadedBy}}</td>
+                                            <td>{{record.approvedBy}}</td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>                        
                     </div>    
                 </div>
             </div>
@@ -961,35 +978,35 @@
             ©2024. Sahayog Multi-State Credit Co-operative Society Ltd. – All rights reserved.(PV 1.1)
         </div>
         <script>
-            document.getElementById('myForm').addEventListener('keydown', function (event) {
+             document.getElementById('myForm').addEventListener('keydown', function (event) {
 //            var key = event.which || event.keyCode;
 //            if (key === 13) {
 //                event.preventDefault();
 //            }
-            if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
-            event.preventDefault();
-            }
-            });
-            ///session tinme out code here
-            var idleTimeout = 900000; // 5 minutes in milliseconds
-            var idleTimer;
-            function resetTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(logout, idleTimeout);
-            }
+             if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+             event.preventDefault();
+             }
+             });
+             ///session tinme out code here
+             var idleTimeout = 900000; // 5 minutes in milliseconds
+             var idleTimer;
+             function resetTimer() {
+             clearTimeout(idleTimer);
+             idleTimer = setTimeout(logout, idleTimeout);
+             }
 
-            function logout() {
-            window.localStorage.removeItem("user_asCOPs");
-            location.reload();
-            console.log("User automatically logged out due to inactivity.");
-            }
+             function logout() {
+             window.localStorage.removeItem("user_asCOPs");
+             location.reload();
+             console.log("User automatically logged out due to inactivity.");
+             }
 
-            // Initial setup
-            resetTimer();
-            // Listen for user activity
-            window.addEventListener('mousemove', resetTimer);
-            window.addEventListener('keydown', resetTimer);
-            window.addEventListener('scroll', resetTimer);
+             // Initial setup
+             resetTimer();
+             // Listen for user activity
+             window.addEventListener('mousemove', resetTimer);
+             window.addEventListener('keydown', resetTimer);
+             window.addEventListener('scroll', resetTimer);
         </script>
     </body>
 </html>

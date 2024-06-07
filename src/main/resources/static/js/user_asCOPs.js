@@ -7,6 +7,7 @@
 
      $scope.userRecord = JSON.parse(window.localStorage.getItem("user_asCOPs"));
      if (($scope.userRecord)) {
+         $scope.list_Adhar = [];
          $scope.panstatus = null;
          $scope.adharstatus = null;
          $scope.otherDocstatus = null;
@@ -15,6 +16,7 @@
          $scope.notVisible_OnAcceptP = false;
          $scope.formContainerVisible = false;
          $scope.listContainerVisible = true;
+         $scope.visibelForAadharDetails = false;
 
 //                    //registration page
 //                    $scope.onShowSignUpPage = function () {
@@ -88,9 +90,9 @@
                  $http.get($scope.uRl + "kyc/get/" + record.id)
                          .then(function (response) {
                              $scope.list1 = response.data;
-                     
-                             
-                               var applicantArray = $scope.list1.applicant;
+
+
+                             var applicantArray = $scope.list1.applicant;
                              var applicantloop = applicantArray.split(",");
 
                              var aadharArray = $scope.list1.adharNo;
@@ -115,12 +117,12 @@
                                  $scope.showAadhar3 = false;
 
                              }
-                             
-                     
+
+
                              $scope.reco = $scope.list1;
                              $scope.id = $scope.list1.id;
-                             
-                              if ($scope.showApp2 === true && $scope.showApp3 === true) {
+
+                             if ($scope.showApp2 === true && $scope.showApp3 === true) {
                                  $scope.adharNo1 = aadharloop[0];
                                  $scope.adharNo2 = aadharloop[1];
                                  $scope.adharNo3 = aadharloop[2];
@@ -141,9 +143,9 @@
 
                                  $scope.applicant1 = applicantloop[0];
                              }
-                             
-                             
-                    
+
+
+
                              $scope.mobileNo = $scope.list1.mobileNo;
                              $scope.accout_Type = $scope.list1.accountType;
                              $scope.accountType = $scope.list1.accountType;
@@ -407,16 +409,37 @@
          $scope.searchByFiled = function (message) {
              $scope.search = message;
          };
-         $scope.aadharcheck = function () {
-             if (!($scope.adharNo) && !($scope.remark)) {
-                 alert("Please enter the Aadhar Number!");
+
+         $scope.closeAadharDetails = function () {
+             $scope.visibelForAadharDetails = false;
+         };
+
+         $scope.aadharcheck = function (adharNo) {
+             if (!(adharNo)) {
+                 alert("    Please enter the Aadhar Number! \n\
+                                                    OR \n\
+                            Check the enter digit is 12 or not.");
+                 $scope.visibelForAadharDetails = false;
+                 $scope.list_Adhar = null;
              } else {
-                 $scope.url = "kyc/getAadhar/" + $scope.adharNo;
+                 $scope.visibelForAadharDetails = false;
+                 $scope.list_Adhar = null;
+                 $scope.url = "kyc/getAadhar/" + adharNo;
+//                $scope.loadingImg = true;
                  $http.get($scope.uRl + $scope.url)
                          .then(function (response) {
                              $scope.list_Adhar = response.data;
+                             if ($scope.list_Adhar.length > 0) {
+                                 $scope.visibelForAadharDetails = true;
+                             } else {
+                                 $scope.list_Adhar = null;
+                                 $scope.visibelForAadharDetails = false;
+                                 alert("Aadhar not present in KYC.");
+                             }
+//                        $scope.loadingImg = false;
                          }, function (error) {
                              console.log(error);
+//                        $scope.loadingImg = false;
                          });
              }
          };
@@ -485,8 +508,12 @@
                  }
                  return {
                      'Code': item.code,
-                     'Name': item.firstName + " " + item.midName + " " + item.lastName,
-                     'Aadhar No': item.adharNo,
+                     'Applicant_1': item.applicant.split(",")[0],
+                     'Applicant_2': item.applicant.split(",")[1],
+                     'Applicant_3': item.applicant.split(",")[2],
+                     'Aadhar No_1': item.adharNo.split(",")[0],
+                     'Aadhar No_2': item.adharNo.split(",")[1],
+                     'Aadhar No_3': item.adharNo.split(",")[2],
                      'Mobile No': item.mobileNo,
                      'Account Type': item.accountType,
                      'Branch Name': item.branchName,
@@ -638,10 +665,59 @@
                          form.append("otherDoc", $scope.otherDocfile[j], $scope.otherDocfile[j].localName);
                      }
                      form.append("id", $scope.id);
-                     form.append("firstName", $scope.firstName);
-                     form.append("midName", $scope.midName);
-                     form.append("lastName", $scope.lastName);
-                     form.append("adharNo", $scope.adharNo);
+//                     form.append("firstName", $scope.firstName);
+//                     form.append("midName", $scope.midName);
+//                     form.append("lastName", $scope.lastName);
+//                     form.append("adharNo", $scope.adharNo);
+
+                     if ($scope.showApp2 === true && $scope.showApp3 === true) {
+                         if (($scope.applicant1) && ($scope.applicant2) && ($scope.applicant3)) {
+                             form.append("applicant", $scope.applicant1);
+                             form.append("applicant", $scope.applicant2);
+                             form.append("applicant", $scope.applicant3);
+                         } else {
+                             alert("Please enter all applicant name.");
+                             return;
+                         }
+                         if (($scope.adharNo1) && ($scope.adharNo2) && ($scope.adharNo3)) {
+                             form.append("adharNo", $scope.adharNo1);
+                             form.append("adharNo", $scope.adharNo2);
+                             form.append("adharNo", $scope.adharNo3);
+                         } else {
+                             alert("Please enter all Aadhar No.");
+                             return;
+                         }
+                     } else if ($scope.showApp2 === true) {
+                         if (($scope.applicant1) && ($scope.applicant2)) {
+                             form.append("applicant", $scope.applicant1);
+                             form.append("applicant", $scope.applicant2);
+                         } else {
+                             alert("Please enter all applicant name.");
+                             return;
+                         }
+                         if (($scope.adharNo1) && ($scope.adharNo2)) {
+                             form.append("adharNo", $scope.adharNo1);
+                             form.append("adharNo", $scope.adharNo2);
+                         } else {
+                             alert("Please enter all Aadhar No.");
+                             return;
+                         }
+                     } else {
+                         if (($scope.applicant1)) {
+                             form.append("applicant", $scope.applicant1);
+                         } else {
+                             alert("Please enter all applicant name.");
+                             return;
+                         }
+                         if (($scope.adharNo)) {
+                             form.append("adharNo", $scope.adharNo);
+                         } else {
+                             alert("Please enter all Aadhar No.");
+                             return;
+                         }
+                     }
+
+
                      form.append("mobileNo", $scope.mobileNo);
                      form.append("accountType", $scope.accountType);
                      form.append("branchName", $scope.branchName);
@@ -748,10 +824,59 @@
                      form.append("otherDoc", $scope.otherDocfile[j], $scope.otherDocfile[j].localName);
                  }
                  form.append("id", $scope.id);
-                 form.append("firstName", $scope.firstName);
-                 form.append("midName", $scope.midName);
-                 form.append("lastName", $scope.lastName);
-                 form.append("adharNo", $scope.adharNo);
+//                 form.append("firstName", $scope.firstName);
+//                 form.append("midName", $scope.midName);
+//                 form.append("lastName", $scope.lastName);
+//                 form.append("adharNo", $scope.adharNo);
+
+                 if ($scope.showApp2 === true && $scope.showApp3 === true) {
+                     if (($scope.applicant1) && ($scope.applicant2) && ($scope.applicant3)) {
+                         form.append("applicant", $scope.applicant1);
+                         form.append("applicant", $scope.applicant2);
+                         form.append("applicant", $scope.applicant3);
+                     } else {
+                         alert("Please enter all applicant name.");
+                         return;
+                     }
+                     if (($scope.adharNo1) && ($scope.adharNo2) && ($scope.adharNo3)) {
+                         form.append("adharNo", $scope.adharNo1);
+                         form.append("adharNo", $scope.adharNo2);
+                         form.append("adharNo", $scope.adharNo3);
+                     } else {
+                         alert("Please enter all Aadhar No.");
+                         return;
+                     }
+                 } else if ($scope.showApp2 === true) {
+                     if (($scope.applicant1) && ($scope.applicant2)) {
+                         form.append("applicant", $scope.applicant1);
+                         form.append("applicant", $scope.applicant2);
+                     } else {
+                         alert("Please enter all applicant name.");
+                         return;
+                     }
+                     if (($scope.adharNo1) && ($scope.adharNo2)) {
+                         form.append("adharNo", $scope.adharNo1);
+                         form.append("adharNo", $scope.adharNo2);
+                     } else {
+                         alert("Please enter all Aadhar No.");
+                         return;
+                     }
+                 } else {
+                     if (($scope.applicant1)) {
+                         form.append("applicant", $scope.applicant1);
+                     } else {
+                         alert("Please enter all applicant name.");
+                         return;
+                     }
+                     if (($scope.adharNo)) {
+                         form.append("adharNo", $scope.adharNo);
+                     } else {
+                         alert("Please enter all Aadhar No.");
+                         return;
+                     }
+                 }
+
+
                  form.append("mobileNo", $scope.mobileNo);
                  form.append("accountType", $scope.accountType);
                  form.append("branchName", $scope.branchName);

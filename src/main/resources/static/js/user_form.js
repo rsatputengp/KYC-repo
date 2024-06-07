@@ -46,7 +46,7 @@ app.controller("cont", function ($scope, $http) {
             $scope.forAadharDetails = false;
         };
 
-        $scope.aadharcheck = function (adharNo) {
+        $scope.aadharcheck = function (adharNo) { debugger;
             if (!(adharNo)) {
                 alert("     Please enter the Aadhar Number! \n\
                                                     OR \n\

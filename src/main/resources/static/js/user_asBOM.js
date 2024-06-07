@@ -13,6 +13,7 @@
      $scope.userRecord = JSON.parse(window.localStorage.getItem("user_asBOM"));
      if (($scope.userRecord)) {
 //            $scope.loadingImg = false;
+         $scope.visibelForAadharDetails = false;
          $scope.panstatus = null;
          $scope.adharstatus = null;
          $scope.otherDocstatus = null;
@@ -41,6 +42,10 @@
                      });
          };
 
+         $scope.closeAadharDetails = function () {
+             $scope.visibelForAadharDetails = false;
+         };
+
          $scope.aadharcheck = function (adharNo) {
              if (!(adharNo)) {
                  alert("    Please enter the Aadhar Number! \n\
@@ -51,7 +56,7 @@
              } else {
                  $scope.visibelForAadharDetails = false;
                  $scope.list_Adhar = null;
-                 $scope.url = "kyc/getAadhar/" + $scope.adharNo;
+                 $scope.url = "kyc/getAadhar/" + adharNo;
 //                $scope.loadingImg = true;
                  $http.get($scope.uRl + $scope.url)
                          .then(function (response) {
@@ -447,10 +452,15 @@
                  } else {
                      finalStatus = "Pending";
                  }
+
                  return {
                      'Code': item.code,
-                     'Name': item.firstName + " " + item.midName + " " + item.lastName,
-                     'Aadhar No': item.adharNo,
+                     'Applicant_1': item.applicant.split(",")[0],
+                     'Applicant_2': item.applicant.split(",")[1],
+                     'Applicant_3': item.applicant.split(",")[2],
+                     'Aadhar No_1': item.adharNo.split(",")[0],
+                     'Aadhar No_2': item.adharNo.split(",")[1],
+                     'Aadhar No_3': item.adharNo.split(",")[2],
                      'Mobile No': item.mobileNo,
                      'Account Type': item.accountType,
                      'Branch Name': item.branchName,
@@ -472,7 +482,72 @@
                  };
              });
 
+//                 var aadharloop = item.adharNo.split(",");
+//                 var applicantloop = item.applicant.split(",");
+//                 var loopindex = aadharloop.length;
+//                 var result = [];
+//
+//                 for (var i = 0; i < loopindex; i++) {
+//                     result.push({
+//                         'Code': item.code,
+//                         'Applicant ' + i+1: applicantloop[i],
+//                         'Aadhar No ' + i+1: aadharloop[i],
+//                         'Mobile No': item.mobileNo,
+//                         'Account Type': item.accountType,
+//                         'Branch Name': item.branchName,
+//                         'Status': item.status,
+//                         'Remark': item.remark,
+//                         'Form Filled Date': dateOfArray[0].substring(0, 10),
+//                         'Date': item.date,
+//                         'Pan Status': item.panStatus,
+//                         'Aadhar_Status': item.adharStatus,
+//                         'Other_Doc_Status': item.otherDocStatus,
+//                         'Application_Form_Status': item.applicationFormStatus,
+//                         'Time Stamp': item.timeStam,
+//                         'Approved By': item.approvedBy,
+//                         'Uploaded By': item.uploadedBy,
+//                         'No Of Cycle': noOfCycle,
+//                         'Duration': duration,
+//                         'Final Status': finalStatus,
+//                         'Approved Date': ApprovedDate
+//                     });
+//                 }
+//                 return result;
+//             }).flat();
 
+//                 var aadharloop = item.adharNo.split(",");
+//                 var applicantloop = item.applicant.split(",");
+//                 var loopindex = aadharloop.length;
+//                 var result = [];
+//
+//                 for (var i = 0; i < loopindex; i++) {
+//                     var obj = {
+//                         'Code': item.code,
+//                         'Mobile No': item.mobileNo,
+//                         'Account Type': item.accountType,
+//                         'Branch Name': item.branchName,
+//                         'Status': item.status,
+//                         'Remark': item.remark,
+//                         'Form Filled Date': dateOfArray[0].substring(0, 10),
+//                         'Date': item.date,
+//                         'Pan Status': item.panStatus,
+//                         'Aadhar_Status': item.adharStatus,
+//                         'Other_Doc_Status': item.otherDocStatus,
+//                         'Application_Form_Status': item.applicationFormStatus,
+//                         'Time Stamp': item.timeStam,
+//                         'Approved By': item.approvedBy,
+//                         'Uploaded By': item.uploadedBy,
+//                         'No Of Cycle': noOfCycle,
+//                         'Duration': duration,
+//                         'Final Status': finalStatus,
+//                         'Approved Date': ApprovedDate
+//                     };
+//                     obj['Applicant ' + (i + 1)] = applicantloop[i];
+//                     obj['Aadhar No ' + (i + 1)] = aadharloop[i];
+//                     result.push(obj);
+//                 }
+//                 return result;
+//             }).flat();
 
 
              var ws = XLSX.utils.json_to_sheet(filteredData);
@@ -933,6 +1008,20 @@
              $http.get($scope.uRl + "kyc/get/" + id)
                      .then(function (response) {
                          $scope.listpdf = response.data;
+
+                         // Split the applicant names by comma
+                         var applicants = $scope.listpdf.applicant.split(',');
+                         var aadharNo = $scope.listpdf.adharNo.split(',');
+
+                         // Generate the applicant HTML dynamically
+                         var applicantHTML = '';
+                         var aadharNoHTML = '';
+                         for (var i = 0; i < applicants.length; i++) {
+                             applicantHTML += `<strong>Applicant ${i + 1} : </strong> ${applicants[i]}<br>`;
+                         }
+                         for (var i = 0; i < aadharNo.length; i++) {
+                             aadharNoHTML += `<strong>Adhar No ${i + 1} : </strong> ${aadharNo[i]}<br>`;
+                         }
                          var htmlContent = `
                 <html lang="en">
                     <head>
@@ -961,10 +1050,8 @@
                         <div class="container">
                             <h1>KYC Verification Details</h1><br><br>
                             <strong>Ack_NO : </strong> ${$scope.listpdf.code}<br>
-                            <strong>First Name : </strong> ${$scope.listpdf.firstName}<br>
-                            <strong>Middle Name : </strong> ${$scope.listpdf.midName}<br>
-                            <strong>Last Name : </strong> ${$scope.listpdf.lastName}<br>
-                            <strong>Aadhar No : </strong> ${$scope.listpdf.adharNo}<br>
+                            ${applicantHTML}
+                            ${aadharNoHTML}
                             <strong>Mobile No : </strong> ${$scope.listpdf.mobileNo}<br>
                             <strong>Account Type : </strong> ${$scope.listpdf.accountType}<br>
                             <strong>BranchName : </strong> ${$scope.listpdf.branchName}<br>
