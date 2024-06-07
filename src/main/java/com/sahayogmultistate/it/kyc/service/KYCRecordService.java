@@ -696,9 +696,24 @@ public class KYCRecordService {
         return recordList.size();
     }
 
-    @Transactional
     public List<KYCRecord> getAadhar(String adharNo) {
-        return repository.findByAdharNo(adharNo);
+        ArrayList<KYCRecord> recordList = new ArrayList<>();
+        List<KYCRecord> findAll = getKYCRescordsall();
+        for (KYCRecord kYCRecord : findAll) {
+            String adharNoDB = kYCRecord.getAdharNo();
+            String aadharNoExist = "" + adharNoDB.indexOf(',');
+            if (!aadharNoExist.equals("-1")) {
+                String[] aadharNum = adharNoDB.split(",");
+                if (adharNo.equals(aadharNum[0])) {
+                    recordList.add(kYCRecord);
+                }
+            } else {
+                if (adharNo.equals(adharNoDB)) {
+                    recordList.add(kYCRecord);
+                }
+            }
+        }
+        return recordList;
     }
 //    public List<KYCRecord> getAadhar(long adharNo) {
 //        ArrayList<KYCRecord> recordList = new ArrayList<>();
